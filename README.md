@@ -23,7 +23,7 @@ This repository contains a sample multi-container application and the scripts to
 5. Specify the value of the application parameters (see the **Configuration** section for more information). 
 
 
-# TodoApi Solution#
+# Visual Studio Solution #
 The solution has three projects. 
 
 - **TodoWeb**: this project is an ASP.NET Core Web application that represents the frontend of the solution. The user interface is composes of a set of Razor pages that can be used to browse, create, delete, update and see the details of a collection of todo items stored in a Document DB collection. The frontend service is configured to send logs, events, traces, requests, dependencies and exceptions to **Application Insights**. 
