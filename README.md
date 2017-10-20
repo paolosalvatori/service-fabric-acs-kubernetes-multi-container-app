@@ -13,7 +13,7 @@ This repository contains a sample multi-container application and the scripts to
 - Service Fabric Linux cluster on Azure with the DNS service.
 - Azure Container Service Kubernetes cluster on Linux 
 
-## Prerequisites for development machine
+# Prerequisites for development machine #
 
 1. Install [Microsoft Visual Studio 2017](https://www.visualstudio.com/) with .NET Core workload. For more information, see [Visual Studio Tools for Docker](https://docs.microsoft.com/en-us/aspnet/core/publishing/visual-studio-tools-for-docker).
 2. Install [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) and configure it to use Linux containers.
@@ -34,19 +34,19 @@ The solution also contains the following solution some folders with the scripts 
 
 **Note**: both the frontend and backend containerized services use the **microsoft/aspnetcore:2.0** as base Docker image. For more information, see [Official .NET Docker images](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/net-core-net-framework-containers/official-net-docker-images)
  
-## Service Fabric Architecture ##
+# Service Fabric Architecture #
 
 The following picture shows the architecture of the **Service Fabric** application.
 
 ![Architecture](Images/ServiceFabricArchitecture.png)  
 
-## Kubernetes Architecture ##
+# Kubernetes Architecture #
 
 The following picture shows the architecture of the **Kubernetes** application running on **Azure Container Service**.
 
 ![Architecture](Images/KubernetesArchitecture.png) 
 
-## Configuration ##
+# Configuration #
 In ASP.NET Core, the configuration API provides a way of configuring an app based on a list of name-value pairs. Configuration is read at runtime from multiple sources. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for: 
 
 - File formats (INI, JSON, and XML)
@@ -57,7 +57,7 @@ In ASP.NET Core, the configuration API provides a way of configuring an app base
 - Azure Key Vault
 - Custom providers, which you install or create
 
-### TodoApi Service Configuration ###
+## TodoApi Service Configuration ##
 The following table contains the configuration of the TodoApi service defined in the **appsettings.json** file. 
 
 ```json
@@ -112,7 +112,7 @@ The following table contains the configuration of the TodoApi service defined in
 - The **Application Insights** element contains the **InstrumentationKey** of the **Application Insights** used by the service for diagnostics, logging, performance monitoring, analytics and alerting.
 - The **Logging*** element contains the log level for the various logging providers.
 
-### TodoWeb Service Configuration ###
+## TodoWeb Service Configuration ##
 The following table contains the configuration of the TodoApi service defined in the **appsettings.json ** file. 
 
 ```json
@@ -143,7 +143,7 @@ The following table contains the configuration of the TodoApi service defined in
 - The **Application Insights** element contains the **InstrumentationKey** of the **Application Insights** used by the service for diagnostics, logging, performance monitoring, analytics and alerting.
 - The **Logging*** element contains the log level for the various logging providers.
 
-### How Configuration works in ASP.NET Core ###
+## How Configuration works in ASP.NET Core ##
 The [CreateDefaultBuilder](https://andrewlock.net/exploring-program-and-startup-in-asp-net-core-2-preview1-2/) extension method in an ASP.NET Core 2.x app adds configuration providers for reading JSON files and system configuration sources:
 
 - appsettings.json
@@ -171,7 +171,7 @@ For more information on configuration, see the following resources:
 - [Managing ASP.NET Core App Settings on Kubernetes](https://anthonychu.ca/post/aspnet-core-appsettings-secrets-kubernetes/)
 - [ASP.NET Core and Docker Environment Variables](https://www.scottbrady91.com/Docker/ASPNET-Core-and-Docker-Environment-Variables)
 
-## Define the Docker container
+## How to define the Docker images and containers ##
 Using [Visual Studio Tools for Docker](https://docs.microsoft.com/en-us/aspnet/core/publishing/visual-studio-tools-for-docker), I built an image based the on the **microsoft/aspnetcore:2.0** standard image.
 Then, the tool creates a Dockerfile for both the frontend and backend service that you can later customize at will. The Dockerfile contains instructions for setting up the environment inside your container, loading the application you want to run, and mapping ports. The Dockerfile is the input to the docker build command, which creates the image. Below you can see the **Dockerfile** of the **TodoApi** and **TodoWeb** services.
 
