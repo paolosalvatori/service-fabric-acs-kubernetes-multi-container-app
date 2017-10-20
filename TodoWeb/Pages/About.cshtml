@@ -1,0 +1,16 @@
+﻿@page
+@model AboutModel
+@{
+    ViewData["Title"] = "About";
+}
+<h2>@ViewData["Title"]</h2>
+<strong>@Model.Message</strong>
+
+<p>This application is composed of the following modules:
+   <ul>
+       <li><strong>TodoWeb:</strong> this an ASP.NET Core Razor Pages application</li>
+       <li><strong>TodoApi:</strong> this an ASP.NET Core Web API application</li>
+   </ul>
+    The <strong>TodoWeb</strong> applicationm invokes the REST service exposed by <strong>TodoApi</strong> application.
+    <br />Both applications are based on ASP.NET Core and run inside separate Docker containers.
+</p>

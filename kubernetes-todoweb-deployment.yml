@@ -1,0 +1,38 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: todoweb
+  labels:
+    app: todoapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: todoweb
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: todoweb
+    spec:
+      containers:
+      - name: todoweb
+        image: paolosalvatori/todoweb:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+        - name: TodoApiService__EndpointUri
+          value: "todoapi"
+        - name: ApplicationInsights__InstrumentationKey
+          value: "Application-Insights-Instrumentation-Key"

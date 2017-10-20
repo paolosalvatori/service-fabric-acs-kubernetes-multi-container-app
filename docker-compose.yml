@@ -1,0 +1,14 @@
+version: '3'
+
+services:
+  todoapi:
+    image: todoapi
+    build:
+      context: ./TodoApi
+      dockerfile: Dockerfile
+
+  todoweb:
+    image: todoweb
+    build:
+      context: ./TodoWeb
+      dockerfile: Dockerfile

@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+  todoapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RepositoryService__CosmosDb__EndpointUri=https://todoapi.documents.azure.com:443/
+      - RepositoryService__CosmosDb__PrimaryKey=Document-Db-Primary-Key
+      - RepositoryService__CosmosDb__DatabaseName=TodoApiDb
+      - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
+      - NotificationService__ServiceBus__ConnectionString=Azure-Service-Bus-Connection-String
+      - NotificationService__ServiceBus__QueueName=todoapi
+      - ApplicationInsights__InstrumentationKey=Application-Insights-Instrumentation-Key
+
+    ports:
+      - "80"
+
+  todoweb:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - TodoApiService__EndpointUri=todoapi
+      - ApplicationInsights__InstrumentationKey=Application-Insights-Instrumentation-Key
+    ports:
+      - "80"

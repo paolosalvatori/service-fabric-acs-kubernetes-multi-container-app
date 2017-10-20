@@ -1,0 +1,46 @@
+@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<h1>TodoItems</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TodoItems[0].Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TodoItems[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TodoItems[0].IsComplete)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var todoItem in Model.TodoItems) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => todoItem.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => todoItem.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => todoItem.IsComplete)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@todoItem.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@todoItem.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@todoItem.Id">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+<a asp-page="./Create">Create</a>
