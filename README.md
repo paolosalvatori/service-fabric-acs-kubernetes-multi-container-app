@@ -766,7 +766,7 @@ spec:
   selector:
     app: todoweb
 ```
-**Note**: in a Azure Container Service Kubernetes cluster, a Kubernetes service is implemented as a separate Load Balancer with a separate Public or Private IP.
+**Note**: in this sample, a Kubernetes service is implemented as a separate Load Balancer with a separate Public or Private IP.
 
 The following script can be used to deploy the services and deployments.
 ```Batchfile
