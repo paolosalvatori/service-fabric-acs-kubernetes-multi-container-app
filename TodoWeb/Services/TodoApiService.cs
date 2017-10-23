@@ -1,6 +1,5 @@
 ﻿#region Using Directives
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
@@ -39,7 +38,7 @@ namespace TodoWeb.Services
         /// <summary>
         /// Initializes a new instance of the TodoApiService class. 
         /// </summary>
-        /// <param name="context">TodoContext parameter used as an in-memroy database.</param>
+        /// <param name="options">Contains service configuration.</param>
         /// <param name="logger">Logger.</param>
         public TodoApiService(IOptions<TodoApiServiceOptions> options, ILogger<TodoApiService> logger)
         {

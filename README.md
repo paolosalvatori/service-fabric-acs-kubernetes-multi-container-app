@@ -496,8 +496,58 @@ Here are the complete service and application manifests used in the Service Fabr
 ```
 **Observations**:
 - Both the **TodoApi** and **TodoWeb** containerized services are defined as stateless services.
-- The **ApplicationManifest.xml** defines a **ServiceDnsName="todoapi.todoapp"** for the **TodoApi** service. This **DNS** name and port used by the **TodoApi** backend service are passed as value to the **TodoApiService__EndpointUri** (e.g. todoapi.todoapp:8081) environment variable and the value of the environment variable is used by the **TodoWeb** frontend service to create the http address of the  **TodoApi** backend service.
 - The instance count for both services is equal to -1. This means that a container for each service is created on each **Service Fabric** cluster node.
+- The **ApplicationManifest.xml** defines a **ServiceDnsName="todoapi.todoapp"** for the **TodoApi** service. This **DNS** name and port used by the **TodoApi** backend service are passed as value to the **TodoApiService__EndpointUri** (e.g. todoapi.todoapp:8081) environment variable and the value of the environment variable is used by the *TodoApiService* class of the **TodoWeb** frontend service to create the http address of the  **TodoApi** backend service, as shown in the following code snippet:
+
+```csharp
+namespace TodoWeb.Services
+{
+    /// <summary>
+    /// TodoApiService class
+    /// </summary>
+    public class TodoApiService : ITodoApiService
+    {
+        #region Private Constants
+        private const string DefaultBaseAddress = "todoapi";
+        ...
+        #endregion
+
+        #region Private Instance Fields
+        private readonly IOptions<TodoApiServiceOptions> _options;
+        private readonly ILogger<TodoApiService> _logger;
+        private readonly HttpClient _httpClient;
+        #endregion
+
+        #region Public Constructor
+        /// <summary>
+        /// Initializes a new instance of the TodoApiService class. 
+        /// </summary>
+        /// <param name="options"Service options.</param>
+        /// <param name="logger">Logger.</param>
+        public TodoApiService(IOptions<TodoApiServiceOptions> options, 
+						      ILogger<TodoApiService> logger)
+        {
+            _options = options;
+            _logger = logger;
+
+            var endpoint = string.IsNullOrWhiteSpace(_options?.Value?.EndpointUri) ?
+                           DefaultBaseAddress :
+                           _options.Value.EndpointUri;
+            _httpClient = new HttpClient
+            {
+                BaseAddress = new Uri($"http://{endpoint}")
+            };
+            _httpClient.DefaultRequestHeaders.Accept.Clear();
+            _httpClient.DefaultRequestHeaders.Add("ContentType", "application/json");
+            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            _logger.LogInformation(LoggingEvents.Configuration, $"HttpClient.BaseAddress = {_httpClient.BaseAddress}");
+        }
+        #endregion
+    ...
+    }
+}
+```
 
 The following picture shows the multi-container application using the **Service Fabric Explorer**.
 
@@ -600,7 +650,7 @@ The last command launches the Kubernetes web UI that allows to manage all the Ku
 ![Architecture](Images/K8sDashboard.png) 
 
 ## Multi-Document Template File ##
-On Kubernetes the multi-container application is composed by two services, one ofr the frontend service and one for the backend service, and 5 pods for each service. Each pod contains just a container or the **TodoApi** or **TodoWeb** ASP.NET Core apps. The following YAML file contains the definition for the necessary services and deployments.
+On Kubernetes the multi-container application is composed by two services, one of the frontend service and one for the backend service, and 5 pods for each service. Each pod contains just a container or the **TodoApi** or **TodoWeb** ASP.NET Core apps. The following YAML file contains the definition for the necessary services and deployments.
 
 **kubernetes-deployments-and-services.yml**
 ```yaml
