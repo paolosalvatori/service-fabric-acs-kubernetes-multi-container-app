@@ -794,7 +794,7 @@ As you can observe, the service of type **LoadBalancer** have both a **Cluster I
 - **LoadBalancer**: Exposes the service externally using a cloud provider’s load balancer. NodePort and ClusterIP services, to which the external load balancer will route, are automatically created.
 - **ExternalName**: Maps the service to the contents of the externalName field (e.g. foo.bar.example.com), by returning a CNAME record with its value. No proxying of any kind is set up. This requires version 1.7 or higher of kube-dns
 
-In our example, if we want to provide the ability to call the REST services exposed by the **TodoApi** service to other applications running outside of the **Kubernetes** cluster. So, we create the service specifying **LoadBalancer** as a service type. 
+In our example, if you want to provide the ability to call the REST services exposed by the **TodoApi** service to other applications running outside of the **Kubernetes** cluster. So, you create the service specifying **LoadBalancer** as a service type. 
 Use the **Azure Management Portal** to look at the **Frontend IP configuration** of the **Azure Load Balancer** used by **ACS** in front of the **Kubernetes** cluster nodes.
 
 ![Kubectl](Images/PublicIps.png) 
@@ -802,6 +802,23 @@ Use the **Azure Management Portal** to look at the **Frontend IP configuration**
 1. The first row contains an **IP address** which corresponds to the **Public IP** of the **azure-vote-front** service. This is a quickstart sample deployed on the same **Kubernetes** cluster. For more information, see [Deploy Kubernetes cluster for Linux containers](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-kubernetes-walkthrough)
 2. The second row contains an **IP address** which corresponds to the **Public IP** of the **TodoApi** service.
 2. The third row contains an **IP address** which corresponds to the **Public IP** of the **TodoWeb** service.
+
+Likewise, if you use the **Azure Management Portal** to look at the **Load balancing rules** defined on the **Load Balancer** used in front of the cluster nodes, you can note that there is a rule for each **Public IP** on the port **80**, all sharing the same **Backend Pool**
+
+![Kubectl](Images/LoadBalancingRules.png) 
+
+if you use the **Azure Management Portal** to look at the **Backend pools**, you can see that in this topology, the **Azure Container Service Kubernetes** cluster uses a single backend pool composed of just 3 nodes.
+
+![Kubectl](Images/BackendPools.png) 
+
+You can retrieve information about cluster nodes also running the following command:
+```Batchfile
+REM Get nodes  
+kubectl get nodes 
+```
+as shown in the following picture:
+
+![Kubectl](Images/KubectlGetNodes.png) 
 
 Instead, if you want to use the **TodoApi** only as a backend service from the **TodoWeb** service, and you don't want to expose it publicly, you can specify **ClusterIP** as service type for the the **TodoApi**. For more information, see:
 

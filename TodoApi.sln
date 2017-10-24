@@ -56,12 +56,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Visio", "Visio", "{47223A09
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{EBFF6EB2-3DD8-432D-BB61-71FD93969744}"
 	ProjectSection(SolutionItems) = preProject
+		Images\BackendPools.png = Images\BackendPools.png
 		Images\DockerCompose.png = Images\DockerCompose.png
 		Images\godaddy.png = Images\godaddy.png
 		Images\K8sDashboard.png = Images\K8sDashboard.png
 		Images\Kubectl.png = Images\Kubectl.png
+		Images\KubectlGetNodes.png = Images\KubectlGetNodes.png
 		Images\KubernetesArchitecture.png = Images\KubernetesArchitecture.png
 		Images\KubernetesArchitectureOld.png = Images\KubernetesArchitectureOld.png
+		Images\LoadBalancingRules.png = Images\LoadBalancingRules.png
 		Images\Manifests.png = Images\Manifests.png
 		Images\Nodes.png = Images\Nodes.png
 		Images\publicdomain.png = Images\publicdomain.png
