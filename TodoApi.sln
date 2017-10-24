@@ -54,6 +54,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Visio", "Visio", "{47223A09
 		Architecture.vsdx = Architecture.vsdx
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{EBFF6EB2-3DD8-432D-BB61-71FD93969744}"
+	ProjectSection(SolutionItems) = preProject
+		Images\DockerCompose.png = Images\DockerCompose.png
+		Images\godaddy.png = Images\godaddy.png
+		Images\K8sDashboard.png = Images\K8sDashboard.png
+		Images\Kubectl.png = Images\Kubectl.png
+		Images\KubernetesArchitecture.png = Images\KubernetesArchitecture.png
+		Images\KubernetesArchitectureOld.png = Images\KubernetesArchitectureOld.png
+		Images\Manifests.png = Images\Manifests.png
+		Images\Nodes.png = Images\Nodes.png
+		Images\publicdomain.png = Images\publicdomain.png
+		Images\PublicIps.png = Images\PublicIps.png
+		Images\ServiceFabricArchitecture.png = Images\ServiceFabricArchitecture.png
+		Images\ServiceFabricArchitectureOld.png = Images\ServiceFabricArchitectureOld.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

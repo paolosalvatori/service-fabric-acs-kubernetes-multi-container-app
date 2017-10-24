@@ -46,6 +46,8 @@ The following picture shows the architecture of the **Kubernetes** application r
 
 ![Architecture](Images/KubernetesArchitecture.png) 
 
+**Note**: this diagram represents a simplification of the actual implementation of **Kubernetes Services** as it omits important entities such **kube-proxy**, **Iptables**, **Service Types**, etc. For more information, see [Kubernetes Services](https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer).
+
 # Configuration #
 In ASP.NET Core, the configuration API provides a way of configuring an app based on a list of name-value pairs. Configuration is read at runtime from multiple sources. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for: 
 
@@ -766,16 +768,46 @@ spec:
   selector:
     app: todoweb
 ```
-**Note**: in this sample, a Kubernetes service is implemented as a separate Load Balancer with a separate Public.
-
 The following script can be used to deploy the services and deployments.
 ```Batchfile
 REM Deploy azure-vote sample application  
 kubectl create --filename .\kubernetes-deployments-and-services.yml --record
 ```
-[kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface to list the newly created services and deployments, as shown in the following picture.
+You can use the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface to list the newly created services and deployments by running the following commands: 
+```Batchfile
+REM Get services  
+kubectl get services 
+
+REM Get deployments
+kubectl get deployments
+```
+As shown in the following pictures, you can see the **todoapi** and **todoweb** services and the **todoapi** and **todoweb** deployments.
 
 ![Kubectl](Images/Kubectl.png) 
+
+The **spec** of both the **todoapi** and **todoweb** services define **LoadBalancer** as service type. Therefore, when you run the script, the **Azure Container Service Kubernetes** cluster creates two **Load Balancing Rules** with the **Public IP** of both services.
+
+As you can observe, the service of type **LoadBalancer** have both a **Cluster IP**, which is a virtual, internal IP used by the **kube-proxy** running on each node of the cluster. On the contrary, if the type of the service is defined as **ClusterIP**, no Public IP is exposed over the internet, and, as consequence, no load balancing rule is created when you create a service of type **ClusterIP**. More in general, **Kubernetes ServiceTypes** allow you to specify what kind of service you want. The default is **ClusterIP**.
+
+- **ClusterIP**: Exposes the service on a cluster-internal IP. Choosing this value makes the service only reachable from within the cluster. This is the default ServiceType.
+- **NodePort: Exposes the service on each Node’s IP at a static port (the NodePort). A ClusterIP service, to which the NodePort service will route, is automatically created. You’ll be able to contact the NodePort service, from outside the cluster, by requesting <NodeIP>:<NodePort>.
+- **LoadBalancer**: Exposes the service externally using a cloud provider’s load balancer. NodePort and ClusterIP services, to which the external load balancer will route, are automatically created.
+- **ExternalName**: Maps the service to the contents of the externalName field (e.g. foo.bar.example.com), by returning a CNAME record with its value. No proxying of any kind is set up. This requires version 1.7 or higher of kube-dns
+
+In our example, if we want to provide the ability to call the REST services exposed by the **TodoApi** service to other applications running outside of the **Kubernetes** cluster. So, we create the service specifying **LoadBalancer** as a service type. 
+Use the **Azure Management Portal** to look at the **Frontend IP configuration** of the **Azure Load Balancer** used by **ACS** in front of the **Kubernetes** cluster nodes.
+
+![Kubectl](Images/PublicIps.png) 
+
+1. The first row contains an **IP address** which corresponds to the **Public IP** of the **azure-vote-front** service. This is a quickstart sample deployed on the same **Kubernetes** cluster. For more information, see [Deploy Kubernetes cluster for Linux containers](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-kubernetes-walkthrough)
+2. The second row contains an **IP address** which corresponds to the **Public IP** of the **TodoApi** service.
+2. The third row contains an **IP address** which corresponds to the **Public IP** of the **TodoWeb** service.
+
+Instead, if you want to use the **TodoApi** only as a backend service from the **TodoWeb** service, and you don't want to expose it publicly, you can specify **ClusterIP** as service type for the the **TodoApi**. For more information, see:
+
+- [Kubernetes Services](https://kubernetes.io/docs/concepts/services-networking/service/)
+- [Kubernetes on Azure](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-intro-kubernetes)
+- [Microsoft Azure Container Service Engine - Kubernetes](https://github.com/Azure/acs-engine/blob/master/docs/kubernetes.md)
 
 # Assign a Custom DNS to the public IP of the frontend service #
 As you can see in the previous picture, I could use the public IP exposed by the **frontend** service, that is 13.93.46.58, to access the web UI. However, you can register a public domain using domain registrar like [GoDaddy][https://uk.godaddy.com/] and associate this public domain to the address exposed by the Kubernetes service using the Azure DNS service. In fact, the Azure DNS allows you to host a DNS zone and manage the DNS records for a domain in Azure. In order for DNS queries for a custom domain to reach Azure DNS, the domain has to be delegated to Azure DNS from the parent domain. Keep in mind Azure DNS is not the domain registrar. 
