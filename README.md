@@ -820,7 +820,9 @@ as shown in the following picture:
 
 ![Kubectl](Images/KubectlGetNodes.png) 
 
-Instead, if you want to use the **TodoApi** only as a backend service from the **TodoWeb** service, and you don't want to expose it publicly, you can specify **ClusterIP** as service type for the the **TodoApi**. For more information, see:
+Instead, if you want to use the **TodoApi** service only as a backend service from the **TodoWeb** service, and you don't want to expose it publicly, you can specify **ClusterIP** as its service type. Choosing this value makes the service only reachable from within the cluster.
+
+For more information, see:
 
 - [Kubernetes Services](https://kubernetes.io/docs/concepts/services-networking/service/)
 - [Kubernetes on Azure](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-intro-kubernetes)
