@@ -9,41 +9,6 @@ Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoWeb", "TodoWeb\TodoWeb.csproj", "{B642B02F-FCE2-40B2-9456-CF8F3EA89F5C}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker-scripts", "docker-scripts", "{3B3C956B-8A8E-4CE5-9754-2CB6D168026D}"
-	ProjectSection(SolutionItems) = preProject
-		publish-images-to-docker-hub.cmd = publish-images-to-docker-hub.cmd
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "kubernetes-scripts", "kubernetes-scripts", "{E0DB7FEE-6968-4A4C-A789-AF1A0035F483}"
-	ProjectSection(SolutionItems) = preProject
-		create-kubernetes-cluster.cmd = create-kubernetes-cluster.cmd
-		create-kubernetes-todoapi-deployment.cmd = create-kubernetes-todoapi-deployment.cmd
-		create-kubernetes-todoapi-service.cmd = create-kubernetes-todoapi-service.cmd
-		create-kubernetes-todoweb-deployment.cmd = create-kubernetes-todoweb-deployment.cmd
-		create-kubernetes-todoweb-service.cmd = create-kubernetes-todoweb-service.cmd
-		delete-kubernetes-pods-and-services-and-deployments.cmd = delete-kubernetes-pods-and-services-and-deployments.cmd
-		deploy-application-to-kubernetes.cmd = deploy-application-to-kubernetes.cmd
-		kubernetes-deployments-and-services.yml = kubernetes-deployments-and-services.yml
-		kubernetes-todoapi-deployment.yml = kubernetes-todoapi-deployment.yml
-		kubernetes-todoapi-service.yml = kubernetes-todoapi-service.yml
-		kubernetes-todoweb-deployment.yml = kubernetes-todoweb-deployment.yml
-		kubernetes-todoweb-service.yml = kubernetes-todoweb-service.yml
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "service-fabric-docker-compose", "service-fabric-docker-compose", "{F96006CF-E6D4-49AB-83A3-D33A3C6BC66A}"
-	ProjectSection(SolutionItems) = preProject
-		servicefabric-create-deployment.cmd = servicefabric-create-deployment.cmd
-		servicefabric-create-deployment.ps1 = servicefabric-create-deployment.ps1
-		servicefabric-docker-compose.yml = servicefabric-docker-compose.yml
-	EndProjectSection
-EndProject
-Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "TodoApp", "TodoApp\TodoApp.sfproj", "{EEEBC2B5-C67E-4EF6-B268-9EED81BF831F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DNS", "DNS", "{7041768E-5F06-4AAB-B8DB-C419B7979D3A}"
-	ProjectSection(SolutionItems) = preProject
-		create-azure-dns-for-kubernetes-todoapi-service.cmd = create-azure-dns-for-kubernetes-todoapi-service.cmd
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{D789831C-95E6-4E22-AB93-6675CDCE8688}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
@@ -51,11 +16,69 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Readme", "Readme", "{D78983
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Visio", "Visio", "{47223A09-3DE9-4AC5-81BD-F5A19418AE28}"
 	ProjectSection(SolutionItems) = preProject
-		Architecture.vsdx = Architecture.vsdx
+		Visio\Architecture.vsdx = Visio\Architecture.vsdx
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{EBFF6EB2-3DD8-432D-BB61-71FD93969744}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET Core Projects", "ASP.NET Core Projects", "{755747D7-830F-4DFA-8C0B-4B82E9C72815}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service Fabric Projects", "Service Fabric Projects", "{8B53778D-6B40-4B6C-A249-B873E409FF02}"
+EndProject
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "TodoAppFromAzureContainerRegistry", "TodoAppFromAzureContainerRegistry\TodoAppFromAzureContainerRegistry.sfproj", "{5211A0AE-7F8A-4785-96FA-9912BD335F35}"
+EndProject
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "TodoAppFromDockerHub", "TodoAppFromDockerHub\TodoAppFromDockerHub.sfproj", "{EEEBC2B5-C67E-4EF6-B268-9EED81BF831F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{B0A91F4B-9B47-49CB-8820-832D4E990EA7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ACS-Kubernetes-Cluster", "ACS-Kubernetes-Cluster", "{5BE23486-7967-4AB4-B18F-A4E966235E38}"
 	ProjectSection(SolutionItems) = preProject
+		Scripts\ACS-Kubernetes-Cluster\create-kubernetes-acs-cluster.cmd = Scripts\ACS-Kubernetes-Cluster\create-kubernetes-acs-cluster.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AKS-Kubernetes-Cluster", "AKS-Kubernetes-Cluster", "{7AA1012F-988C-4B05-A584-8B69D5DA12CD}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\AKS-Kubernetes-Cluster\create-kubernetes-aks-cluster.cmd = Scripts\AKS-Kubernetes-Cluster\create-kubernetes-aks-cluster.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Azure-Container-Registry", "Azure-Container-Registry", "{B46C986E-DB69-49CC-B5A2-B14DA1C3D7DB}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Azure-Container-Registry\create-azure-container-registry.cmd = Scripts\Azure-Container-Registry\create-azure-container-registry.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Azure-DNS", "Azure-DNS", "{F5EA924C-0452-4F5D-8950-49770F7F1E80}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Azure-DNS\create-azure-dns-for-kubernetes-todoapi-service.cmd = Scripts\Azure-DNS\create-azure-dns-for-kubernetes-todoapi-service.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Push-Docker-Images-Scripts", "Push-Docker-Images-Scripts", "{57555088-225D-48CD-9A42-BD808020B4C0}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Push-Docker-Images-Scripts\push-images-to-azure-container-registry.cmd = Scripts\Push-Docker-Images-Scripts\push-images-to-azure-container-registry.cmd
+		Scripts\Push-Docker-Images-Scripts\push-images-to-docker-hub.cmd = Scripts\Push-Docker-Images-Scripts\push-images-to-docker-hub.cmd
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes-Scripts", "Kubernetes-Scripts", "{9FF09F58-886C-4A9E-B398-105BBC6475A9}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-azure-container-service.cmd = Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-azure-container-service.cmd
+		Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-docker-hub.cmd = Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-docker-hub.cmd
+		Scripts\Kubernetes-Scripts\delete-kubernetes-pods-and-services-and-deployments.cmd = Scripts\Kubernetes-Scripts\delete-kubernetes-pods-and-services-and-deployments.cmd
+		Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-azure-container-registry.yml = Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-azure-container-registry.yml
+		Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-docker-hub.yml = Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-docker-hub.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service-Fabric-Docker-Compose", "Service-Fabric-Docker-Compose", "{DB75A5CA-9954-48DE-B783-BF164BCA204F}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Service-Fabric-Docker-Compose\servicefabric-create-deployment-from-azure-container-registry.cmd = Scripts\Service-Fabric-Docker-Compose\servicefabric-create-deployment-from-azure-container-registry.cmd
+		Scripts\Service-Fabric-Docker-Compose\servicefabric-create-deployment-from-azure-container-registry.ps1 = Scripts\Service-Fabric-Docker-Compose\servicefabric-create-deployment-from-azure-container-registry.ps1
+		Scripts\Service-Fabric-Docker-Compose\servicefabric-create-deployment-from-docker-hub.cmd = Scripts\Service-Fabric-Docker-Compose\servicefabric-create-deployment-from-docker-hub.cmd
+		Scripts\Service-Fabric-Docker-Compose\servicefabric-create-deployment-from-docker-hub.ps1 = Scripts\Service-Fabric-Docker-Compose\servicefabric-create-deployment-from-docker-hub.ps1
+		Scripts\Service-Fabric-Docker-Compose\servicefabric-docker-compose-from-azure-container-registry.yml = Scripts\Service-Fabric-Docker-Compose\servicefabric-docker-compose-from-azure-container-registry.yml
+		Scripts\Service-Fabric-Docker-Compose\servicefabric-docker-compose-from-docker-hub.yml = Scripts\Service-Fabric-Docker-Compose\servicefabric-docker-compose-from-docker-hub.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{80873668-ABD9-41CD-A4B4-36B9BAE70D33}"
+	ProjectSection(SolutionItems) = preProject
+		Images\AcrUsernamePassword.png = Images\AcrUsernamePassword.png
+		Images\AksSTodoWeb.png = Images\AksSTodoWeb.png
+		Images\AzureShell.png = Images\AzureShell.png
 		Images\BackendPools.png = Images\BackendPools.png
 		Images\DockerCompose.png = Images\DockerCompose.png
 		Images\godaddy.png = Images\godaddy.png
@@ -63,14 +86,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{EBFF6E
 		Images\Kubectl.png = Images\Kubectl.png
 		Images\KubectlGetNodes.png = Images\KubectlGetNodes.png
 		Images\KubernetesArchitecture.png = Images\KubernetesArchitecture.png
-		Images\KubernetesArchitectureOld.png = Images\KubernetesArchitectureOld.png
 		Images\LoadBalancingRules.png = Images\LoadBalancingRules.png
 		Images\Manifests.png = Images\Manifests.png
 		Images\Nodes.png = Images\Nodes.png
 		Images\publicdomain.png = Images\publicdomain.png
 		Images\PublicIps.png = Images\PublicIps.png
 		Images\ServiceFabricArchitecture.png = Images\ServiceFabricArchitecture.png
-		Images\ServiceFabricArchitectureOld.png = Images\ServiceFabricArchitectureOld.png
 	EndProjectSection
 EndProject
 Global
@@ -105,6 +126,14 @@ Global
 		{B642B02F-FCE2-40B2-9456-CF8F3EA89F5C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B642B02F-FCE2-40B2-9456-CF8F3EA89F5C}.Release|x64.ActiveCfg = Release|Any CPU
 		{B642B02F-FCE2-40B2-9456-CF8F3EA89F5C}.Release|x64.Build.0 = Release|Any CPU
+		{5211A0AE-7F8A-4785-96FA-9912BD335F35}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{5211A0AE-7F8A-4785-96FA-9912BD335F35}.Debug|x64.ActiveCfg = Debug|x64
+		{5211A0AE-7F8A-4785-96FA-9912BD335F35}.Debug|x64.Build.0 = Debug|x64
+		{5211A0AE-7F8A-4785-96FA-9912BD335F35}.Debug|x64.Deploy.0 = Debug|x64
+		{5211A0AE-7F8A-4785-96FA-9912BD335F35}.Release|Any CPU.ActiveCfg = Release|x64
+		{5211A0AE-7F8A-4785-96FA-9912BD335F35}.Release|x64.ActiveCfg = Release|x64
+		{5211A0AE-7F8A-4785-96FA-9912BD335F35}.Release|x64.Build.0 = Release|x64
+		{5211A0AE-7F8A-4785-96FA-9912BD335F35}.Release|x64.Deploy.0 = Release|x64
 		{EEEBC2B5-C67E-4EF6-B268-9EED81BF831F}.Debug|Any CPU.ActiveCfg = Debug|x64
 		{EEEBC2B5-C67E-4EF6-B268-9EED81BF831F}.Debug|x64.ActiveCfg = Debug|x64
 		{EEEBC2B5-C67E-4EF6-B268-9EED81BF831F}.Debug|x64.Build.0 = Debug|x64
@@ -116,6 +145,19 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9F7DF99C-D0C2-4535-A380-E01F5D46FBF3} = {755747D7-830F-4DFA-8C0B-4B82E9C72815}
+		{B642B02F-FCE2-40B2-9456-CF8F3EA89F5C} = {755747D7-830F-4DFA-8C0B-4B82E9C72815}
+		{5211A0AE-7F8A-4785-96FA-9912BD335F35} = {8B53778D-6B40-4B6C-A249-B873E409FF02}
+		{EEEBC2B5-C67E-4EF6-B268-9EED81BF831F} = {8B53778D-6B40-4B6C-A249-B873E409FF02}
+		{5BE23486-7967-4AB4-B18F-A4E966235E38} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
+		{7AA1012F-988C-4B05-A584-8B69D5DA12CD} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
+		{B46C986E-DB69-49CC-B5A2-B14DA1C3D7DB} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
+		{F5EA924C-0452-4F5D-8950-49770F7F1E80} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
+		{57555088-225D-48CD-9A42-BD808020B4C0} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
+		{9FF09F58-886C-4A9E-B398-105BBC6475A9} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
+		{DB75A5CA-9954-48DE-B783-BF164BCA204F} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9255118D-6AE7-4332-8A5C-8A2414E92153}

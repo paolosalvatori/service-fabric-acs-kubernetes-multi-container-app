@@ -1,0 +1,2 @@
+REM Create a Service Fabric Compose deployment from a docker-compose.yml file
+sfctl compose create --name DockerComposeTodoApp --file-path servicefabric-docker-compose-from-docker-hub.yml --user DOCKER_HUB_USERNAME --encrypted-pass DOCKER_HUB_PASSWORD

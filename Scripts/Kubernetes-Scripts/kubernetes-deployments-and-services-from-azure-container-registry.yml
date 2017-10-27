@@ -1,0 +1,111 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: todoapi
+  labels:
+    app: todoapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: todoapi
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: todoapi
+    spec:
+      containers:
+      - name: todoapi
+        image:AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+        - name: RepositoryService__CosmosDb__EndpointUri
+          value: "COSMOS_DB_ENDPOINT_URI"
+        - name: RepositoryService__CosmosDb__PrimaryKey
+          value: "COSMOS_DB_PRIMARY_KEY"
+        - name: RepositoryService__CosmosDb__DatabaseName
+          value: "TodoApiDb"
+        - name: RepositoryService__CosmosDb__CollectionName
+          value: "TodoApiCollection"
+        - name: NotificationService__ServiceBus__ConnectionString
+          value: "SERVICE_BUS_CONNECTION_STRING"
+        - name: NotificationService__ServiceBus__QueueName
+          value: "todoapi"
+        - name: ApplicationInsights__InstrumentationKey
+          value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todoapi
+spec:
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+  selector:
+    app: todoapi
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: todoweb
+  labels:
+    app: todoapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: todoweb
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: todoweb
+    spec:
+      containers:
+      - name: todoweb
+        image:AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+        - name: TodoApiService__EndpointUri
+          value: "todoapi"
+        - name: ApplicationInsights__InstrumentationKey
+          value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todoweb
+spec:
+  type: LoadBalancer
+  ports:
+  - protocol: TCP
+    port: 80
+  selector:
+    app: todoweb

@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Parameters>
+    <Parameter Name="ACR_Username" Value="ACR_USERNAME" />
+    <Parameter Name="ACR_Password" Value="ACR_PASSWORD" />
+    <Parameter Name="TodoWeb_InstanceCount" Value="-1" />
+    <Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" Value="Development"/>
+    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
+    <Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" Value="APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"/>
+    <Parameter Name="TodoApi_InstanceCount" Value="-1" />
+    <Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" Value="Development"/>
+    <Parameter Name="TodoApi_RepositoryService__CosmosDb__EndpointUri" Value="COSMOS_DB_ENDPOINT_URI"/>
+    <Parameter Name="TodoApi_RepositoryService__CosmosDb__PrimaryKey" Value="COSMOS_DB_PRIMARY_KEY"/>
+    <Parameter Name="TodoApi_RepositoryService__CosmosDb__DatabaseName" Value="TodoApiDb"/>
+    <Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" Value="TodoApiCollection"/>
+    <Parameter Name="TodoApi_NotificationService__ServiceBus__ConnectionString" Value="SERVICE_BUS_CONNECTION_STRING"/>
+    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
+    <Parameter Name="TodoApi_ApplicationInsights__InstrumentationKey" Value="APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"/>
+  </Parameters>
+</Application>

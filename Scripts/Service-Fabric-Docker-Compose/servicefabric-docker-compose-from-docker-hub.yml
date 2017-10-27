@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  todoapi:
+    image: DOCKER_HUB_REPOSITORY/todoapi:latest
+    deploy:
+      mode: replicated
+      replicas: 5
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - RepositoryService__CosmosDb__EndpointUri=COSMOS_DB_ENDPOINT_URI
+      - RepositoryService__CosmosDb__PrimaryKey=COSMOS_DB_PRIMARY_KEY
+      - RepositoryService__CosmosDb__DatabaseName=TodoApiDb
+      - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
+      - NotificationService__ServiceBus__ConnectionString=SERVICE_BUS_CONNECTION_STRING
+      - NotificationService__ServiceBus__QueueName=todoapi
+      - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
+    ports:
+      - "8081:80"
+
+  todoweb:
+    image: DOCKER_HUB_REPOSITORY/todoweb:latest
+    deploy:
+      mode: replicated
+      replicas: 5
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - TodoApiService__EndpointUri=todoapi.todoapp:8081
+      - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
+    ports:
+      - "8082:80"

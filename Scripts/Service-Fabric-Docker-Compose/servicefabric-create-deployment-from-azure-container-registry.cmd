@@ -1,0 +1,2 @@
+REM Create a Service Fabric Compose deployment from a docker-compose.yml file
+sfctl compose create --name DockerComposeTodoApp --file-path servicefabric-docker-compose-from-azure-container-registry.yml --user AZURE_CONTAINER_REGISTRY_USERNAME --encrypted-pass AZURE_CONTAINER_REGISTRY_PASSWORD
