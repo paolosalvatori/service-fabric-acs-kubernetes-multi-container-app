@@ -889,7 +889,7 @@ az aks browse --name AksKubernetes --resource-group AksKubernetesResourceGroup
 ```
 You can also create the cluster from the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview). In this case, you can skip the *az aks install-cli* command as the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface is already installed in your shell.
 
-## Deploy the multi-container application to ACS\Kubernetes from a loal machine ##
+## Deploy the multi-container application to ACS\Kubernetes from a local machine ##
 On Kubernetes the multi-container application is composed by two services, one of the frontend service and one for the backend service, and 5 pods for each service. Each pod contains just a container or the **TodoApi** or **TodoWeb** ASP.NET Core apps. The **Docker** images can be pulled from an **Azure Container Registry** or from **Docker Hub**. The solution contains scripts and yaml files to accomplish both tasks, but for brevity, let's see how you can deploy the application pulling the **Docker** images from a **Docker Hub** repository. The following YAML file contains the definition for the necessary services and deployments. 
 
 **kubernetes-deployments-and-services-from-docker-hub.yml**
