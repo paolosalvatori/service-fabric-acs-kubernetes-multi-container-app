@@ -560,7 +560,7 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
 <?xml version="1.0" encoding="utf-8"?>
 <Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" 
                                     xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-									xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
     <Parameter Name="DockerHub_Username" Value="DOCKER-HUB-USERNAME" />
     <Parameter Name="DockerHub_Password" Value="DOCKER-HUB-PASSWORD" />
