@@ -1097,8 +1097,8 @@ For more information to delegate a public domain to Azure DNS, see the following
 - [Delegate a domain to Azure DNS](https://docs.microsoft.com/en-us/azure/dns/dns-delegate-domain-azure-dns)
 
 I personally proceeded as follows:
-- I create a public domain using [GoDaddy][https://uk.godaddy.com/] called babosbird.com.
-- Then I run the following script to create the **Azure DNS** and related record.
+- I created a public domain using [GoDaddy][https://uk.godaddy.com/] called babosbird.com.
+- Then, I ran the following script to create the **Azure DNS** and related record.
 
 ```Batchfile
 REM Create a resource group for the DNS Zone and records
