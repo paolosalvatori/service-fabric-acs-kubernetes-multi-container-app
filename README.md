@@ -352,13 +352,13 @@ for /f "delims=" %%a in ('call az acr list --resource-group ContainerRegistryRes
 REM tag the local todoapi:latest image with the loginServer of the container registry
 docker tag todoapi:latest %AKS_CONTAINER_REGISTRY%/todoapi:latest
 
-REM publish <container registry>/todoapi:latest to the container registry on Azure
+REM publish AKS_CONTAINER_REGISTRY/todoapi:latest to the container registry on Azure
 docker push %AKS_CONTAINER_REGISTRY%/todoapi:latest
 
 REM tag the local todoweb:latest image with the loginServer of the container registry
 docker tag todoweb:latest %AKS_CONTAINER_REGISTRY%/todoweb:latest
 
-REM publish <container registry>/todoweb:latest to the container registry on Azure
+REM publish AKS_CONTAINER_REGISTRY/todoweb:latest to the container registry on Azure
 docker push %AKS_CONTAINER_REGISTRY%/todoweb:latest
 
 REM List images in the container registry on Azure
@@ -558,7 +558,9 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
 **ApplicationParameteres\Cloud.xml**
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" 
+                                    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+									xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
     <Parameter Name="DockerHub_Username" Value="DOCKER-HUB-USERNAME" />
     <Parameter Name="DockerHub_Password" Value="DOCKER-HUB-PASSWORD" />
