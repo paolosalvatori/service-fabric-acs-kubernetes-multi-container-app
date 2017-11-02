@@ -302,7 +302,7 @@ You can execute the following command file to tag and register the images in you
 **push-images-to-docker-hub.cmd**
 ```batchfile
 REM login to docker hub
-docker login -u DOCKER_HUB_REPOSITORY -p trustno1
+docker login -u DOCKER_HUB_REPOSITORY -p DOCKER_HUB_PASSWORD
 
 REM tag the local todoapi:latest image with the name of the DOCKER_HUB_REPOSITORY
 docker tag todoapi:latest DOCKER_HUB_REPOSITORY/todoapi:latest
@@ -319,6 +319,14 @@ docker push DOCKER_HUB_REPOSITORY/todoweb:latest
 REM browse to https://hub.docker.com/r/DOCKER_HUB_REPOSITORY/
 start chrome https://hub.docker.com/r/DOCKER_HUB_REPOSITORY/
 ```
+
+**Configuration**
+
+Before running the above script file, make the following changes:
+
+- **DOCKER_HUB_REPOSITORY**: replace this placeholder with your **Docker Hub** username.
+- **DOCKER_HUB_PASSWORD**: replace this placeholder with your **Docker Hub** password.
+
 
 Alternatively, you can register and deploy your images from the [Azure Container Registry](https://docs.microsoft.com/en-gb/azure/container-registry/container-registry-intro). Let's see how you can perform this task.
 
@@ -563,7 +571,7 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
                                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
     <Parameter Name="DockerHub_Username" Value="DOCKER-HUB-USERNAME" />
-    <Parameter Name="DockerHub_Password" Value="DOCKER-HUB-PASSWORD" />
+    <Parameter Name="DockerHub_Password" Value="DOCKER_HUB_PASSWORD" />
     <Parameter Name="TodoWeb_InstanceCount" Value="-1" />
     <Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" Value="Development"/>
     <Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
@@ -585,7 +593,7 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
 Before deploying the application to your **Azure Service Fabric Linux** cluster, open the **Cloud.xml** file and make the following changes:
 
 - **DOCKER-HUB-USERNAME**: replace this placeholder with your **Docker Hub** username.
-- **DOCKER-HUB-PASSWORD**: replace this placeholder with your **Docker Hub** password.
+- **DOCKER_HUB_PASSWORD**: replace this placeholder with your **Docker Hub** password.
 - **COSMOS_DB_ENDPOINT_URI**: replace this placeholder with the endpoint URI of your **Cosmos DB**.
 - **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
 - **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
@@ -810,7 +818,7 @@ New-ServiceFabricComposeDeployment -DeploymentName DockerComposeTodoApp -Compose
 Before deploying the application to your **Azure Service Fabric Linux** cluster, open the batch scripts and PowerShell scripts and make the following changes:
 
 - **DOCKER-HUB-USERNAME**: replace this placeholder with your **Docker Hub** username.
-- **DOCKER-HUB-PASSWORD**: replace this placeholder with your **Docker Hub** password.
+- **DOCKER_HUB_PASSWORD**: replace this placeholder with your **Docker Hub** password.
 - **SERVICE_FABRIC_NAME**: replace this placeholder in the PowerShell script with the name of your **Azure Service Fabric Linux** cluster.
 - **SERVICE_FABRIC_LOCATION**: replace this placeholder in the PowerShell script with the location of your **Azure Service Fabric Linux** cluster.
 
@@ -1305,7 +1313,7 @@ spec:
 
 Before deploying the application to your managed **Kubernetes** service, open the YAML file and make the following changes:
 
-- **DOCKER_HUB_REPOSITORY**: replace this placeholder with the name of your **Docker Hub** repository.
+- **AZURE_CONTAINER_REGISTRY_NAME**: replace this placeholder with the name of your **Azure Container Registry**.
 - **COSMOS_DB_ENDPOINT_URI**: replace this placeholder with the endpoint URI of your **Cosmos DB**.
 - **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
 - **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
