@@ -7,12 +7,10 @@
   <Parameters>
     <Parameter Name="ACR_Username" DefaultValue="" />
     <Parameter Name="ACR_Password" DefaultValue="" />
-    <Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
-    <Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
     <Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
     <Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" DefaultValue="Development"/>
     <Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
-    <Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
     <Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
     <Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" DefaultValue="Development"/>
     <Parameter Name="TodoApi_RepositoryService__CosmosDb__EndpointUri" DefaultValue=""/>
