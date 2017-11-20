@@ -6,6 +6,8 @@
     <Parameter Name="TodoWeb_InstanceCount" Value="-1" />
     <Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" Value="Development"/>
     <Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ConnectionString" Value="STORAGE_ACCOUNT_CONNECTION_STRING"/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" Value="todoweb"/>
     <Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" Value="APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"/>
     <Parameter Name="TodoApi_InstanceCount" Value="-1" />
     <Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" Value="Development"/>
@@ -15,6 +17,8 @@
     <Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" Value="TodoApiCollection"/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__ConnectionString" Value="SERVICE_BUS_CONNECTION_STRING"/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ConnectionString" Value="STORAGE_ACCOUNT_CONNECTION_STRING"/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" Value="todoapi"/>
     <Parameter Name="TodoApi_ApplicationInsights__InstrumentationKey" Value="APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"/>
   </Parameters>
 </Application>

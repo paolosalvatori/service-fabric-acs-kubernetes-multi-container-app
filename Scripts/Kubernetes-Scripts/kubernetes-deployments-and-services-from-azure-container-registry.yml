@@ -44,6 +44,10 @@ spec:
           value: "SERVICE_BUS_CONNECTION_STRING"
         - name: NotificationService__ServiceBus__QueueName
           value: "todoapi"
+        - name: DataProtection__BlobStorage__ConnectionString
+          value: "STORAGE_ACCOUNT_CONNECTION_STRING"
+        - name: DataProtection__BlobStorage__ContainerName
+          value: "todoapi"
         - name: ApplicationInsights__InstrumentationKey
           value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
 ---
@@ -95,6 +99,10 @@ spec:
           value: "Development"
         - name: TodoApiService__EndpointUri
           value: "todoapi"
+        - name: DataProtection__BlobStorage__ConnectionString
+          value: "STORAGE_ACCOUNT_CONNECTION_STRING"
+        - name: DataProtection__BlobStorage__ContainerName
+          value: "todoweb"
         - name: ApplicationInsights__InstrumentationKey
           value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
 ---

@@ -22,6 +22,8 @@
     <EnvironmentVariables>
       <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
       <EnvironmentVariable Name="TodoApiService__EndpointUri" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
       <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value=""/>
     </EnvironmentVariables>
   </CodePackage>

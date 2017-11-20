@@ -8,9 +8,11 @@
     <Parameter Name="ACR_Username" DefaultValue="" />
     <Parameter Name="ACR_Password" DefaultValue="" />
     <Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
     <Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" DefaultValue="Development"/>
     <Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ConnectionString" DefaultValue=""/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+    <Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
     <Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
     <Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" DefaultValue="Development"/>
     <Parameter Name="TodoApi_RepositoryService__CosmosDb__EndpointUri" DefaultValue=""/>
@@ -19,6 +21,8 @@
     <Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" DefaultValue=""/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__ConnectionString" DefaultValue=""/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" DefaultValue=""/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ConnectionString" DefaultValue=""/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
     <Parameter Name="TodoApi_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
@@ -30,6 +34,8 @@
     <EnvironmentOverrides CodePackageRef="Code">
       <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[TodoWeb_ASPNETCORE_ENVIRONMENT]"/>
       <EnvironmentVariable Name="TodoApiService__EndpointUri" Value="[TodoWeb_TodoApiService__EndpointUri]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value="[TodoWeb_DataProtection__BlobStorage__ConnectionString]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoWeb_DataProtection__BlobStorage__ContainerName]"/>
       <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value="[TodoWeb_ApplicationInsights__InstrumentationKey]"/>
     </EnvironmentOverrides>
     <Policies>
@@ -50,6 +56,8 @@
       <EnvironmentVariable Name="RepositoryService__CosmosDb__CollectionName" Value="[TodoApi_RepositoryService__CosmosDb__CollectionName]"/>
       <EnvironmentVariable Name="NotificationService__ServiceBus__ConnectionString" Value="[TodoApi_NotificationService__ServiceBus__ConnectionString]"/>
       <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value="[TodoApi_NotificationService__ServiceBus__QueueName]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value="[TodApi_DataProtection__BlobStorage__ConnectionString]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoApi_DataProtection__BlobStorage__ContainerName]"/>
       <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value="[TodoApi_ApplicationInsights__InstrumentationKey]"/>
     </EnvironmentOverrides>
     <Policies>

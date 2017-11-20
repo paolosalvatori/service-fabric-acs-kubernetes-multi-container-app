@@ -14,6 +14,8 @@ services:
       - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
       - NotificationService__ServiceBus__ConnectionString=SERVICE_BUS_CONNECTION_STRING
       - NotificationService__ServiceBus__QueueName=todoapi
+      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+      - DataProtection__BlobStorage__ContainerName=todoapi
       - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
     ports:
       - "8081:80"
@@ -25,7 +27,9 @@ services:
       replicas: 5
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - TodoApiService__EndpointUri=todoapi.todoapp:8081
+      - TodoApiService__EndpointUri=todoapi:8081
+      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+      - DataProtection__BlobStorage__ContainerName=todoweb
       - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
     ports:
       - "8082:80"

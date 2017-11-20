@@ -27,6 +27,8 @@
       <EnvironmentVariable Name="RepositoryService__CosmosDb__CollectionName" Value=""/>
       <EnvironmentVariable Name="NotificationService__ServiceBus__ConnectionString" Value=""/>
       <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
       <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value=""/>
     </EnvironmentVariables>
   </CodePackage>

@@ -126,6 +126,12 @@ The following table contains the configuration of the TodoApi service defined in
             "QueueName": ""
         }
     },
+    "DataProtection": {
+      "BlobStorage": {
+        "ConnectionString": "",
+        "ContainerName": ""
+      }
+    },
     "ApplicationInsights": {
         "InstrumentationKey": ""
     },
@@ -157,8 +163,9 @@ The following table contains the configuration of the TodoApi service defined in
 
 **Notes**
 
-- The **RepositoryService** element contains the **EndpointUri**, **PrimaryKey**, **DatabaseName** and **CollectionName** of the DocumentDB database holding the data.
-- The **NotificationService** element contains the **ConnectionString** and **QueueName** of the Service Bus queue where the backend service sends a message any time a CRUD is performed on a document.
+- The **RepositoryService** element contains the **CosmosDb** element which in turn contains the **EndpointUri**, **PrimaryKey**, **DatabaseName** and **CollectionName** of the DocumentDB database holding the data.
+- The **NotificationService** element contains the **ServiceBus** element which in turn contains the **ConnectionString** of the Service Bus namespace used by the notification service and the **QueueName** setting which holds the name of the queue where the backend service sends a message any time a CRUD operation is performed on a document.
+- The **DataProtection** element contains the **BlobStorage** element which in turn contains the **ConnectionString** of the storage account used by the data protection and the **ContainerName** setting which holds the name of the container where the data protection system stores the key. For more information, see [Data Protection in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/).
 - The **Application Insights** element contains the **InstrumentationKey** of the **Application Insights** used by the service for diagnostics, logging, performance monitoring, analytics and alerting.
 - The **Logging*** element contains the log level for the various logging providers.
 
@@ -169,6 +176,12 @@ The following table contains the configuration of the TodoApi service defined in
 {
   "TodoApiService": {
     "EndpointUri": ""
+  },
+  "DataProtection": {
+    "BlobStorage": {
+      "ConnectionString": "",
+      "ContainerName": ""
+    }
   },
   "ApplicationInsights": {
     "InstrumentationKey": ""
@@ -190,6 +203,7 @@ The following table contains the configuration of the TodoApi service defined in
 **Notes**
 
 - The **TodoApiService** element contains the **EndpointUri** of the **TodoApi**. In **Service Fabric** this setting will be the DNS names assigned to the **TodoApi** service. For more information, see [DNS Service in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-dnsservice). In **Kubernetes** this setting will contain the name of the **TodoApi** service. For more information on Kubernetes Services, see [Services](https://kubernetes.io/docs/concepts/services-networking/service/).
+- The **DataProtection** element contains the **BlobStorage** element which in turn contains the **ConnectionString** of the storage account used by the data protection and the **ContainerName** setting which holds the name of the container where the data protection system stores the key. For more information, see [Data Protection in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/).
 - The **Application Insights** element contains the **InstrumentationKey** of the **Application Insights** used by the service for diagnostics, logging, performance monitoring, analytics and alerting.
 - The **Logging*** element contains the log level for the various logging providers.
 
@@ -282,6 +296,8 @@ services:
       - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
       - NotificationService__ServiceBus__ConnectionString=Azure-Service-Bus-Connection-String
       - NotificationService__ServiceBus__QueueName=todoapi
+      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+      - DataProtection__BlobStorage__ContainerName=todoapi
       - ApplicationInsights__InstrumentationKey=Application-Insights-Instrumentation-Key
 
     ports:
@@ -291,6 +307,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - TodoApiService__EndpointUri=todoapi
+      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+      - DataProtection__BlobStorage__ContainerName=todoweb
       - ApplicationInsights__InstrumentationKey=Application-Insights-Instrumentation-Key
     ports:
       - "80"
@@ -324,8 +342,8 @@ start chrome https://hub.docker.com/r/DOCKER_HUB_REPOSITORY/
 
 Before running the above script file, make the following changes:
 
-- **DOCKER_HUB_REPOSITORY**: replace this placeholder with your **Docker Hub** username.
-- **DOCKER_HUB_PASSWORD**: replace this placeholder with your **Docker Hub** password.
+- **DOCKER_HUB_REPOSITORY** with your **Docker Hub** username.
+- **DOCKER_HUB_PASSWORD** with your **Docker Hub** password.
 
 
 Alternatively, you can register and deploy your images from the [Azure Container Registry](https://docs.microsoft.com/en-gb/azure/container-registry/container-registry-intro). Let's see how you can perform this task.
@@ -419,6 +437,8 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
       <EnvironmentVariable Name="RepositoryService__CosmosDb__CollectionName" Value=""/>
       <EnvironmentVariable Name="NotificationService__ServiceBus__ConnectionString" Value=""/>
       <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
       <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value=""/>
     </EnvironmentVariables>
   </CodePackage>
@@ -463,6 +483,8 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     <EnvironmentVariables>
       <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
       <EnvironmentVariable Name="TodoApiService__EndpointUri" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
       <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value=""/>
     </EnvironmentVariables>
   </CodePackage>
@@ -483,7 +505,7 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
 ```
 **ApplicationManifest.xml**
 ```xml
-<<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest ApplicationTypeName="TodoAppType"
                      ApplicationTypeVersion="1.0.0"
                      xmlns="http://schemas.microsoft.com/2011/01/fabric"
@@ -495,6 +517,8 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     <Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
     <Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" DefaultValue="Development"/>
     <Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ConnectionString" DefaultValue=""/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
     <Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
     <Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
     <Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" DefaultValue="Development"/>
@@ -504,6 +528,8 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     <Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" DefaultValue=""/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__ConnectionString" DefaultValue=""/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" DefaultValue=""/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ConnectionString" DefaultValue=""/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
     <Parameter Name="TodoApi_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
@@ -515,6 +541,8 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     <EnvironmentOverrides CodePackageRef="Code">
       <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[TodoWeb_ASPNETCORE_ENVIRONMENT]"/>
       <EnvironmentVariable Name="TodoApiService__EndpointUri" Value="[TodoWeb_TodoApiService__EndpointUri]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value="[TodoWeb_DataProtection__BlobStorage__ConnectionString]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoWeb_DataProtection__BlobStorage__ContainerName]"/>
       <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value="[TodoWeb_ApplicationInsights__InstrumentationKey]"/>
     </EnvironmentOverrides>
     <Policies>
@@ -535,6 +563,8 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
       <EnvironmentVariable Name="RepositoryService__CosmosDb__CollectionName" Value="[TodoApi_RepositoryService__CosmosDb__CollectionName]"/>
       <EnvironmentVariable Name="NotificationService__ServiceBus__ConnectionString" Value="[TodoApi_NotificationService__ServiceBus__ConnectionString]"/>
       <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value="[TodoApi_NotificationService__ServiceBus__QueueName]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value="[TodApi_DataProtection__BlobStorage__ConnectionString]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoApi_DataProtection__BlobStorage__ContainerName]"/>
       <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value="[TodoApi_ApplicationInsights__InstrumentationKey]"/>
     </EnvironmentOverrides>
     <Policies>
@@ -563,18 +593,18 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
   </DefaultServices>
 </ApplicationManifest>
 ```
-**ApplicationParameteres\Cloud.xml**
+**Cloud.xml**
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
-<Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" 
-                                    xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
-                                    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
     <Parameter Name="DockerHub_Username" Value="DOCKER-HUB-USERNAME" />
-    <Parameter Name="DockerHub_Password" Value="DOCKER_HUB_PASSWORD" />
+    <Parameter Name="DockerHub_Password" Value="DOCKER-HUB-PASSWORD" />
     <Parameter Name="TodoWeb_InstanceCount" Value="-1" />
     <Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" Value="Development"/>
     <Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ConnectionString" Value="STORAGE_ACCOUNT_CONNECTION_STRING"/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" Value="todoweb"/>
     <Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" Value="APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"/>
     <Parameter Name="TodoApi_InstanceCount" Value="-1" />
     <Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" Value="Development"/>
@@ -584,25 +614,27 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     <Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" Value="TodoApiCollection"/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__ConnectionString" Value="SERVICE_BUS_CONNECTION_STRING"/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ConnectionString" Value="STORAGE_ACCOUNT_CONNECTION_STRING"/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" Value="todoapi"/>
     <Parameter Name="TodoApi_ApplicationInsights__InstrumentationKey" Value="APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"/>
   </Parameters>
 </Application>
 ```
 **Configuration**
-
 Before deploying the application to your **Azure Service Fabric Linux** cluster, open the **Cloud.xml** file and make the following changes:
 
-- **DOCKER-HUB-USERNAME**: replace this placeholder with your **Docker Hub** username.
-- **DOCKER_HUB_PASSWORD**: replace this placeholder with your **Docker Hub** password.
-- **COSMOS_DB_ENDPOINT_URI**: replace this placeholder with the endpoint URI of your **Cosmos DB**.
-- **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
-- **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
-- **SERVICE_BUS_CONNECTION_STRING**: replace this placeholder with the connection string of your **Service Bus Messaging** namespace.
-- **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY**: replace this placeholder with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
+- Replace **DOCKER-HUB-USERNAME** with your **Docker Hub** username.
+- Replace **DOCKER_HUB_PASSWORD** with your **Docker Hub** password.
+- Replace **COSMOS_DB_ENDPOINT_URI** with the endpoint URI of your **Cosmos DB**.
+- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
+- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
+- Replace **SERVICE_BUS_CONNECTION_STRING** with the connection string of your **Service Bus Messaging** namespace.
+- Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
+- Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
   
  Then, open the **ServiceManifest** of both the **TodoApi** and **TodoWeb** services and make the following changes:
 
- - **DOCKER_HUB_REPOSITORY**: replace this placeholder with the name of your **Docker Hub** repository. 
+ - **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository. 
 
 ### Observations ###
 - Both the **TodoApi** and **TodoWeb** containerized services are defined as stateless services.
@@ -693,6 +725,8 @@ services:
       - RepositoryService__CosmosDb__PrimaryKey=COSMOS_DB_PRIMARY_KEY
       - RepositoryService__CosmosDb__DatabaseName=TodoApiDb
       - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
+      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+      - DataProtection__BlobStorage__ContainerName=todoapi
       - NotificationService__ServiceBus__ConnectionString=SERVICE_BUS_CONNECTION_STRING
       - NotificationService__ServiceBus__QueueName=todoapi
       - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
@@ -707,6 +741,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - TodoApiService__EndpointUri=todoapi.todoapp:8081
+      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+      - DataProtection__BlobStorage__ContainerName=todoweb
       - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
     ports:
       - "8082:80"
@@ -732,19 +768,19 @@ New-ServiceFabricComposeDeployment -DeploymentName DockerComposeTodoApp -Compose
 
 Before deploying the application to your **Azure Service Fabric Linux** cluster, open the batch and PowerShell scripts and make the following changes:
 
-- **AZURE_CONTAINER_REGISTRY_USERNAME**: replace this placeholder with your **AZURE_CONTAINER_REGISTRY** username. **Note**: the username is case sensitive.
-- **AZURE_CONTAINER_REGISTRY_PASSWORD**: replace this placeholder with your **AZURE_CONTAINER_REGISTRY** password.
-- **SERVICE_FABRIC_NAME**: replace this placeholder in the PowerShell script with the name of your **Azure Service Fabric Linux** cluster.
-- **SERVICE_FABRIC_LOCATION**: replace this placeholder in the PowerShell script with the location of your **Azure Service Fabric Linux** cluster.
+- Replace **AZURE_CONTAINER_REGISTRY_USERNAME**  with your **AZURE_CONTAINER_REGISTRY** username. **Note**: the username is case sensitive.
+- Replace **AZURE_CONTAINER_REGISTRY_PASSWORD** with your **AZURE_CONTAINER_REGISTRY** password.
+- Replace **SERVICE_FABRIC_NAME** in the PowerShell script with the name of your **Azure Service Fabric Linux** cluster.
+- Replace **SERVICE_FABRIC_LOCATION** in the PowerShell script with the location of your **Azure Service Fabric Linux** cluster.
 
 Then, open the YAML file and make the following changes:
 
-- **AZURE_CONTAINER_REGISTRY_NAME**: replace this placeholder with the name of your **Azure Container Registry** in the YAML file.
-- **COSMOS_DB_ENDPOINT_URI**: replace this placeholder with the endpoint URI of your **Cosmos DB**.
-- **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
-- **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
-- **SERVICE_BUS_CONNECTION_STRING**: replace this placeholder with the connection string of your **Service Bus Messaging** namespace.
-- **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY**: replace this placeholder with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
+- Replace **AZURE_CONTAINER_REGISTRY_NAME** with the name of your **Azure Container Registry** in the YAML file.
+- Replace **COSMOS_DB_ENDPOINT_URI** with the endpoint URI of your **Cosmos DB**.
+- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
+- Replace **SERVICE_BUS_CONNECTION_STRING** with the connection string of your **Service Bus Messaging** namespace.
+- Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
+- **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
 
 You can retrieve the usename and password of your **Azure Container Registry** by running folloring command:
 
@@ -778,6 +814,8 @@ services:
       - RepositoryService__CosmosDb__PrimaryKey=COSMOS_DB_PRIMARY_KEY
       - RepositoryService__CosmosDb__DatabaseName=TodoApiDb
       - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
+      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+      - DataProtection__BlobStorage__ContainerName=todoapi
       - NotificationService__ServiceBus__ConnectionString=SERVICE_BUS_CONNECTION_STRING
       - NotificationService__ServiceBus__QueueName=todoapi
       - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
@@ -792,6 +830,8 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - TodoApiService__EndpointUri=todoapi.todoapp:8081
+      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+      - DataProtection__BlobStorage__ContainerName=todoweb
       - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
     ports:
       - "8082:80"
@@ -817,19 +857,19 @@ New-ServiceFabricComposeDeployment -DeploymentName DockerComposeTodoApp -Compose
 
 Before deploying the application to your **Azure Service Fabric Linux** cluster, open the batch scripts and PowerShell scripts and make the following changes:
 
-- **DOCKER-HUB-USERNAME**: replace this placeholder with your **Docker Hub** username.
-- **DOCKER_HUB_PASSWORD**: replace this placeholder with your **Docker Hub** password.
-- **SERVICE_FABRIC_NAME**: replace this placeholder in the PowerShell script with the name of your **Azure Service Fabric Linux** cluster.
-- **SERVICE_FABRIC_LOCATION**: replace this placeholder in the PowerShell script with the location of your **Azure Service Fabric Linux** cluster.
+- Replace **DOCKER-HUB-USERNAME** with your **Docker Hub** username.
+- Replace **DOCKER_HUB_PASSWORD** with your **Docker Hub** password.
+- Replace **SERVICE_FABRIC_NAME** in the PowerShell script with the name of your **Azure Service Fabric Linux** cluster.
+- Replace **SERVICE_FABRIC_LOCATION** in the PowerShell script with the location of your **Azure Service Fabric Linux** cluster.
 
 The open the YAML file and make the following changes:
 
-- **DOCKER_HUB_REPOSITORY**: replace this placeholder with the name of your **Docker Hub** repository.
-- **COSMOS_DB_ENDPOINT_URI**: replace this placeholder with the endpoint URI of your **Cosmos DB**.
-- **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
-- **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
-- **SERVICE_BUS_CONNECTION_STRING**: this placeholder with the connection string of your **Service Bus Messaging** namespace.
-- **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY**: replace this placeholder with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
+- Replace **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository.
+- Replace **COSMOS_DB_ENDPOINT_URI** with the endpoint URI of your **Cosmos DB**.
+- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
+- Replace **SERVICE_BUS_CONNECTION_STRING**: this placeholder with the connection string of your **Service Bus Messaging** namespace.
+- Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
+- Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
 
 ### Observations ###
 - Both the **TodoApi** and **TodoWeb** containerized services are defined as stateless services.
@@ -950,6 +990,10 @@ spec:
           value: "SERVICE_BUS_CONNECTION_STRING"
         - name: NotificationService__ServiceBus__QueueName
           value: "todoapi"
+        - name: DataProtection__BlobStorage__ConnectionString
+          value: "STORAGE_ACCOUNT_CONNECTION_STRING"
+        - name: DataProtection__BlobStorage__ContainerName
+          value: "todoapi"
         - name: ApplicationInsights__InstrumentationKey
           value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
 ---
@@ -1001,6 +1045,10 @@ spec:
           value: "Development"
         - name: TodoApiService__EndpointUri
           value: "todoapi"
+        - name: DataProtection__BlobStorage__ConnectionString
+          value: "STORAGE_ACCOUNT_CONNECTION_STRING"
+        - name: DataProtection__BlobStorage__ContainerName
+          value: "todoweb"
         - name: ApplicationInsights__InstrumentationKey
           value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
 ---
@@ -1021,12 +1069,12 @@ spec:
 
 Before deploying the application to your **Azure Container Service Kubernetes** cluster, open the YAML file and make the following changes:
 
-- **DOCKER_HUB_REPOSITORY**: replace this placeholder with the name of your **Docker Hub** repository.
-- **COSMOS_DB_ENDPOINT_URI**: replace this placeholder with the endpoint URI of your **Cosmos DB**.
-- **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
-- **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
-- **SERVICE_BUS_CONNECTION_STRING**: replace this placeholder with the connection string of your **Service Bus Messaging** namespace.
-- **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY**: replace this placeholder with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
+- Replace **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository.
+- Replace **COSMOS_DB_ENDPOINT_URI** with the endpoint URI of your **Cosmos DB**.
+- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
+- Replace **SERVICE_BUS_CONNECTION_STRING** with the connection string of your **Service Bus Messaging** namespace.
+- Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
+- Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
 
 The following script can be used to deploy the services and deployments.
 
@@ -1179,14 +1227,14 @@ cd /usr/USR/clouddrive
 
 Before runnng the above script, make the following changes:
 
-- **RESOURCE_GROUP**: replace this placeholder with the name of the new **Resource Group**.
-- **LOCATION**: replace this placeholder with the location of the **Resource Group** and **Storage Account**.
-- **STORAGE_ACCOUNT_NAME**: replace this placeholder with the name of the new **Storage Account**.
-- **STORAGE_ACCOUNT_PRIMARY_KEY**: replace this placeholder with the primary key of the new **Storage Account**.
-- **SHARE_NAME**: replace this placeholder with the name of the new **File Share** in the **Storage Account**.
-- **PATH_TO_YAML_FILE**: replace this placeholder with the path to the YAML containing the the definition of the **services** and **deployments** of the multi-container application. 
-- **SUBSCRIPTION_ID**: replace this placeholder with the id of your **Azure Subscription**.
-- **USR**: replace this placeholder with your username on the **Azure Cloud Shell**
+- Replace **RESOURCE_GROUP** with the name of the new **Resource Group**.
+- Replace **LOCATION** with the location of the **Resource Group** and **Storage Account**.
+- Replace **STORAGE_ACCOUNT_NAME** with the name of the new **Storage Account**.
+- Replace **STORAGE_ACCOUNT_PRIMARY_KEY** with the primary key of the new **Storage Account**.
+- Replace **SHARE_NAME** with the name of the new **File Share** in the **Storage Account**.
+- Replace **PATH_TO_YAML_FILE** with the path to the YAML containing the the definition of the **services** and **deployments** of the multi-container application. 
+- Replace **SUBSCRIPTION_ID** with the id of your **Azure Subscription**.
+- Replace **USR** with your username on the **Azure Cloud Shell**
 
 For more information on how to mount a [File Share](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-create-file-share) from an [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview), see [Persist files in Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/persisting-shell-storage). 
 
@@ -1242,6 +1290,10 @@ spec:
           value: "SERVICE_BUS_CONNECTION_STRING"
         - name: NotificationService__ServiceBus__QueueName
           value: "todoapi"
+        - name: DataProtection__BlobStorage__ConnectionString
+          value: "STORAGE_ACCOUNT_CONNECTION_STRING"
+        - name: DataProtection__BlobStorage__ContainerName
+          value: "todoapi"
         - name: ApplicationInsights__InstrumentationKey
           value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
 ---
@@ -1293,6 +1345,10 @@ spec:
           value: "Development"
         - name: TodoApiService__EndpointUri
           value: "todoapi"
+        - name: DataProtection__BlobStorage__ConnectionString
+          value: "STORAGE_ACCOUNT_CONNECTION_STRING"
+        - name: DataProtection__BlobStorage__ContainerName
+          value: "todoweb"
         - name: ApplicationInsights__InstrumentationKey
           value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
 ---
@@ -1313,12 +1369,13 @@ spec:
 
 Before deploying the application to your managed **Kubernetes** service, open the YAML file and make the following changes:
 
-- **AZURE_CONTAINER_REGISTRY_NAME**: replace this placeholder with the name of your **Azure Container Registry**.
-- **COSMOS_DB_ENDPOINT_URI**: replace this placeholder with the endpoint URI of your **Cosmos DB**.
-- **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
-- **COSMOS_DB_PRIMARY_KEY**: replace this placeholder with the primary key of your **Cosmos DB**.
-- **SERVICE_BUS_CONNECTION_STRING**: replace this placeholder with the connection string of your **Service Bus Messaging** namespace.
-- **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY**: replace this placeholder with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
+- Replace **AZURE_CONTAINER_REGISTRY_NAME** with the name of your **Azure Container Registry**.
+- Replace **COSMOS_DB_ENDPOINT_URI** with the endpoint URI of your **Cosmos DB**.
+- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
+- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
+- Replace **SERVICE_BUS_CONNECTION_STRING** with the connection string of your **Service Bus Messaging** namespace.
+- Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
+- Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
 
 Finally, run the following command from the Azure Cloud Shell to deploy the multi-container application.
 
