@@ -1001,6 +1001,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: todoapi
+  labels:
+    app: todoapi
 spec:
   type: LoadBalancer
   ports:
@@ -1056,6 +1058,8 @@ apiVersion: v1
 kind: Service
 metadata:
   name: todoweb
+  labels:
+    app: todoweb
 spec:
   type: LoadBalancer
   ports:
