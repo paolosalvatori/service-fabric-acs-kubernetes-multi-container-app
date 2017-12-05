@@ -970,11 +970,6 @@ spec:
         image: DOCKER_HUB_REPOSITORY/todoapi:latest
         ports:
         - containerPort: 80
-        resources:
-          requests:
-            cpu: 250m
-          limits:
-            cpu: 500m
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
@@ -1037,11 +1032,6 @@ spec:
         image: DOCKER_HUB_REPOSITORY/todoweb:latest
         ports:
         - containerPort: 80
-        resources:
-          requests:
-            cpu: 250m
-          limits:
-            cpu: 500m
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
@@ -1274,11 +1264,6 @@ spec:
         image:AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:latest
         ports:
         - containerPort: 80
-        resources:
-          requests:
-            cpu: 250m
-          limits:
-            cpu: 500m
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
@@ -1339,11 +1324,6 @@ spec:
         image:AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:latest
         ports:
         - containerPort: 80
-        resources:
-          requests:
-            cpu: 250m
-          limits:
-            cpu: 500m
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
