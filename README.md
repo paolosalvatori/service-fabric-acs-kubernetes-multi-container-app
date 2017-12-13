@@ -992,7 +992,7 @@ data:
   dataProtectionBlobStorageConnectionString: BASE64-ENCODED-BLOB-STORAGE-CONNECTION-STRING
   applicationInsightsInstrumentationKey: BASE64-ENCODED-APP-INSIGHTS-INSTRUMENTATION-KEY
 ```
-The following script can be used to create the **todolist-secret** object in the Kubernetes cluster.
+The following command can be used to create the **todolist-secret** object in the Kubernetes cluster.
 
 **create-secret-in-kubernetes.cmd**
 ```batchfile
@@ -1540,7 +1540,7 @@ Finally, to verify that the application works as expected we can browse to the *
 ![AksTodoWeb](Images/AksTodoWeb.png)
 
 # Configure Nginx Ingress Controller for TLS termination on Kubernetes #
-So far, we have seen how to configure both the ** TodoWeb ** frontend service and ** TodoApi ** backend service to expose each a public HTTP endpoint. Now, let's assume we want to expose only the ** TodoWeb ** frontend service and configure it to use an HTTPS endpoint instead of an HTTP endpoint.
+So far, we have seen how to configure both the **todoweb** frontend service and **todoapi** backend service to expose each a public HTTP endpoint. Now, let's assume we want to expose only the **todoweb** frontend service and configure it to use an HTTPS endpoint instead of an HTTP endpoint.
 To implement TLS termination in our Kubernetes cluster, we'll use an [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) object and the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx). This component is a daemon, deployed as a Kubernetes **Pod**, that watches the apiserver's /ingresses endpoint for updates to the **Ingress** resource. The [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) can be used to implement patterns like path-based fanout, SSL passthrough, TLS termination, basic or digest http authentication. For more information, see [Advanced Ingress Configuration](https://docs.giantswarm.io/guides/advanced-ingress-configuration/)
 
 You can deploy the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) to your Kubernetes cluster on Azure by using the **kubectl** CLI or using Helm. [Helm](https://docs.helm.sh/) is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources. You can use Helm to:
