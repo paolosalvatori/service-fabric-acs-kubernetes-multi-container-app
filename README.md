@@ -954,7 +954,7 @@ az aks browse --name AksKubernetes --resource-group AksKubernetesResourceGroup
 You can also create the cluster from the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview). In this case, you can skip the *az aks install-cli* command as the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface is already installed in your shell.
 
 ## Encrypt and decrypt parameters in Kubernetes ##
-A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
+In Kubernetes, a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/) is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
 
 Sensitive data like connection strings, passwords and keys may be put in the YAML files used to create deployments and pods. However, putting such information in a Secret object provides the following advantages:
 
