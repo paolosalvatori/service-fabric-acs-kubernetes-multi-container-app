@@ -28,9 +28,9 @@ The solution has the folowing solution folders:
 
 - **ASP.NET Core Projects**: this folder contains the following projects:
 
-  - **TodoWeb**: this project is an ASP.NET Core Web application that represents the frontend of the solution. The user interface is composes of a set of Razor pages that can be used to browse, create, delete, update and see the details of a collection of todo items stored in a Document DB collection. The frontend service is configured to send logs, events, traces, requests, dependencies and exceptions to **Application Insights**. 
+  - **todoweb**: this project is an ASP.NET Core Web application that represents the frontend of the solution. The user interface is composes of a set of Razor pages that can be used to browse, create, delete, update and see the details of a collection of todo items stored in a Document DB collection. The frontend service is configured to send logs, events, traces, requests, dependencies and exceptions to **Application Insights**. 
 
-  - **TodoApi**: this project contains an ASP.NET Core REST service that is invoked by the **TodoWeb** frontend service to access the data stroed in the Document DB database. Each time a CRUD operation is performed by any of the methods exposed bu the **TodoController**, the backend service sends a notification message to a **Service Bus queue**. You can use my [Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer) to read messages from the queue. The frontend service is configured to send logs, events, traces, requests, dependencies and exceptions to **Application Insights**. The backend service adopts [Swagger](https://swagger.io/) ro expose a machine-readable representation of its RESTful API.
+  - **todoapi**: this project contains an ASP.NET Core REST service that is invoked by the **todoweb** frontend service to access the data stroed in the Document DB database. Each time a CRUD operation is performed by any of the methods exposed bu the **TodoController**, the backend service sends a notification message to a **Service Bus queue**. You can use my [Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer) to read messages from the queue. The frontend service is configured to send logs, events, traces, requests, dependencies and exceptions to **Application Insights**. The backend service adopts [Swagger](https://swagger.io/) ro expose a machine-readable representation of its RESTful API.
 
 - **Service Fabric Projects**: this folder contains the following projects:
 
@@ -63,24 +63,38 @@ The solution has the folowing solution folders:
 
 - **Kubernetes-Scripts**: this folder contains the following scripts:
 
-  - **create-application-to-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **kubernetes-deployments-and-services-from-azure-container-registry.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
+  - **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **kubernetes-deployments-and-services-from-azure-container-registry.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
 
-  - **create-application-to-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **kubernetes-deployments-and-services-from-docker-hub.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
+  - **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **kubernetes-deployments-and-services-from-docker-hub.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
+
+  - **create-secret-in-kubernetes.cmd**: this batch script can be used to create the **todolist-secret** object in the Kubernetes cluster using the **todolist-secret.yml** that contains a value for the sensitive data used by the multi-container application.
 
   - **delete-kubernetes-pods-and-services-and-deployments.cmd**: this batch script can be used to delete **pods**, **services**, and **depoyments** from the **Kubernetes** cluster using the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface.
 
+  - **install-helm.sh**: this Bash script can be used to install and initialize [Helm](https://docs.helm.sh/).
+
+  - **install-nginx-ingress-controller.sh**: this Bash script can be used to install the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) in your Kubernetes cluster.
+
+  - **scale-nginx-ingress-controller-replicas.sh**: this Bash script can be used to scale out the number of replicas used by the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx).
+
+  - **install-open-ssl.sh**: this Bash script can be used to install the openssl utility.
+
+  - **create-certificate.sh**: this Bash script can be used to create a test certificate for Kubernetes.
+    
+  - **create-tls-secret.sh**: this Bash script can be used to create a Secret in your Kubernetes cluster using the self-signed certificate.
+
 - **Service-Fabric-Docker-Compose**: this folder contains the following scripts:
 
-  - **servicefabric-create-deployment-from-azure-container-registry.cmd**: This batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **TodoWeb** and **TodoApi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+  - **servicefabric-create-deployment-from-azure-container-registry.cmd**: This batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-  - **servicefabric-create-deployment-from-azure-container-registry.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **TodoWeb** and **TodoApi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+  - **servicefabric-create-deployment-from-azure-container-registry.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-  - **servicefabric-create-deployment-from-docker-hub.cmd**: This batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **TodoWeb** and **TodoApi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+  - **servicefabric-create-deployment-from-docker-hub.cmd**: This batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-  - **servicefabric-create-deployment-from-docker-hub.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **TodoWeb** and **TodoApi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+  - **servicefabric-create-deployment-from-docker-hub.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
 
-**Note**: both the frontend (**TodoWeb**) and backend (**TodoApi**) containerized services use the **microsoft/aspnetcore:2.0** as base **Docker** image. For more information, see [Official .NET Docker images](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/net-core-net-framework-containers/official-net-docker-images)
+**Note**: both the frontend (**todoweb**) and backend (**todoapi**) containerized services use the **microsoft/aspnetcore:2.0** as base **Docker** image. For more information, see [Official .NET Docker images](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/net-core-net-framework-containers/official-net-docker-images)
  
 # Service Fabric Architecture #
 
@@ -202,7 +216,7 @@ The following table contains the configuration of the TodoApi service defined in
 
 **Notes**
 
-- The **TodoApiService** element contains the **EndpointUri** of the **TodoApi**. In **Service Fabric** this setting will be the DNS names assigned to the **TodoApi** service. For more information, see [DNS Service in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-dnsservice). In **Kubernetes** this setting will contain the name of the **TodoApi** service. For more information on Kubernetes Services, see [Services](https://kubernetes.io/docs/concepts/services-networking/service/).
+- The **TodoApiService** element contains the **EndpointUri** of the **todoapi**. In **Service Fabric** this setting will be the DNS names assigned to the **todoapi** service. For more information, see [DNS Service in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-dnsservice). In **Kubernetes** this setting will contain the name of the **todoapi** service. For more information on Kubernetes Services, see [Services](https://kubernetes.io/docs/concepts/services-networking/service/).
 - The **DataProtection** element contains the **BlobStorage** element which in turn contains the **ConnectionString** of the storage account used by the data protection and the **ContainerName** setting which holds the name of the container where the data protection system stores the key. For more information, see [Data Protection in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/).
 - The **Application Insights** element contains the **InstrumentationKey** of the **Application Insights** used by the service for diagnostics, logging, performance monitoring, analytics and alerting.
 - The **Logging*** element contains the log level for the various logging providers.
@@ -214,7 +228,7 @@ The [CreateDefaultBuilder](https://andrewlock.net/exploring-program-and-startup-
 - appsettings.<EnvironmentName>.json
 - environment variables
 
-Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a value, access the Configuration indexer with the corresponding item's key. For example, if you want to retrieve the value of the **QueueName** setting from the configuration of the **TodoApi** service, you have to use the following format.
+Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a value, access the Configuration indexer with the corresponding item's key. For example, if you want to retrieve the value of the **QueueName** setting from the configuration of the **todoapi** service, you have to use the following format.
 
 ```csharp
 var queueName = Configuration["NotificationService:ServiceBus:QueueName"];
@@ -237,7 +251,7 @@ For more information on configuration, see the following resources:
 
 ## How to define the Docker images and containers ##
 Using [Visual Studio Tools for Docker](https://docs.microsoft.com/en-us/aspnet/core/publishing/visual-studio-tools-for-docker), I built an image based the on the **microsoft/aspnetcore:2.0** standard image.
-Then, the tool creates a Dockerfile for both the frontend and backend service that you can later customize at will. The Dockerfile contains instructions for setting up the environment inside your container, loading the application you want to run, and mapping ports. The Dockerfile is the input to the docker build command, which creates the image. Below you can see the **Dockerfile** of the **TodoApi** and **TodoWeb** services.
+Then, the tool creates a Dockerfile for both the frontend and backend service that you can later customize at will. The Dockerfile contains instructions for setting up the environment inside your container, loading the application you want to run, and mapping ports. The Dockerfile is the input to the docker build command, which creates the image. Below you can see the **Dockerfile** of the **todoapi** and **todoweb** services.
 
 **TodoApi Dockerfile**
 ```dockerfile
@@ -323,16 +337,16 @@ REM login to docker hub
 docker login -u DOCKER_HUB_REPOSITORY -p DOCKER_HUB_PASSWORD
 
 REM tag the local todoapi:latest image with the name of the DOCKER_HUB_REPOSITORY
-docker tag todoapi:latest DOCKER_HUB_REPOSITORY/todoapi:latest
+docker tag todoapi:latest DOCKER_HUB_REPOSITORY/todoapi:v1
 
 REM push the image DOCKER_HUB_REPOSITORY/todoapi:latest to the DOCKER_HUB_REPOSITORY
-docker push DOCKER_HUB_REPOSITORY/todoapi:latest
+docker push DOCKER_HUB_REPOSITORY/todoapi:v1
 
 REM tag the local todoweb:latest image with the name of the DOCKER_HUB_REPOSITORY
-docker tag todoweb:latest DOCKER_HUB_REPOSITORY/todoweb:latest
+docker tag todoweb:latest DOCKER_HUB_REPOSITORY/todoweb:v1
 
 REM push the image DOCKER_HUB_REPOSITORY/todoweb:latest to the DOCKER_HUB_REPOSITORY 
-docker push DOCKER_HUB_REPOSITORY/todoweb:latest
+docker push DOCKER_HUB_REPOSITORY/todoweb:v1
 
 REM browse to https://hub.docker.com/r/DOCKER_HUB_REPOSITORY/
 start chrome https://hub.docker.com/r/DOCKER_HUB_REPOSITORY/
@@ -376,16 +390,16 @@ REM Save the loginServer name to the AKS_CONTAINER_REGISTRY environment variable
 for /f "delims=" %%a in ('call az acr list --resource-group ContainerRegistryResourceGroup --query "[].{acrLoginServer:loginServer}" --output tsv') do @set AKS_CONTAINER_REGISTRY=%%a
 
 REM tag the local todoapi:latest image with the loginServer of the container registry
-docker tag todoapi:latest %AKS_CONTAINER_REGISTRY%/todoapi:latest
+docker tag todoapi:latest %AKS_CONTAINER_REGISTRY%/todoapi:v1
 
-REM publish AKS_CONTAINER_REGISTRY/todoapi:latest to the container registry on Azure
-docker push %AKS_CONTAINER_REGISTRY%/todoapi:latest
+REM publish <container registry>/todoapi:latest to the container registry on Azure
+docker push %AKS_CONTAINER_REGISTRY%/todoapi:v1
 
 REM tag the local todoweb:latest image with the loginServer of the container registry
-docker tag todoweb:latest %AKS_CONTAINER_REGISTRY%/todoweb:latest
+docker tag todoweb:latest %AKS_CONTAINER_REGISTRY%/todoweb:v1
 
-REM publish AKS_CONTAINER_REGISTRY/todoweb:latest to the container registry on Azure
-docker push %AKS_CONTAINER_REGISTRY%/todoweb:latest
+REM publish <container registry>/todoweb:latest to the container registry on Azure
+docker push %AKS_CONTAINER_REGISTRY%/todoweb:v1
 
 REM List images in the container registry on Azure
 call az acr repository list --name AZURE_CONTAINER_REGISTRY --output table
@@ -402,7 +416,7 @@ The **Application Manifest**, **Service Manifest** and **Parameters** files of t
 
 - the repository used for pulling **Docker** images
 - the credentials (username and password) used by **Service Fabric** to login to the repository.
-- the name of the images used to create the containers for the **TodoApi** and **TodoWeb** services.
+- the name of the images used to create the containers for the **todoapi** and **todoweb** services.
 
 For brevity, I will show only the files from the **TodoAppFromDockerHub** project and I'll omit those from **TodoAppFromAzureContainerRegistry** project. 
 
@@ -425,7 +439,7 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     <EntryPoint>
       <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
       <ContainerHost>
-        <ImageName>DOCKER_HUB_REPOSITORY/todoapi</ImageName>
+        <ImageName>DOCKER_HUB_REPOSITORY/todoapi:v1</ImageName>
       </ContainerHost>
     </EntryPoint>
     <!-- Pass environment variables to your container: -->
@@ -476,7 +490,7 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     <EntryPoint>
       <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
       <ContainerHost>
-        <ImageName>DOCKER_HUB_REPOSITORY/todoweb</ImageName>
+        <ImageName>DOCKER_HUB_REPOSITORY/todoweb:v1</ImageName>
       </ContainerHost>
     </EntryPoint>
     <!-- Pass environment variables to your container: -->
@@ -632,14 +646,14 @@ Before deploying the application to your **Azure Service Fabric Linux** cluster,
 - Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
 - Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
   
- Then, open the **ServiceManifest** of both the **TodoApi** and **TodoWeb** services and make the following changes:
+ Then, open the **ServiceManifest** of both the **todoapi** and **todoweb** services and make the following changes:
 
  - **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository. 
 
 ### Observations ###
-- Both the **TodoApi** and **TodoWeb** containerized services are defined as stateless services.
+- Both the **todoapi** and **todoweb** containerized services are defined as stateless services.
 - The instance count for both services is equal to -1. This means that a container for each service is created on each **Service Fabric** cluster node.
-- The **ApplicationManifest.xml** defines a **ServiceDnsName="todoapi.todoapp"** for the **TodoApi** service. This **DNS** name and port used by the **TodoApi** backend service are passed as value to the **TodoApiService__EndpointUri** (e.g. todoapi.todoapp:8081) environment variable and the value of the environment variable is used by the *TodoApiService* class of the **TodoWeb** frontend service to create the http address of the  **TodoApi** backend service, as shown in the following code snippet:
+- The **ApplicationManifest.xml** defines a **ServiceDnsName="todoapi.todoapp"** for the **todoapi** service. This **DNS** name and port used by the **todoapi** backend service are passed as value to the **TodoApiService__EndpointUri** (e.g. todoapi.todoapp:8081) environment variable and the value of the environment variable is used by the *TodoApiService* class of the **todoweb** frontend service to create the http address of the  **todoapi** backend service, as shown in the following code snippet:
 
 ```csharp
 namespace TodoWeb.Services
@@ -705,9 +719,9 @@ Below you can see the batch script and PowerShell script used to deploy the mult
 ### Pull images from Azure Container Service ###
 To deploy the multi-container application pulling the **Docker** images from an **Azure Container Registry** you can use the following scripts:
 
-- **servicefabric-create-deployment-from-azure-container-registry.cmd**: This batch script uses the [Azure Service Fabric CLI](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cli) to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **TodoWeb** and **TodoApi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+- **servicefabric-create-deployment-from-azure-container-registry.cmd**: This batch script uses the [Azure Service Fabric CLI](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cli) to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-- **servicefabric-create-deployment-from-azure-container-registry.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **TodoWeb** and **TodoApi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+- **servicefabric-create-deployment-from-azure-container-registry.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
 **servicefabric-docker-compose-from-azure-container-registry.yml**
 ```yaml
@@ -794,9 +808,9 @@ as shown in the following picture:
 ### Pull images from Azure Container Service ###
 To deploy the multi-container application pulling the **Docker** images from an **Azure Container Registry** you can use the following scripts:
 
-- **servicefabric-create-deployment-from-docker-hub.cmd**: This batch script uses the [Azure Service Fabric CLI](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cli) to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **TodoWeb** and **TodoApi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+- **servicefabric-create-deployment-from-docker-hub.cmd**: This batch script uses the [Azure Service Fabric CLI](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cli) to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-- **servicefabric-create-deployment-from-docker-hub.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **TodoWeb** and **TodoApi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+- **servicefabric-create-deployment-from-docker-hub.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
 **servicefabric-docker-compose-from-docker-hub.yml**
 ```yaml
@@ -872,8 +886,8 @@ The open the YAML file and make the following changes:
 - Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
 
 ### Observations ###
-- Both the **TodoApi** and **TodoWeb** containerized services are defined as stateless services.
-- The **ApplicationManifest.xml** defines a **ServiceDnsName="todoapi.todoapp"** for the **TodoApi** service. This **DNS** name and port used by the **TodoApi** backend service are passed as value to the **TodoApiService__EndpointUri** (e.g. todoapi.todoapp:8081) environment variable and the value of the environment variable is used by the **TodoWeb** frontend service to create the http address of the  **TodoApi** backend service.
+- Both the **todoapi** and **todoweb** containerized services are defined as stateless services.
+- The **ApplicationManifest.xml** defines a **ServiceDnsName="todoapi.todoapp"** for the **todoapi** service. This **DNS** name and port used by the **todoapi** backend service are passed as value to the **TodoApiService__EndpointUri** (e.g. todoapi.todoapp:8081) environment variable and the value of the environment variable is used by the **todoweb** frontend service to create the http address of the  **todoapi** backend service.
 - The instance count for both services is equal to -1. This means that a container for each service is created on each **Service Fabric** cluster node.
 
 The following picture shows the multi-container application using the **Service Fabric Explorer**.
@@ -939,8 +953,63 @@ az aks browse --name AksKubernetes --resource-group AksKubernetesResourceGroup
 ```
 You can also create the cluster from the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview). In this case, you can skip the *az aks install-cli* command as the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface is already installed in your shell.
 
+## Encrypt parameters in ACS\Kubernetes AKS ##
+## Encrypt and decrypt parameters in Kubernetes ##
+A Secret is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
+
+Sensitive data like connection strings, passwords and keys may be put in the YAML files used to create deployments and pods. However, putting such information in a Secret object provides the following advantages:
+
+ - More control over how sensitive data is defined
+ - Use different values for different deployments of the same application. This is particularly useful in multi-tenant environment where the same Kubernetes cluster hosts multiple instances of the same application, each using different configuration settings.
+ - Reduces the risk of accidental exposure.
+
+Objects of type secret are intended to hold sensitive information, such as passwords, connection strings, OAuth tokens, and ssh keys. Putting sensitive data in a secret is safer and more flexible than putting it verbatim in a pod definition or in a docker image. For more information, see [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/).
+
+ The first step is to create a YAML file to define a **secret**. Each item in the file must be base64 encoded. The multi-container sample uses a **secret** to define the value of the following **environment variables**:
+
+  - cosmosDbEndpointUri
+  - cosmosDBPrimaryKey
+  - cosmosDbDatabaseName
+  - cosmosDbCollectionName
+  - serviceBusConnectionString
+  - dataProtectionBlobStorageConnectionString
+  - applicationInsightsInstrumentationKey
+
+The following YAML file can be used to create a **secret** object named **todolist-secret** that contains a value for the above environment variables.
+
+**todolist-secret.yml**
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: todolist-secret
+type: Opaque
+data:
+  cosmosDbEndpointUri: BASE64-ENCODED-COSMOS-DB-ENDPOINT-URI
+  cosmosDBPrimaryKey: BASE64-ENCODED-COSMOS-DB-PRIMARY-KEY
+  cosmosDbDatabaseName: BASE64-ENCODED-COSMOS-DB-DATABASE-NAME
+  cosmosDbCollectionName: BASE64-ENCODED-COSMOS-DB-COLLECTION-NAME
+  serviceBusConnectionString: BASE64-ENCODED-SERVICE-BUS-CONNECTION-STRING
+  dataProtectionBlobStorageConnectionString: BASE64-ENCODED-BLOB-STORAGE-CONNECTION-STRING
+  applicationInsightsInstrumentationKey: BASE64-ENCODED-APP-INSIGHTS-INSTRUMENTATION-KEY
+```
+The following script can be used to create the **todolist-secret** object in the Kubernetes cluster.
+
+**create-secret-in-kubernetes.cmd**
+```batchfile
+REM Deploy azure-vote sample application  
+kubectl create --filename todolist-secret.yml --record
+```
+
+You can use **kubectl** to read the value of a setting defined from a **secret** object. For example, you can use the following **Bash** command to read the value of **cosmosDbCollectionName** parameter.
+
+```bash
+# Get secret
+ kubectl get secret todolist-secret -o jsonpath="{.data.cosmosDbCollectionName}" | base64 --decode; echo
+```
+
 ## Deploy the multi-container application to ACS\Kubernetes from a local machine ##
-On Kubernetes the multi-container application is composed by two services, one of the frontend service and one for the backend service, and 5 pods for each service. Each pod contains just a container or the **TodoApi** or **TodoWeb** ASP.NET Core apps. The **Docker** images can be pulled from an **Azure Container Registry** or from **Docker Hub**. The solution contains scripts and yaml files to accomplish both tasks, but for brevity, let's see how you can deploy the application pulling the **Docker** images from a **Docker Hub** repository. The following YAML file contains the definition for the necessary services and deployments. 
+On Kubernetes the multi-container application is composed by two services, one of the frontend service and one for the backend service, and 5 pods for each service. Each pod contains just a container or the **todoapi** or **todoweb** ASP.NET Core apps. The **Docker** images can be pulled from an **Azure Container Registry** or from **Docker Hub**. The solution contains scripts and yaml files to accomplish both tasks, but for brevity, let's see how you can deploy the application pulling the **Docker** images from a **Docker Hub** repository. The following YAML file contains the definition for the necessary services and deployments.
 
 **kubernetes-deployments-and-services-from-docker-hub.yml**
 ```yaml
@@ -967,30 +1036,51 @@ spec:
     spec:
       containers:
       - name: todoapi
-        image: DOCKER_HUB_REPOSITORY/todoapi:latest
+        image: DOCKER_HUB_REPOSITORY/todoapi:v1
         ports:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
         - name: RepositoryService__CosmosDb__EndpointUri
-          value: "COSMOS_DB_ENDPOINT_URI"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbEndpointUri
         - name: RepositoryService__CosmosDb__PrimaryKey
-          value: "COSMOS_DB_PRIMARY_KEY"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDBPrimaryKey
         - name: RepositoryService__CosmosDb__DatabaseName
-          value: "TodoApiDb"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbDatabaseName
         - name: RepositoryService__CosmosDb__CollectionName
-          value: "TodoApiCollection"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbCollectionName
         - name: NotificationService__ServiceBus__ConnectionString
-          value: "SERVICE_BUS_CONNECTION_STRING"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: serviceBusConnectionString
         - name: NotificationService__ServiceBus__QueueName
           value: "todoapi"
         - name: DataProtection__BlobStorage__ConnectionString
-          value: "STORAGE_ACCOUNT_CONNECTION_STRING"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
           value: "todoapi"
         - name: ApplicationInsights__InstrumentationKey
-          value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
@@ -1011,7 +1101,7 @@ kind: Deployment
 metadata:
   name: todoweb
   labels:
-    app: todoapi
+    app: todoweb
 spec:
   replicas: 3
   selector:
@@ -1029,7 +1119,7 @@ spec:
     spec:
       containers:
       - name: todoweb
-        image: DOCKER_HUB_REPOSITORY/todoweb:latest
+        image: DOCKER_HUB_REPOSITORY/todoweb:v1
         ports:
         - containerPort: 80
         env:
@@ -1038,11 +1128,17 @@ spec:
         - name: TodoApiService__EndpointUri
           value: "todoapi"
         - name: DataProtection__BlobStorage__ConnectionString
-          value: "STORAGE_ACCOUNT_CONNECTION_STRING"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
           value: "todoweb"
         - name: ApplicationInsights__InstrumentationKey
-          value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
@@ -1061,18 +1157,21 @@ spec:
 
 **Configuration**
 
+To use a secret in an environment variable in a pod specification, you need to proceed as follows:
+
+ - Create a secret or use an existing one. Multiple pods can reference the same secret. Please refer to previous section to see how to create a secret file in a Kubernetes cluster. 
+ - Modify your Pod definition in each container that you wish to consume the value of a secret key to add an environment variable for each secret key you wish to consume. The environment variable that consumes the secret key should populate the secret’s name and key in env[].valueFrom.secretKeyRef. 
+ - Modify your image and/or command line so that the program looks for values in the specified environment variables.
+
+For more information, see [Using Secrets as Environment Variables](https://kubernetes.io/docs/concepts/configuration/secret/#using-secrets-as-environment-variables).
+
 Before deploying the application to your **Azure Container Service Kubernetes** cluster, open the YAML file and make the following changes:
 
 - Replace **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository.
-- Replace **COSMOS_DB_ENDPOINT_URI** with the endpoint URI of your **Cosmos DB**.
-- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
-- Replace **SERVICE_BUS_CONNECTION_STRING** with the connection string of your **Service Bus Messaging** namespace.
-- Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
-- Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
 
 The following script can be used to deploy the services and deployments.
 
-**create-application-to-kubernetes-from-docker-hub.cmd**
+**create-application-in-kubernetes-from-docker-hub.cmd**
 ```Batchfile
 REM Deploy azure-vote sample application  
 kubectl create --filename kubernetes-deployments-and-services-from-docker-hub.yml --record
@@ -1098,15 +1197,15 @@ As you can observe, the service of type **LoadBalancer** have both a **Cluster I
 - **LoadBalancer**: Exposes the service externally using a cloud provider’s load balancer. **NodePort** and **ClusterIP** services, to which the external load balancer will route, are automatically created.
 - **ExternalName**: Maps the service to the contents of the externalName field (e.g. foo.bar.example.com), by returning a **CNAME** record with its value. No proxying of any kind is set up. This requires version 1.7 or higher of kube-dns
 
-In our example, if you want to provide the ability to call the REST services exposed by the **TodoApi** service to external applications running outside of the **Kubernetes** cluster, and not only to the **TodoWeb** service running on the same cluster, you have to specify **LoadBalancer** as a service type. 
+In our example, if you want to provide the ability to call the REST services exposed by the **todoapi** service to external applications running outside of the **Kubernetes** cluster, and not only to the **todoweb** service running on the same cluster, you have to specify **LoadBalancer** as a service type. 
 
 Use the **Azure Management Portal** to look at the **Frontend IP configuration** of the **Azure Load Balancer** used by **ACS** in front of the **Kubernetes** cluster nodes.
 
 ![Kubectl](Images/PublicIps.png) 
 
 1. The first row contains an **IP address** which corresponds to the **Public IP** of the **azure-vote-front** service. This is a quickstart sample deployed on the same **Kubernetes** cluster. For more information, see [Deploy Kubernetes cluster for Linux containers](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-kubernetes-walkthrough)
-2. The second row contains an **IP address** which corresponds to the **Public IP** of the **TodoApi** service.
-2. The third row contains an **IP address** which corresponds to the **Public IP** of the **TodoWeb** service.
+2. The second row contains an **IP address** which corresponds to the **Public IP** of the **todoapi** service.
+2. The third row contains an **IP address** which corresponds to the **Public IP** of the **todoweb** service.
 
 Likewise, if you use the **Azure Management Portal** to look at the **Load balancing rules** defined on the **Load Balancer** used in front of the cluster nodes, you can note that there is a rule for each **Public IP** on the port **80**, all sharing the same **Backend Pool**
 
@@ -1125,7 +1224,7 @@ as shown in the following picture:
 
 ![Kubectl](Images/KubectlGetNodes.png) 
 
-Instead, if you want to use the **TodoApi** service only as a backend service from the **TodoWeb** service, and you don't want to expose it publicly, you can specify **ClusterIP** as its service type. Choosing this value makes the service only reachable from within the cluster.
+Instead, if you want to use the **todoapi** service only as a backend service from the **todoweb** service, and you don't want to expose it publicly, you can specify **ClusterIP** as its service type. Choosing this value makes the service only reachable from within the cluster.
 
 For more information, see:
 
@@ -1232,9 +1331,45 @@ Before runnng the above script, make the following changes:
 
 For more information on how to mount a [File Share](https://docs.microsoft.com/en-us/azure/storage/files/storage-how-to-create-file-share) from an [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview), see [Persist files in Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/persisting-shell-storage). 
 
-You can also deploy the multi-container application from the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview) or   
+You can also deploy the multi-container application using the **Azure CLI** on your local machine or from the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview).
 
-This time we use a YAML file configured to pull **Docker** images from an **Azure Container Service**.
+The first step is to create a YAML file to define a **secret**. Each item in the file must be base64 encoded. The multi-container sample uses a **secret** to define the value of the following **environment variables**:
+
+  - cosmosDbEndpointUri
+  - cosmosDBPrimaryKey
+  - cosmosDbDatabaseName
+  - cosmosDbCollectionName
+  - serviceBusConnectionString
+  - dataProtectionBlobStorageConnectionString
+  - applicationInsightsInstrumentationKey
+
+The following YAML file can be used to create a **secret** object named **todolist-secret** that contains a value for the above environment variables.
+
+**todolist-secret.yml**
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: todolist-secret
+type: Opaque
+data:
+  cosmosDbEndpointUri: BASE64-ENCODED-COSMOS-DB-ENDPOINT-URI
+  cosmosDBPrimaryKey: BASE64-ENCODED-COSMOS-DB-PRIMARY-KEY
+  cosmosDbDatabaseName: BASE64-ENCODED-COSMOS-DB-DATABASE-NAME
+  cosmosDbCollectionName: BASE64-ENCODED-COSMOS-DB-COLLECTION-NAME
+  serviceBusConnectionString: BASE64-ENCODED-SERVICE-BUS-CONNECTION-STRING
+  dataProtectionBlobStorageConnectionString: BASE64-ENCODED-BLOB-STORAGE-CONNECTION-STRING
+  applicationInsightsInstrumentationKey: BASE64-ENCODED-APP-INSIGHTS-INSTRUMENTATION-KEY
+```
+The following script can be used to create the **todolist-secret** object in the Kubernetes cluster.
+
+**create-secret-in-kubernetes.cmd**
+```batchfile
+REM Deploy azure-vote sample application  
+kubectl create --filename todolist-secret.yml --record
+```
+
+You can now deploy the application. This time use a YAML file configured to pull **Docker** images from an **Azure Container Service** repository.
 
 **kubernetes-deployments-and-services-from-azure-container-registry.yml**
 ```yaml
@@ -1261,35 +1396,58 @@ spec:
     spec:
       containers:
       - name: todoapi
-        image:AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:latest
+        image: AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:v1
         ports:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
         - name: RepositoryService__CosmosDb__EndpointUri
-          value: "COSMOS_DB_ENDPOINT_URI"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbEndpointUri
         - name: RepositoryService__CosmosDb__PrimaryKey
-          value: "COSMOS_DB_PRIMARY_KEY"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDBPrimaryKey
         - name: RepositoryService__CosmosDb__DatabaseName
-          value: "TodoApiDb"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbDatabaseName
         - name: RepositoryService__CosmosDb__CollectionName
-          value: "TodoApiCollection"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbCollectionName
         - name: NotificationService__ServiceBus__ConnectionString
-          value: "SERVICE_BUS_CONNECTION_STRING"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: serviceBusConnectionString
         - name: NotificationService__ServiceBus__QueueName
           value: "todoapi"
         - name: DataProtection__BlobStorage__ConnectionString
-          value: "STORAGE_ACCOUNT_CONNECTION_STRING"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
           value: "todoapi"
         - name: ApplicationInsights__InstrumentationKey
-          value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: todoapi
+  labels:
+    app: todoapi
 spec:
   type: LoadBalancer
   ports:
@@ -1303,7 +1461,7 @@ kind: Deployment
 metadata:
   name: todoweb
   labels:
-    app: todoapi
+    app: todoweb
 spec:
   replicas: 3
   selector:
@@ -1321,7 +1479,7 @@ spec:
     spec:
       containers:
       - name: todoweb
-        image:AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:latest
+        image: AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:v1
         ports:
         - containerPort: 80
         env:
@@ -1330,16 +1488,24 @@ spec:
         - name: TodoApiService__EndpointUri
           value: "todoapi"
         - name: DataProtection__BlobStorage__ConnectionString
-          value: "STORAGE_ACCOUNT_CONNECTION_STRING"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
           value: "todoweb"
         - name: ApplicationInsights__InstrumentationKey
-          value: "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: todoweb
+  labels:
+    app: todoweb
 spec:
   type: LoadBalancer
   ports:
@@ -1354,20 +1520,14 @@ spec:
 Before deploying the application to your managed **Kubernetes** service, open the YAML file and make the following changes:
 
 - Replace **AZURE_CONTAINER_REGISTRY_NAME** with the name of your **Azure Container Registry**.
-- Replace **COSMOS_DB_ENDPOINT_URI** with the endpoint URI of your **Cosmos DB**.
-- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
-- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
-- Replace **SERVICE_BUS_CONNECTION_STRING** with the connection string of your **Service Bus Messaging** namespace.
-- Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
-- Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
 
-Finally, run the following command from the Azure Cloud Shell to deploy the multi-container application.
+Finally, run the following command from the Azure Cloud Shell to deploy the multi-container application to your Kubernetes cluster.
 
 ```Batchfile
 kubectl create --filename kubernetes-deployments-and-services-from-azure-container-registry.yml --record
 ```
 
-You can run the following command to display the **Public IP** of the **TodoWeb** frontend service.
+You can run the following command to display the **EXTERNAL-IP** of the **todoweb** frontend service.
 
 ```Batchfile
 kubectl get services
@@ -1376,9 +1536,559 @@ as shown in the following picture:
 
 ![AksAzureCloudShell](Images/AzureCloudShell.png)
 
-Finally, to verify that the application works as expected we can browse to the **Public Ip** of the **TodoWeb** frontend service, as shown in the following picture.
+Finally, to verify that the application works as expected we can browse to the **EXTERNAL-IP** of the **todoweb** frontend service, as shown in the following picture.
 
 ![AksTodoWeb](Images/AksTodoWeb.png)
+
+# Configure Nginx Ingress Controller for TLS termination on Kubernetes #
+So far, we have seen how to configure both the ** TodoWeb ** frontend service and ** TodoApi ** backend service to expose each a public HTTP endpoint. Now, let's assume we want to expose only the ** TodoWeb ** frontend service and configure it to use an HTTPS endpoint instead of an HTTP endpoint.
+To implement TLS termination in our Kubernetes cluster, we'll use an [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) object and the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx). This component is a daemon, deployed as a Kubernetes **Pod**, that watches the apiserver's /ingresses endpoint for updates to the **Ingress** resource. The [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) can be used to implement patterns like path-based fanout, SSL passthrough, TLS termination, basic or digest http authentication. For more information, see [Advanced Ingress Configuration](https://docs.giantswarm.io/guides/advanced-ingress-configuration/)
+
+You can deploy the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) to your Kubernetes cluster on Azure by using the **kubectl** CLI or using Helm. [Helm](https://docs.helm.sh/) is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources. You can use Helm to:
+
+ - Find and use popular software packaged as Kubernetes charts
+ - Share your own applications as Kubernetes charts
+ - Create reproducible builds of your Kubernetes applications
+ - Intelligently manage your Kubernetes manifest files
+ - Manage releases of Helm packages
+
+For more information, see the following resources: 
+ 
+ - [Kubernetes Helm](https://github.com/kubernetes/helm)
+ - [Nginx Ingress Controller Deployment](https://github.com/kubernetes/ingress-nginx/blob/master/deploy/README.md).
+
+You can use the following **Bash** script to install and initialize [Helm](https://docs.helm.sh/). In particular, the **helm init** command is used to install Helm components in a Kubernetes cluster and make client-side configurations.
+
+**install-helm.sh**
+```bash
+#!/bin/bash
+# Install helm on the local machine
+
+# Download Helm
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get > get_helm.sh
+
+# Make get_helm executable
+$ chmod 700 get_helm.sh
+
+# Execute get_helm.sh
+$ ./get_helm.sh
+
+# Initialize helm
+helm init
+```
+For more information, see [Use Helm with Azure Container Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/kubernetes-helm).
+
+Then, you can use the following **Bash** script to install the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) in your Kubernetes cluster.
+
+**install-nginx-ingress-controller.sh**
+```bash
+# Installs nginx-ingress using helm 
+helm install stable/nginx-ingress -n nginx-ingress
+```
+
+You can you can use the following **Bash** script to scale out the number of replicas used by the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) to from 1 to 3.
+
+**scale-nginx-ingress-controller-replicas.sh**
+```bash
+# Scale the number of replicas of the nginx-ingress-nginx-ingress-controller to 3
+kubectl scale deployment nginx-ingress-nginx-ingress-controller --replicas=3 
+
+# Scale the number of replicas of the nginx-ingress-nginx-ingress-default-backend to 3
+kubectl scale deployment nginx-ingress-nginx-ingress-default-backend --replicas=3
+```
+
+The next step is to create a **secret** containing the certificate and private key used for TLS termination. We can use **openssl** utility to create a test certificate. You can use the following **Bash** script to install **openssl**.
+
+**install-open-ssl.sh**
+```bash
+# Install openssl utility 
+sudo apt update && sudo apt install openssl
+```
+Use the following **Bash** script to create a self-signed certificate for testing.
+
+**create-certificate.sh**
+```bash
+# Create a self-signed certificate. Note: private and public keys are saved locally
+openssl req -x509 -nodes -days 3650 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=nginxsvc/O=nginxsvc"
+```
+
+You can now run the following **Bash** script to create a **Secret** in your Kubernetes cluster using the self-signed certificate and its private key. **Note**: in a production environment, you should replace the self-signed certificate with a valid certificate issued by a trusted certificate authority.
+
+**create-tls-secret.sh**
+```bash
+# Use the private and public key to create a secret used for SSL termination
+kubectl create secret tls tls-secret --key tls.key --cert tls.crt
+```
+
+**Note**: the data keys must be named tls.crt and tls.key.
+
+As an alternative, you can also the following YAML file to define the **tls-secret**:
+
+**tls-secret.yml**
+```yaml
+apiVersion: v1
+kind: Secret
+type: kubernetes.io/tls
+metadata:
+  name: tls-secret
+data:
+  tls.crt: [BASE64_ENCODED_CERT]
+  tls.key: [BASE64_ENCODED_KEY]
+```
+
+You can run the following **Bash** command to create the **tls-secret** in your Kubernetes cluster using the above YAML file.
+
+```bash
+# Create tls-secret using YAML file
+kubectl create -f /mnt/c/[PATH-TO-YAML-FILE]/tls-secret.yml
+```
+
+Now you are ready to install the multi-container application to Kubernetes. In this section we'll see how to use the **kubectl** CLI to create services and deployments using the definitions contained in a YAML file. In the next section, we'll see how to create a **Helm** chart and use it to deploy the application to Kubernetes. 
+
+**kubernetes-deployments-and-services-from-docker-hub-ssl.yml**
+```yaml
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: ssl-todoapi
+  labels:
+    app: ssl-todoapi
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ssl-todoapi
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: ssl-todoapi
+    spec:
+      containers:
+      - name: ssl-todoapi
+        image: paolosalvatori/todoapi:v2
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+        - name: RepositoryService__CosmosDb__EndpointUri
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbEndpointUri
+        - name: RepositoryService__CosmosDb__PrimaryKey
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDBPrimaryKey
+        - name: RepositoryService__CosmosDb__DatabaseName
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbDatabaseName
+        - name: RepositoryService__CosmosDb__CollectionName
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbCollectionName
+        - name: NotificationService__ServiceBus__ConnectionString
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: serviceBusConnectionString
+        - name: NotificationService__ServiceBus__QueueName
+          value: "todoapi"
+        - name: DataProtection__BlobStorage__ConnectionString
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: dataProtectionBlobStorageConnectionString
+        - name: DataProtection__BlobStorage__ContainerName
+          value: "todoapi"
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: applicationInsightsInstrumentationKey
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ssl-todoapi
+  labels:
+    app: ssl-todoapi
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: ssl-todoapi
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: ssl-todoweb
+  labels:
+    app: ssl-todoweb
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: ssl-todoweb
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: ssl-todoweb
+    spec:
+      containers:
+      - name: ssl-todoweb
+        image: paolosalvatori/todoweb:v2
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: "Development"
+        - name: TodoApiService__EndpointUri
+          value: "ssl-todoapi"
+        - name: DataProtection__BlobStorage__ConnectionString
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: dataProtectionBlobStorageConnectionString
+        - name: DataProtection__BlobStorage__ContainerName
+          value: "todoweb"
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: applicationInsightsInstrumentationKey
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ssl-todoweb
+  labels:
+    app: ssl-todoweb
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+  selector:
+    app: ssl-todoweb
+```
+**Configuration**
+
+Before deploying the application to your managed **Kubernetes** service, open the YAML file and make the following changes:
+
+- Replace **AZURE_CONTAINER_REGISTRY_NAME** with the name of your **Azure Container Registry**.
+
+**Observations**
+
+Reading the above YAML file you can note the following: 
+
+ - The name of deployments and services is now prefixed with **ssl-**
+ - The type of both **ssl-todoapi** and **ssl-todoweb** services is now **ClusterIP** instead of **LoadBalancer**. As noted above, if you adopt the **ClusterIP** service type, a service is exposed only on a cluster-internal IP. Choosing this value makes the service only reachable from within the cluster. This is the default **ServiceType**. If you instead adopt the **LoadBalancer** service type, a service is exposed externally using a cloud provider’s load balancer, that is, in case of AKS, the [Azure Load Balancer](https://docs.microsoft.com/en-us/azure/load-balancer/load-balancer-overview) posed in front of the cluster nodes. For more information, see [Services](https://kubernetes.io/docs/concepts/services-networking/service/) on Kubernetes documentation.
+
+You can now run the following **Bash** script to deploy the **ssl-todoapi** and **ssl-todoweb** services to your Kubernetes cluster.
+
+```Batchfile
+# Deploy the TodoList application using kubectl or helm
+kubectl create -f /mnt/c/[PATH-TO-YAML-FILE]/kubernetes-deployments-and-services-from-docker-hub-ssl.yml --record
+```
+In order to expose the **ssl-todoweb** frontend service with a HTTPS public endpoint, you have to create an [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) object in the same namespace as the **tls-secret** object.
+
+**nginx-ingress.yml**
+```yaml
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  tls:
+  - secretName: tls-secret
+  backend:
+    serviceName: ssl-todoweb
+```
+
+You can run the following **Bash** command to create the **nginx-ingress** in your Kubernetes cluster using the above YAML file.
+
+```bash
+# Create tls-secret using YAML file
+kubectl create -f /mnt/c/[PATH-TO-YAML-FILE]/nginx-ingress.yml
+```
+
+We have configured the **Nginx Ingress Controller** to implement SSL termination and route traffic to our service **ssl-todoweb** via HTTP. You can run the following **Bash** command to display the **EXTERNAL-IP** exposed by the **Nginx Ingress Controller** service.
+
+```bash
+kubectl get service nginx-ingress-nginx-ingress-controller
+```
+as shown in the following picture:
+
+![AksAzureCloudShell](Images/NginxIngressControllerPublicIp.png)
+
+Finally, to verify that the application works as expected we can browse to the **EXTERNAL-IP** of the **Nginx Ingress Controller** frontend service, as shown in the following picture.
+
+![AksTodoWeb](Images/HttpsTodoWeb.png)
+
+# Use Helm to package and deploy your application to Kubernetes #
+As mentioned above, [Helm](https://docs.helm.sh/) is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources. You can use Helm to:
+
+ - Find and use popular software packaged as Kubernetes charts
+ - Share your own applications as Kubernetes charts
+ - Create reproducible builds of your Kubernetes applications
+ - Intelligently manage your Kubernetes manifest files
+ - Manage releases of Helm packages
+
+Helm uses a packaging format called charts. A chart is a collection of files that describe a related set of Kubernetes resources. Charts are created as files and structured in a particular directory tree, then they can be packaged into versioned archives to be deployed. For more information see [Charts](https://docs.helm.sh/developing_charts/#charts) in the Helm documentation.
+
+A single chart can be used to create the services and deployments that compose the **todolist** multi-container application. The chart is organized as a collection of files inside of a directory. The directory name is the name of the chart, so in our case is equal to **todolist**. The following picture shows the structure of the directory structure.  
+
+![AksAzureCloudShell](Images/HelmTodoList.png)
+
+**Description**
+  
+ - **Chart.yaml**: this YAML file contains information about the chart, like name, version, keywords, description, etc.
+ - **LICENSE**: this is an optional plain text file containing the license for 
+  the chart.
+- **README.md**: this is an optional, human-readable README file
+- **requirements.yaml**:   this is an optional YAML file listing dependencies for the chart. This file is not used in this demo as the **todolist** does not have any dependency on other charts.
+- **values.yaml**: this file is manndatory and contains the default configuration values for this chart.
+- **charts/**: this is an optional directory containing any charts upon which this chart depends. This directory is not used in this demo as the **todolist** does not have any dependency on other charts.
+- **templates/**: this is an optional directory of templates that, when combined with values, will generate valid Kubernetes manifest files. 
+ - **templates/Deployment.yaml**: this YAML file contains the definition of the **todoapi** and **todoweb** services and deployments.
+- **templates/NOTES.txt** this is optional plain text file containing short usage notes.
+
+Below you can see the content of the main files used by the chart.
+
+**Chart.yaml**
+
+```yaml
+name: TodoList
+version: 1.0.0
+description: todolist multi-container app
+keywords:
+  - todoapi
+home: https://github.com/paolosalvatori/service-fabric-acs-kubernetes-multi-container-app
+sources:
+  - https://github.com/paolosalvatori/service-fabric-acs-kubernetes-multi-container-app
+maintainers: # (optional)
+  - name: Paolo Salvatori
+    email: paolos@microsoft.com
+    url: https://github.com/paolosalvatori
+engine: gotpl 
+appVersion: 1.0.0
+```
+**values.yaml**
+
+```yaml
+imageRegistry: "paolosalvatori"
+frontendImage: "todoweb"
+backendImage: "todoapi"
+frontendTag: "v2"
+backendTag: "v2"
+environment: "Development"
+frontend: "todoweb"
+backend: "todoapi"
+frontendServiceType: "LoadBalancer"
+backendServiceType: "LoadBalancer"
+queueName: "todoapi"
+```
+
+**templates/Deployment.yaml**
+
+```yaml
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{.Values.backend}}
+  labels:
+    app: {{.Values.backend}}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{.Values.backend}}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: {{.Values.backend}}
+    spec:
+      containers:
+      - name: {{.Values.backend}}
+        image: {{.Values.imageRegistry}}/{{.Values.backendImage}}:{{.Values.backendTag}}
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: {{.Values.environment}}
+        - name: RepositoryService__CosmosDb__EndpointUri
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbEndpointUri
+        - name: RepositoryService__CosmosDb__PrimaryKey
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDBPrimaryKey
+        - name: RepositoryService__CosmosDb__DatabaseName
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbDatabaseName
+        - name: RepositoryService__CosmosDb__CollectionName
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: cosmosDbCollectionName
+        - name: NotificationService__ServiceBus__ConnectionString
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: serviceBusConnectionString
+        - name: NotificationService__ServiceBus__QueueName
+          value: {{.Values.queueName}}
+        - name: DataProtection__BlobStorage__ConnectionString
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: dataProtectionBlobStorageConnectionString
+        - name: DataProtection__BlobStorage__ContainerName
+          value: {{.Values.backend}}
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: applicationInsightsInstrumentationKey
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.backend}}
+spec:
+  type: {{.Values.backendServiceType}}
+  ports:
+  - protocol: TCP
+    port: 80
+  selector:
+    app: {{.Values.backend}}
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: {{.Values.frontend}}
+  labels:
+    app: {{.Values.frontend}}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{.Values.frontend}}
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: {{.Values.frontend}}
+    spec:
+      containers:
+      - name: {{.Values.frontend}}
+        image: {{.Values.imageRegistry}}/{{.Values.frontendImage}}:{{.Values.frontendTag}}
+        ports:
+        - containerPort: 80
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: {{.Values.environment}}
+        - name: TodoApiService__EndpointUri
+          value: {{.Values.backend}}
+        - name: DataProtection__BlobStorage__ConnectionString
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: dataProtectionBlobStorageConnectionString
+        - name: DataProtection__BlobStorage__ContainerName
+          value: {{.Values.frontend}}
+        - name: ApplicationInsights__InstrumentationKey
+          valueFrom:
+            secretKeyRef:
+                name: todolist-secret
+                key: applicationInsightsInstrumentationKey
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{.Values.frontend}}
+spec:
+  type: {{.Values.frontendServiceType}}
+  ports:
+  - protocol: TCP
+    port: 80
+  selector:
+    app: {{.Values.frontend}}
+```
+
+**Observations**
+
+Examining the files above, you can note the following:
+
+ - **Helm Chart templates** are written in the [Go template language](https://golang.org/pkg/text/template/), with the addition of 50 or so add-on template functions from the Sprig library and a few other specialized functions.
+ - **Actions** are data evaluations or control structures. They are delimited by "{{" and "}}"; all text outside actions is copied to the output unchanged.
+ - **Actions** can be used as placeholders for values defined in the **values.yaml** file. This technique is extremely powerful, because it allows to parametrize the entire template, including the service type, container image location, service and deployment name, etc.
+ - When using the **helm** CLI, a user can override all or part of the values provided in the **values.yaml** file in the chart by specifing an alternate **values.yaml** file. Later on, we'll see how to use this technique to customize a deployment.
+
+You can run the following **Bash** script to package the chart. This operation  creates a compressed TAR Archive file with the following format **ChartName-ChartVersion.tgz** in the current folder, in our case **TodoList-1.0.0.tgz**.
+
+```bash
+# Build package
+helm package /mnt/c/[PATH-TO-CHART]/TodoList
+```
+
+If you want to install the **todolist** application, you can run the following **Bash** comamand.
+
+```bash
+# Install package
+helm install --name todolist TodoList-1.0.0.tgz
+```
+
+Now, let's assume we want to deploy a version of the application that uses HTTPS instead of HTTP. we want to change the service type for both the **todoapi** and **todoweb** services from **LoadBalancer** to **ClusterIP** and we want to add the **ssl-** prefix to the name of the corresponding services and deployments. You can accomplish this task simply creating the following **ssl-todolist-values.yaml** file
+
+```yaml
+frontend: "ssl-todoweb"
+backend: "ssl-todoapi"
+frontendServiceType: "ClusterIP"
+backendServiceType: "ClusterIP"
+```
+
+and by running this **Bash** command:
+
+```bash
+# Install package for ssl-todolist
+helm install --name ssl-todolist --values /mnt/c/[PATH-TO-CHART]/ssl-todolist-values.yaml TodoList-1.0.0.tgz
+```
 
 # Services #
 This section provides a brief introduction of the services used by the solution.

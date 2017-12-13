@@ -57,11 +57,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Push-Docker-Images-Scripts"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes-Scripts", "Kubernetes-Scripts", "{9FF09F58-886C-4A9E-B398-105BBC6475A9}"
 	ProjectSection(SolutionItems) = preProject
-		Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-azure-container-service.cmd = Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-azure-container-service.cmd
-		Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-docker-hub.cmd = Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-docker-hub.cmd
+		Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-azure-container-service.cmd = Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-azure-container-service.cmd
+		create-application-in-kubernetes-from-docker-hub-ssl.sh = create-application-in-kubernetes-from-docker-hub-ssl.sh
+		Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-docker-hub.cmd = Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-docker-hub.cmd
+		create-certificate.sh = create-certificate.sh
+		create-secret-in-kubernetes.cmd = create-secret-in-kubernetes.cmd
+		create-tls-secret.sh = create-tls-secret.sh
 		Scripts\Kubernetes-Scripts\delete-kubernetes-pods-and-services-and-deployments.cmd = Scripts\Kubernetes-Scripts\delete-kubernetes-pods-and-services-and-deployments.cmd
+		Scripts\Helm\install-helm.sh = Scripts\Helm\install-helm.sh
+		install-nginx-ingress-controller.sh = install-nginx-ingress-controller.sh
+		install-openssl.sh = install-openssl.sh
 		Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-azure-container-registry.yml = Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-azure-container-registry.yml
+		kubernetes-deployments-and-services-from-docker-hub-ssl.yml = kubernetes-deployments-and-services-from-docker-hub-ssl.yml
 		Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-docker-hub.yml = Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-docker-hub.yml
+		scale-nginx-ingress-controller-replicas.sh = scale-nginx-ingress-controller-replicas.sh
+		todolist-secret.yml = todolist-secret.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service-Fabric-Docker-Compose", "Service-Fabric-Docker-Compose", "{DB75A5CA-9954-48DE-B783-BF164BCA204F}"
@@ -82,16 +92,40 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{808736
 		Images\BackendPools.png = Images\BackendPools.png
 		Images\DockerCompose.png = Images\DockerCompose.png
 		Images\godaddy.png = Images\godaddy.png
+		Images\HelmTodoList.png = Images\HelmTodoList.png
+		Images\HttpsTodoWeb.png = Images\HttpsTodoWeb.png
 		Images\K8sDashboard.png = Images\K8sDashboard.png
 		Images\Kubectl.png = Images\Kubectl.png
 		Images\KubectlGetNodes.png = Images\KubectlGetNodes.png
 		Images\KubernetesArchitecture.png = Images\KubernetesArchitecture.png
 		Images\LoadBalancingRules.png = Images\LoadBalancingRules.png
 		Images\Manifests.png = Images\Manifests.png
+		Images\NginxIngressControllerPublicIp.png = Images\NginxIngressControllerPublicIp.png
 		Images\Nodes.png = Images\Nodes.png
 		Images\publicdomain.png = Images\publicdomain.png
 		Images\PublicIps.png = Images\PublicIps.png
 		Images\ServiceFabricArchitecture.png = Images\ServiceFabricArchitecture.png
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helm-Scripts", "Helm-Scripts", "{20016F4A-DC65-4235-A56E-EA7030EE59F0}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Helm\build-helm-package.sh = Scripts\Helm\build-helm-package.sh
+		Scripts\Helm\install-helm.sh = Scripts\Helm\install-helm.sh
+		Scripts\Helm\ssl-todolist-values.yaml = Scripts\Helm\ssl-todolist-values.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TodoList", "TodoList", "{54C92546-9655-4A80-95EB-A8E23A22D7DF}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Helm\TodoList\Chart.yaml = Scripts\Helm\TodoList\Chart.yaml
+		Scripts\Helm\TodoList\LICENSE = Scripts\Helm\TodoList\LICENSE
+		README.md = README.md
+		Scripts\Helm\TodoList\values.yaml = Scripts\Helm\TodoList\values.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{902E4F4B-5B87-46BC-A76E-8D779182A498}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Helm\TodoList\templates\Deployment.yaml = Scripts\Helm\TodoList\templates\Deployment.yaml
+		Scripts\Helm\TodoList\templates\NOTES.txt = Scripts\Helm\TodoList\templates\NOTES.txt
 	EndProjectSection
 EndProject
 Global
@@ -158,6 +192,9 @@ Global
 		{57555088-225D-48CD-9A42-BD808020B4C0} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
 		{9FF09F58-886C-4A9E-B398-105BBC6475A9} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
 		{DB75A5CA-9954-48DE-B783-BF164BCA204F} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
+		{20016F4A-DC65-4235-A56E-EA7030EE59F0} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
+		{54C92546-9655-4A80-95EB-A8E23A22D7DF} = {20016F4A-DC65-4235-A56E-EA7030EE59F0}
+		{902E4F4B-5B87-46BC-A76E-8D779182A498} = {54C92546-9655-4A80-95EB-A8E23A22D7DF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9255118D-6AE7-4332-8A5C-8A2414E92153}

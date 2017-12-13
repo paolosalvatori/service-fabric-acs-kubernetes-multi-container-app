@@ -1,0 +1,3 @@
+Multi-Container Sample with Service Fabric and Kubernetes
+---------------------------------------------------------
+This sample demonstrates how create a multi-container application using ASP.NET Core and Docker and deploy it to a Kubernetes cluster.

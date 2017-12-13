@@ -1,14 +1,14 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: todoapi
+  name: {{.Values.backend}}
   labels:
-    app: todoapi
+    app: {{.Values.backend}}
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: todoapi
+      app: {{.Values.backend}}
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,16 +17,16 @@ spec:
   template:
     metadata:
       labels:
-        app: todoapi
+        app: {{.Values.backend}}
     spec:
       containers:
-      - name: todoapi
-        image: AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:v1
+      - name: {{.Values.backend}}
+        image: {{.Values.imageRegistry}}/{{.Values.backendImage}}:{{.Values.backendTag}}
         ports:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Development"
+          value: {{.Values.environment}}
         - name: RepositoryService__CosmosDb__EndpointUri
           valueFrom:
             secretKeyRef:
@@ -53,14 +53,14 @@ spec:
                 name: todolist-secret
                 key: serviceBusConnectionString
         - name: NotificationService__ServiceBus__QueueName
-          value: "todoapi"
+          value: {{.Values.queueName}}
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: "todoapi"
+          value: {{.Values.backend}}
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:
@@ -70,28 +70,26 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: todoapi
-  labels:
-    app: todoapi
+  name: {{.Values.backend}}
 spec:
-  type: LoadBalancer
+  type: {{.Values.backendServiceType}}
   ports:
   - protocol: TCP
     port: 80
   selector:
-    app: todoapi
+    app: {{.Values.backend}}
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: todoweb
+  name: {{.Values.frontend}}
   labels:
-    app: todoweb
+    app: {{.Values.frontend}}
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: todoweb
+      app: {{.Values.frontend}}
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -100,25 +98,25 @@ spec:
   template:
     metadata:
       labels:
-        app: todoweb
+        app: {{.Values.frontend}}
     spec:
       containers:
-      - name: todoweb
-        image: AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:v1
+      - name: {{.Values.frontend}}
+        image: {{.Values.imageRegistry}}/{{.Values.frontendImage}}:{{.Values.frontendTag}}
         ports:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Development"
+          value: {{.Values.environment}}
         - name: TodoApiService__EndpointUri
-          value: "todoapi"
+          value: {{.Values.backend}}
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: "todoweb"
+          value: {{.Values.frontend}}
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:
@@ -128,13 +126,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: todoweb
-  labels:
-    app: todoweb
+  name: {{.Values.frontend}}
 spec:
-  type: LoadBalancer
+  type: {{.Values.frontendServiceType}}
   ports:
   - protocol: TCP
     port: 80
   selector:
-    app: todoweb
+    app: {{.Values.frontend}}

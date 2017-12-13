@@ -1,14 +1,14 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: todoapi
+  name: ssl-todoapi
   labels:
-    app: todoapi
+    app: ssl-todoapi
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: todoapi
+      app: ssl-todoapi
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -17,11 +17,11 @@ spec:
   template:
     metadata:
       labels:
-        app: todoapi
+        app: ssl-todoapi
     spec:
       containers:
-      - name: todoapi
-        image: AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:v1
+      - name: ssl-todoapi
+        image: paolosalvatori/todoapi:v2
         ports:
         - containerPort: 80
         env:
@@ -70,28 +70,30 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: todoapi
+  name: ssl-todoapi
   labels:
-    app: todoapi
+    app: ssl-todoapi
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
-  - protocol: TCP
-    port: 80
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
   selector:
-    app: todoapi
+    app: ssl-todoapi
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: todoweb
+  name: ssl-todoweb
   labels:
-    app: todoweb
+    app: ssl-todoweb
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: todoweb
+      app: ssl-todoweb
   strategy:
     rollingUpdate:
       maxSurge: 1
@@ -100,18 +102,18 @@ spec:
   template:
     metadata:
       labels:
-        app: todoweb
+        app: ssl-todoweb
     spec:
       containers:
-      - name: todoweb
-        image: AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:v1
+      - name: ssl-todoweb
+        image: paolosalvatori/todoweb:v2
         ports:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
           value: "Development"
         - name: TodoApiService__EndpointUri
-          value: "todoapi"
+          value: "ssl-todoapi"
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
@@ -128,13 +130,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: todoweb
+  name: ssl-todoweb
   labels:
-    app: todoweb
+    app: ssl-todoweb
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
-  - protocol: TCP
-    port: 80
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
   selector:
-    app: todoweb
+    app: ssl-todoweb

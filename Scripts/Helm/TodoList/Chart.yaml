@@ -1,0 +1,14 @@
+name: TodoList
+version: 1.0.0
+description: todolist multi-container app
+keywords:
+  - todoapi
+home: https://github.com/paolosalvatori/service-fabric-acs-kubernetes-multi-container-app
+sources:
+  - https://github.com/paolosalvatori/service-fabric-acs-kubernetes-multi-container-app
+maintainers: # (optional)
+  - name: Paolo Salvatori
+    email: paolos@microsoft.com
+    url: https://github.com/paolosalvatori
+engine: gotpl # The name of the template engine (optional, defaults to gotpl)
+appVersion: 1.0.0

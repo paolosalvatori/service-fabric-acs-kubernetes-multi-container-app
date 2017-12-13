@@ -1,0 +1,4 @@
+frontend: "ssl-todoweb"
+backend: "ssl-todoapi"
+frontendServiceType: "ClusterIP"
+backendServiceType: "ClusterIP"
