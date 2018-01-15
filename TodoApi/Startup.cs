@@ -1,4 +1,24 @@
-﻿
+﻿#region Copyright
+//=======================================================================================
+// Microsoft 
+//
+// This sample is supplemental to the technical guidance published on my personal
+// blog at https://github.com/paolosalvatori. 
+// 
+// Author: Paolo Salvatori
+//=======================================================================================
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// 
+// LICENSED UNDER THE APACHE LICENSE, VERSION 2.0 (THE "LICENSE"); YOU MAY NOT USE THESE 
+// FILES EXCEPT IN COMPLIANCE WITH THE LICENSE. YOU MAY OBTAIN A COPY OF THE LICENSE AT 
+// http://www.apache.org/licenses/LICENSE-2.0
+// UNLESS REQUIRED BY APPLICABLE LAW OR AGREED TO IN WRITING, SOFTWARE DISTRIBUTED UNDER THE 
+// LICENSE IS DISTRIBUTED ON AN "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY 
+// KIND, EITHER EXPRESS OR IMPLIED. SEE THE LICENSE FOR THE SPECIFIC LANGUAGE GOVERNING 
+// PERMISSIONS AND LIMITATIONS UNDER THE LICENSE.
+//=======================================================================================
+#endregion
+
 #region MyRegion Using References
 using System;
 using Microsoft.EntityFrameworkCore;
@@ -119,14 +139,14 @@ namespace TodoApi
 
             if (string.IsNullOrWhiteSpace(connectionString))
             {
-                throw new ArgumentNullException("No connection string is defined in the configuration of the Service Bus data protection service in the appsettings.json.");
+                throw new ArgumentNullException("No connection string is defined in the configuration of the Data Protection service in the appsettings.json.");
             }
 
             var containerName = Configuration["DataProtection:BlobStorage:ContainerName"];
 
             if (string.IsNullOrWhiteSpace(containerName))
             {
-                throw new ArgumentNullException("No container name is defined in the configuration of the Service Bus data protection service in the appsettings.json.");
+                throw new ArgumentNullException("No container name is defined in the configuration of the Data Protection service in the appsettings.json.");
             }
 
             //Parse the connection string and return a reference to the storage account.

@@ -10,7 +10,7 @@ This sample demonstrates how create a multi-container application using [ASP.NET
 # Azure Service Fabric and ACS/Kubernetes Environments #
 This repository contains a sample multi-container application and the scripts to deploy it on the following environments: 
 
-- Service Fabric Linux cluster on Azure with the DNS service.
+- Service Fabric Linux cluster in Azure with the DNS service.
 - Azure Container Service Kubernetes cluster on Linux 
 
 # Prerequisites for development machine #
@@ -18,7 +18,7 @@ This repository contains a sample multi-container application and the scripts to
 1. Install [Microsoft Visual Studio 2017](https://www.visualstudio.com/) with .NET Core workload. For more information, see [Visual Studio Tools for Docker](https://docs.microsoft.com/en-us/aspnet/core/publishing/visual-studio-tools-for-docker).
 2. Install [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) and configure it to use Linux containers.
 2. [Set up the developer environment](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-get-started-linux) 
-3. Create a **Service Fabric Linux cluster on Azure** with a minimum of five nodes and the [DNS Service](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-dnsservice) enabled. The demo requires a cluster running on Azure. For the purposes of this sample, you can eventually use the [party cluster](https://try.servicefabric.azure.com/).
+3. Create a **Service Fabric Linux cluster in Azure** with a minimum of five nodes and the [DNS Service](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-dnsservice) enabled. The demo requires a cluster running on Azure. For the purposes of this sample, you can eventually use the [party cluster](https://try.servicefabric.azure.com/).
 4. Clone or download this container solution into a directory on the local machine.
 5. Specify the value of the application parameters (see the **Configuration** section for more information). 
 
@@ -34,9 +34,11 @@ The solution has the folowing solution folders:
 
 - **Service Fabric Projects**: this folder contains the following projects:
 
-  - **TodoAppFromAzureContainerRegistry**: this project contains a **Service Fabric** application that is used to deploy the the multi-container application to an **Azure Service Fabric Linux** cluster pulling the **Docker** images from an **Azure Container Registry**. Before the deployment, make sure to configure  the value of the parameters used by the frontend and backend services in the  **Cloud.xml** file under the **ApplicationParameters** folder.
+  - **TodoAppForWindowsContainers**: this project contains a **Service Fabric** application that is used to deploy the multi-container application to an **Azure Service Fabric Windows** cluster pulling the **Docker** images for **Windows Containers** from a **Docker Hub** repository. Before the deployment, make sure to configure  the value of the parameters used by the frontend and backend services in the  **Cloud.xml** file under the **ApplicationParameters** folder.
 
-  - **TodoAppFromDockerHub**: this project contains a **Service Fabric** application that is used to deploy the the multi-container application to an **Azure Service Fabric Linux** cluster pulling the **Docker** images from a **Docker Hub** repository. Before the deployment, make sure to configure  the value of the parameters used by the frontend and backend services in the  **Cloud.xml** file under the **ApplicationParameters** folder.
+  - **TodoAppFromAzureContainerRegistry**: this project contains a **Service Fabric** application that is used to deploy the multi-container application to an **Azure Service Fabric Linux** cluster pulling the **Docker** images from an **Azure Container Registry**. Before the deployment, make sure to configure  the value of the parameters used by the frontend and backend services in the  **Cloud.xml** file under the **ApplicationParameters** folder.
+
+  - **TodoAppFromDockerHub**: this project contains a **Service Fabric** application that is used to deploy the multi-container application to an **Azure Service Fabric Linux** cluster pulling the **Docker** images from a **Docker Hub** repository. Before the deployment, make sure to configure  the value of the parameters used by the frontend and backend services in the  **Cloud.xml** file under the **ApplicationParameters** folder.
 
 - **README**: this folder contains the **README.MD** file.
 - **Scripts**: this folder contains script files organized as follows:
@@ -85,13 +87,23 @@ The solution has the folowing solution folders:
 
 - **Service-Fabric-Docker-Compose**: this folder contains the following scripts:
 
-  - **servicefabric-create-deployment-from-azure-container-registry.cmd**: This batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+  - **servicefabric-create-deployment-from-azure-container-registry.cmd**: this batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-  - **servicefabric-create-deployment-from-azure-container-registry.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+  - **servicefabric-create-deployment-from-azure-container-registry.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-  - **servicefabric-create-deployment-from-docker-hub.cmd**: This batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+  - **servicefabric-create-deployment-from-docker-hub.cmd**: this batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-  - **servicefabric-create-deployment-from-docker-hub.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+  - **servicefabric-create-deployment-from-docker-hub.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+
+- **Service-Fabric-Key-Vault**: this folder contains the following scripts:
+
+  - **CreateKeyVault.cmd**: this batch script is used to create an **Azure Key Vault**. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
+
+  - **AddSecretsToKeyVault.cmd**: this batch script is used to add secrets to the **Azure Key Vault** used by the multi-container application in Service Fabric. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
+
+  - **CertificateCommands.cmd**: this batch script contains commands to create a PEM and Key files from a PFX certificate file and create a CER certificate containing only the public key from a PFX certificate file using the [OpenSSL](https://www.openssl.org/) tool.
+
+  - **CreateAADApplication.ps1**: this PowerShell script is used to create an **Azure Active Directory Application** using a certificate as credentials, to create an **Azure Active Directory Service Principal** for the application and finally to associate the service principal with the **Azure Key Vault** used by the application as repository for secrets. For more information, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret) on **Azure Key Vault** documentation.
 
 
 **Note**: both the frontend (**todoweb**) and backend (**todoapi**) containerized services use the **microsoft/aspnetcore:2.0** as base **Docker** image. For more information, see [Official .NET Docker images](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/net-core-net-framework-containers/official-net-docker-images)
@@ -122,74 +134,31 @@ In ASP.NET Core, the configuration API provides a way of configuring an app base
 - Custom providers, which you install or create
 
 ## TodoApi Service Configuration ##
-The following table contains the configuration of the TodoApi service defined in the **appsettings.json** file. 
+The following table contains the configuration of the **TodoApi** service defined in the **appsettings.json** file. 
 
 ```json
 {
-    "RepositoryService": {
-        "CosmosDb": {
-            "EndpointUri": "",
-            "PrimaryKey": "",
-            "DatabaseName": "",
-            "CollectionName": ""
-        }
-    },
-    "NotificationService": {
-        "ServiceBus": {
-            "ConnectionString": "",
-            "QueueName": ""
-        }
-    },
-    "DataProtection": {
-      "BlobStorage": {
-        "ConnectionString": "",
-        "ContainerName": ""
+  "AzureKeyVault": {
+  "Certificate": {
+    "CertificateEnvironmentVariable": "",
+    "KeyEnvironmentVariable": ""
+  },
+  "ClientId": "",
+  "Name": ""
+  },
+  "RepositoryService": {
+      "CosmosDb": {
+          "EndpointUri": "",
+          "PrimaryKey": "",
+          "DatabaseName": "",
+          "CollectionName": ""
       }
-    },
-    "ApplicationInsights": {
-        "InstrumentationKey": ""
-    },
-    "Logging": {
-        "IncludeScopes": false,
-        "Debug": {
-            "LogLevel": {
-                "Default": "Information"
-            }
-        },
-        "Console": {
-            "LogLevel": {
-                "Default": "Information"
-            }
-        },
-        "EventSource": {
-            "LogLevel": {
-                "Default": "Warning"
-            }
-        },
-        "ApplicationInsights": {
-            "LogLevel": {
-                "Default": "Information"
-            }
-        }
-    }
-}
-```
-
-**Notes**
-
-- The **RepositoryService** element contains the **CosmosDb** element which in turn contains the **EndpointUri**, **PrimaryKey**, **DatabaseName** and **CollectionName** of the DocumentDB database holding the data.
-- The **NotificationService** element contains the **ServiceBus** element which in turn contains the **ConnectionString** of the Service Bus namespace used by the notification service and the **QueueName** setting which holds the name of the queue where the backend service sends a message any time a CRUD operation is performed on a document.
-- The **DataProtection** element contains the **BlobStorage** element which in turn contains the **ConnectionString** of the storage account used by the data protection and the **ContainerName** setting which holds the name of the container where the data protection system stores the key. For more information, see [Data Protection in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/).
-- The **Application Insights** element contains the **InstrumentationKey** of the **Application Insights** used by the service for diagnostics, logging, performance monitoring, analytics and alerting.
-- The **Logging*** element contains the log level for the various logging providers.
-
-## TodoWeb Service Configuration ##
-The following table contains the configuration of the TodoApi service defined in the **appsettings.json ** file. 
-
-```json
-{
-  "TodoApiService": {
-    "EndpointUri": ""
+  },
+  "NotificationService": {
+      "ServiceBus": {
+          "ConnectionString": "",
+          "QueueName": ""
+      }
   },
   "DataProtection": {
     "BlobStorage": {
@@ -198,7 +167,68 @@ The following table contains the configuration of the TodoApi service defined in
     }
   },
   "ApplicationInsights": {
-    "InstrumentationKey": ""
+      "InstrumentationKey": ""
+  },
+  "Logging": {
+      "IncludeScopes": false,
+      "Debug": {
+          "LogLevel": {
+              "Default": "Information"
+          }
+      },
+      "Console": {
+          "LogLevel": {
+              "Default": "Information"
+          }
+      },
+      "EventSource": {
+          "LogLevel": {
+              "Default": "Warning"
+          }
+      },
+      "ApplicationInsights": {
+          "LogLevel": {
+              "Default": "Information"
+          }
+      }
+  }
+}
+```
+
+**Notes**
+
+- The **AzureKeyVault** section should be used only when storing secret values in **Azure Key Vault**, otherwise it can be ignored. It contains the following data:
+  - **CertificateEnvironmentVariable**: indicates the name of the environment variable that contains the path to the certificate file used by the service to authenticate against **Azure Key Vault**. The file in question is a .pfx file when using Windows containers, and a .pem file when using Linux containers.
+  - **KeyEnvironmentVariable**: indicates the name of the environment variable that contains the path to the key of the certificate used by the service to authenticate against **Azure Key Vault**. The file in question is a text file containing the password for the .pfx file when using Windows containers, and a .key certificate containing the private key of the .pem certificate when using Linux containers.
+  - **ClientId**: contains the **ApplicationId** of the **Azure Active Directory Service Principal** used by the service to authenticate against **Azure Key Vault** using the certificate as credentials.
+  - **Name**: contains the name of the **Azure Key Vault** used by the application to store credentials.
+- The **RepositoryService** element contains the **CosmosDb** element which in turn contains the **EndpointUri**, **PrimaryKey**, **DatabaseName** and **CollectionName** of the DocumentDB database holding the data.
+- The **NotificationService** element contains the **ServiceBus** element which in turn contains the **ConnectionString** of the Service Bus namespace used by the notification service and the **QueueName** setting which holds the name of the queue where the backend service sends a message any time a CRUD operation is performed on a document.
+- The **DataProtection** element contains the **BlobStorage** element which in turn contains the **ConnectionString** of the storage account used by the data protection and the **ContainerName** setting which holds the name of the container where the data protection system stores the key. For more information, see [Data Protection in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/).
+- The **Application Insights** element contains the **InstrumentationKey** of the **Application Insights** used by the service for diagnostics, logging, performance monitoring, analytics and alerting.
+- The **Logging*** element contains the log level for the various logging providers.
+
+## TodoWeb Service Configuration ##
+The following table contains the configuration of the **TodoWeb** service defined in the **appsettings.json** file. 
+
+```json
+{
+  "AzureKeyVault": {
+    "Certificate": {
+      "CertificateEnvironmentVariable": "",
+      "KeyEnvironmentVariable": ""
+    },
+    "ClientId": "",
+    "Name": ""
+  },
+  "TodoApiService": {
+    "EndpointUri": ""
+  },
+  "DataProtection": {
+    "BlobStorage": {
+      "ConnectionString": "",
+      "ContainerName": ""
+    }
   },
   "Logging": {
     "IncludeScopes": false,
@@ -210,12 +240,20 @@ The following table contains the configuration of the TodoApi service defined in
         "Default": "Information"
       }
     }
-  }  
+  },
+  "ApplicationInsights": {
+    "InstrumentationKey": ""
+  }
 }
 ```
 
 **Notes**
 
+- The **AzureKeyVault** section should be used only when storing secret values in **Azure Key Vault**, otherwise it can be ignored. It contains the following data:
+  - **CertificateEnvironmentVariable**: indicates the name of the environment variable that contains the path to the certificate file used by the service to authenticate against **Azure Key Vault**. The file in question is a .pfx file when using Windows containers, and a .pem file when using Linux containers.
+  - **KeyEnvironmentVariable**: indicates the name of the environment variable that contains the path to the key of the certificate used by the service to authenticate against **Azure Key Vault**. The file in question is a text file containing the password for the .pfx file when using Windows containers, and a .key certificate containing the private key of the .pem certificate when using Linux containers.
+  - **ClientId**: contains the **ApplicationId** of the **Azure Active Directory Service Principal** used by the service to authenticate against **Azure Key Vault** using the certificate as credentials.
+  - **Name**: contains the name of the **Azure Key Vault** used by the application to store credentials.
 - The **TodoApiService** element contains the **EndpointUri** of the **todoapi**. In **Service Fabric** this setting will be the DNS names assigned to the **todoapi** service. For more information, see [DNS Service in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-dnsservice). In **Kubernetes** this setting will contain the name of the **todoapi** service. For more information on Kubernetes Services, see [Services](https://kubernetes.io/docs/concepts/services-networking/service/).
 - The **DataProtection** element contains the **BlobStorage** element which in turn contains the **ConnectionString** of the storage account used by the data protection and the **ContainerName** setting which holds the name of the container where the data protection system stores the key. For more information, see [Data Protection in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/security/data-protection/).
 - The **Application Insights** element contains the **InstrumentationKey** of the **Application Insights** used by the service for diagnostics, logging, performance monitoring, analytics and alerting.
@@ -228,7 +266,13 @@ The [CreateDefaultBuilder](https://andrewlock.net/exploring-program-and-startup-
 - appsettings.<EnvironmentName>.json
 - environment variables
 
-Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a value, access the Configuration indexer with the corresponding item's key. For example, if you want to retrieve the value of the **QueueName** setting from the configuration of the **todoapi** service, you have to use the following format.
+ASP.NET Core allows to use additional configuration providers to read settings from a heterogeneous range of repositories. Later in this document, we'll see how to:
+
+ - Create an [Azure Key Vault](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2) using the Azure CLI.
+ - Create secrets in this repository using the Azure CLI
+ - Use the [Azure Key Vault configuration provider](https://docs.microsoft.com/en-us/aspnet/core/security/key-vault-configuration?tabs=aspnetcore2x) in the application to read sensitive parameters from the vault. 
+ 
+ Configuration consists of a hierarchical list of name-value pairs in which the nodes are separated by a colon. To retrieve a value, access the Configuration indexer with the corresponding item's key. For example, if you want to retrieve the value of the **QueueName** setting from the configuration of the **todoapi** service, you have to use the following format.
 
 ```csharp
 var queueName = Configuration["NotificationService:ServiceBus:QueueName"];
@@ -305,14 +349,14 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - RepositoryService__CosmosDb__EndpointUri=COSMOS_DB_ENDPOINT_URI
-      - RepositoryService__CosmosDb__PrimaryKey=Document-Db-Primary-Key
+      - RepositoryService__CosmosDb__PrimaryKey=COSMOS_DB_PRIMARY_KEY
       - RepositoryService__CosmosDb__DatabaseName=TodoApiDb
       - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
-      - NotificationService__ServiceBus__ConnectionString=Azure-Service-Bus-Connection-String
+      - NotificationService__ServiceBus__ConnectionString=SERVICE_BUS_CONNECTION_STRING
       - NotificationService__ServiceBus__QueueName=todoapi
       - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
       - DataProtection__BlobStorage__ContainerName=todoapi
-      - ApplicationInsights__InstrumentationKey=Application-Insights-Instrumentation-Key
+      - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
 
     ports:
       - "80"
@@ -323,10 +367,80 @@ services:
       - TodoApiService__EndpointUri=todoapi
       - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
       - DataProtection__BlobStorage__ContainerName=todoweb
-      - ApplicationInsights__InstrumentationKey=Application-Insights-Instrumentation-Key
+      - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
     ports:
       - "80"
 ```
+
+**Configuration**
+
+Before debugging the application in Visual Studio, make the following changes to the **docker-compose-override.yml** file:
+
+- Replace **COSMOS_DB_ENDPOINT_URI** with the endpoint URI of your **Cosmos DB**.
+- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
+- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
+- Replace **SERVICE_BUS_CONNECTION_STRING** with the connection string of your **Service Bus Messaging** namespace.
+- Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
+- Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
+
+When using **Azure Key Vault** to store secrets, and **Linux Containers** to run the front-end and back-end services, you should use the following docker compose file to debug the application locally in Visual Studio. When deploying and running the application on **AKS**, where sensitive data is stored as secrets in the **Kubernetes** cluster, you can ignore this part.
+
+**docker-compose-override.yml**
+```yaml
+version: '3'
+
+services:
+  todoapi:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - NotificationService__ServiceBus__QueueName=todoapi
+      - DataProtection__BlobStorage__ContainerName=todoapi
+      - AzureKeyVault__Certificate__CertificateEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PEM
+      - AzureKeyVault__Certificate__KeyEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey
+      - AzureKeyVault__ClientId=AZURE_AD_APPLICATION_ID
+      - AzureKeyVault__Name=AZURE_KEY_VAULT_NAME
+      - Certificates_TodoApiPkg_Code_TodoListCert_PEM=/pem/KeyVaultCertificate.pem
+      - Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey=/pem/KeyVaultCertificate.key
+    ports:
+      - "80"
+    volumes:
+      - C:\Temp\Pem:/pem
+
+  todoweb:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - TodoApiService__EndpointUri=todoapi
+      - DataProtection__BlobStorage__ContainerName=todoweb
+      - AzureKeyVault__Certificate__CertificateEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PEM
+      - AzureKeyVault__Certificate__KeyEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey
+      - AzureKeyVault__ClientId=AZURE_AD_APPLICATION_ID
+      - AzureKeyVault__Name=AZURE_KEY_VAULT_NAME
+      - Certificates_TodoApiPkg_Code_TodoListCert_PEM=/pem/KeyVaultCertificate.pem
+      - Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey=/pem/KeyVaultCertificate.key
+    ports:
+      - "80"
+    volumes:
+      - C:\Temp\Pem:/pem
+```
+
+**Configuration**
+
+Before debugging the solution in Visual Studio, make sure accomplish the following tasks:
+
+  - Run the **CreateKeyVault.cmd** batch script to create the **Azure Key Vault** used by the application. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
+
+  - Open the **AddSecretsToKeyVault.cmd** file, substitute the placeholders with the real value for secret parameters (e.g. Service Bus connection string) and run the batch script to add secrets to the **Azure Key Vault** created at the previous step.
+
+  - Run the **CreateAADApplication.ps1** this PowerShell script to create an **Azure Active Directory Application** using the **KeyVaultCertificate.cer** certificate as credentials, to create an **Azure Active Directory Service Principal** for the application and finally to associate the service principal with the **Azure Key Vault** used by the application as repository for secrets. 
+
+ - Create a local folder (e.g. C:\Temp\Pem) and copy the **KeyVaultCertificate.pem** and **KeyVaultCertificate.key** containing, respectively, the public and private key of the certificate used by the frontend and backend service along to authenticate against **Azure Key Vault**.
+
+
+ - Make the following changes to the **docker-compose-override.yml** file:
+
+    - Replace **AZURE_AD_APPLICATION_ID** with the **Application ID** of the **Azure Active Directory Service Principal** used by the frontend and backend services to authenticate against **Azure Key Vault**.
+    - Replace **AZURE_KEY_VAULT_NAME** with the name of the **Azure Key Vault** used by the application.
+
 
 ## Push Docker images to Docker Hub ##
 You can execute the following command file to tag and register the images in your repository on [Docker Hub](https://hub.docker.com). Make sure to replace the placeholder **DOCKER_HUB_REPOSITORY** with the name of your repository on **Docker Hub** before running the batch file.
@@ -404,13 +518,335 @@ docker push %AKS_CONTAINER_REGISTRY%/todoweb:v1
 REM List images in the container registry on Azure
 call az acr repository list --name AZURE_CONTAINER_REGISTRY --output table
 ```
+## Storing secret parameters in Azure Key Vault ##
+If you plan to deploy the application to a **Service Fabric** Windows or Linux cluster in Azure, you should store sensitive data like connection strings, password, or instrumentation keys in **Azure Key Vault**. The frontend and backend services that compose the multi-container application in this sample are **ASP.NET Core** projects. ASP.NET Core supplies a configuration provider for [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) in the [Microsoft.Extensions.Configuration.AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) NuGet package. This configuration provider allows an application to use the **Application Id** and **Application Key** of an **Azure Active Directory Application** to authenticate against **Azure Key Vault** as explained at [Azure Key Vault configuration provider](https://docs.microsoft.com/en-us/aspnet/core/security/key-vault-configuration?tabs=aspnetcore2x). 
+However, the approach explained in the documentation requires to define the ClientId and ClientSecret in the service configuration, but this technique is not safe, because a malicious user could use and use these credentials to access secrets in **Azure Key Vault**. 
+Another way to authenticate an Azure AD application is by using a Client ID and a Certificate instead of a Client ID and Client Secret. Following are the steps to use a Certificate in an Azure Web App:
+
+ - Get or create a certificate
+ - Associate the certificate with an Azure AD application
+ - Add code to your ASP.NET Core application to use the certificate
+
+### Get or Create a Certificate ###
+
+For our purposes, we will make a test certificate. Here are a couple of commands that you can use in a command prompt to create a certificate. Change directory to where you want the cert files created. Also, for the beginning and ending date of the certificate, use the current date plus 1 year.
+
+```batchfile
+makecert -sv KeyVaultCertificate.pvk -n "cn=TodoListApp" KeyVaultCertificate.cer -b 01/01/2018 -e 12/31/2030 -r
+pvk2pfx -pvk KeyVaultCertificate.pvk -spc KeyVaultCertificate.cer -pfx KeyVaultCertificate.pfx -po trustno1
+```
+
+Make note of the password for the .pfx (in this example: trustno1). You will need it below. If you are planning to deploy the sample application to an **Azure Service Fabric Windows** cluster, the .pfx and .cer files created will suffice your needs. Instead, if you plan to deploy the application to an **Azure Service Fabric Linux** cluster, and you want to debug the frontend and backend service locally, you will need to create a .pem file and a .key file starting from the .pfx file using the following commands: 
+
+```batchfile
+openssl pkcs12 -in KeyVaultCertificate.pfx -out KeyVaultCertificatePEM.pem -nodes -nokeys
+openssl pkcs12 -in KeyVaultCertificate.pfx -out KeyVaultCertificatePEM.key -nodes -nocerts
+```
+### Create a Key Vault using Azure CLI ###
+
+In order to protect sensitive data from unauthorized users, you should store secrets in Key Vault. The following script can be used to create an **Azure Key Vault**:
+
+**CreateKeyVault.cmd**
+```batchfile
+REM Create a Resource Group for Key Vault
+call az group create --name TodoListKeyVaultResourceGroup --location WestEurope
+
+REM Create Key Vault
+call az keyvault create --name TodoListKeyVault --resource-group TodoListKeyVaultResourceGroup
+```
+### Add secrets to the key vault ###
+To add sensitive configuration data to **Azure Key Vault**, you can use the following script:
+
+**AddSecretsToKeyVault.cmd**
+```batchfile
+REM add Cosmos DB Endpoint URI secret to Key Vault
+call az keyvault secret set --name RepositoryService--CosmosDb--EndpointUri --vault-name TodoListKeyVault  --value "COSMOS_DB_ENDPOINT_URI" --description "Cosmos DB endpoint URI"
+
+REM add Cosmos DB Primary Key secret to Key Vault
+call az keyvault secret set --name RepositoryService--CosmosDb--PrimaryKey --vault-name TodoListKeyVault  --value "COSMOS_DB_PRIMARY_KEY --description "Cosmos DB primary key"
+
+REM add Cosmos DB Database Name secret to Key Vault
+call az keyvault secret set --name RepositoryService--CosmosDb--DatabaseName --vault-name TodoListKeyVault  --value "COSMOS_DB_DATABASE_NAME" --description "Cosmos DB database name"
+
+REM add Cosmos DB Collection Name secret to Key Vault
+call az keyvault secret set --name RepositoryService--CosmosDb--CollectionName --vault-name TodoListKeyVault  --value "COSMOS_DB_COLLECTION_NAME" --description "Cosmos DB collection name"
+
+REM add Service Bus Connection String secret to Key Vault
+call az keyvault secret set --name NotificationService--ServiceBus--ConnectionString --vault-name TodoListKeyVault  --value "SERVICE_BUS_CONNECTION_STRING" --description "Service Bus connection string"
+
+REM add Data Protection Blob Storage Connection String secret to Key Vault
+call az keyvault secret set --name DataProtection--BlobStorage--ConnectionString --vault-name TodoListKeyVault  --value "STORAGE_ACCOUNT_CONNECTION_STRING" --description "Data Protection blob storage connection string"
+
+REM add Application Insights Instrumentation Key secret to Key Vault
+call az keyvault secret set --name ApplicationInsights--InstrumentationKey --vault-name TodoListKeyVault  --value "APPLICATION_INSIGHTS_INSTRUMENTATION_KEY" --description "Application Insights instrumentation key"
+
+REM List secrets in Key Vault
+call az keyvault secret list --vault-name TodoListKeyVault --output table
+```
+**Configuration**
+
+Before running the above script, make the following changes:
+
+- Replace **COSMOS_DB_ENDPOINT_URI** with the endpoint URI of your **Cosmos DB**.
+- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
+- Replace **COSMOS_DB_DATABASE_NAME** with the **Cosmos DB** database name.
+- Replace **COSMOS_DB_COLLECTION_NAME** with the **Cosmos DB** collection name.
+- Replace **SERVICE_BUS_CONNECTION_STRING** with the connection string of your **Service Bus Messaging** namespace.
+- Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
+- Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
+
+### Associate the certificate with an Azure AD application ###
+The next step is to associate the certificate with an Azure AD Application. Presently, the Azure portal does not support this workflow; this can be completed through PowerShell. Run the following commands to associate the certificate with a new Azure AD application called **ServiceFabricTodoListApp**:
+
+**CreateAADApplication.ps1**
+```PowerShell
+# Login to Azure Resource Manager
+Login-AzureRmAccount
+
+# Select a default subscription for your current session in case your account has multiple Azure subscriptions
+Get-AzureRmSubscription –SubscriptionName "SUBSCRIPTION-NAME" | Select-AzureRmSubscription
+
+# Variables
+$pfxFile = $PSScriptRoot + '\KeyVaultCertificate.cer'
+$displayName = "ServiceFabricTodoListApp"
+$appUrl = "http://ServiceFabricTodoListApp"a
+$keyVaultName = "TodoListKeyVault"
+$keyVaultResourceGroup = "TodoListKeyVaultResourceGroup"
+
+# Get certificate from file
+$x509 = New-Object System.Security.Cryptography.X509Certificates.X509Certificate2
+$x509.Import($pfxFile)
+
+# Get certificate raw data in base64 format
+$credValue = [System.Convert]::ToBase64String($x509.GetRawCertData())
+
+# Create a new Azure AD application for TodoListApp
+$adapp = New-AzureRmADApplication -DisplayName $displayName `
+                                  -HomePage $appUrl `
+                                  -IdentifierUris $appUrl `
+                                  -CertValue $credValue `
+                                  -StartDate $x509.NotBefore `
+                                  -EndDate $x509.NotAfter
+
+# Create a new Azure AD service proncipal for the Azure AD TodoListApp application
+$sp = New-AzureRmADServicePrincipal -ApplicationId $adapp.ApplicationId
+
+# Grants permissions for a user, application, or security group to perform operations with a key vault.
+Set-AzureRmKeyVaultAccessPolicy -VaultName $keyVaultName `
+                                -ResourceGroupName $keyVaultResourceGroup `
+                                -ServicePrincipalName $adapp.ApplicationId `
+                                -PermissionsToSecrets all
+
+# get the thumbprint to use in your app settings
+$x509.Thumbprint
+
+# get the application id to use in your app settings
+$adapp.ApplicationId
+```
+After you have run these commands, you can see the application in Azure AD. Make sure to take note of the certificate thumbprint and ApplicationId printed out by the script. To learn more about Azure AD Application Objects and ServicePrincipal Objects, see [Application Objects and Service Principal Objects](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-application-objects).
+
+### How Service Fabric passes a certificate to a container ###
+Service Fabric provides a mechanism for services running inside a container to access a certificate that is installed on the nodes in a Windows or Linux cluster. 
+You can secure your container services by specifying a certificate. The certificate information is provided in the application manifest under the **ContainerHostPolicies** tag as the following snippet shows:
+
+```XML
+<ContainerHostPolicies CodePackageRef="NodeContainerService.Code">
+    <CertificateRef Name="MyCert1" X509StoreName="My" X509FindValue="[Thumbprint1]"/>
+    <CertificateRef Name="MyCert2" X509FindValue="[Thumbprint2]"/>
+```
+For windows clusters, when starting the application, the runtime reads the certificates and generates a .pfx file and password for each certificate. This .pfx file and password file are accessible inside the container using the following environment variables:
+
+ - Certificates_ServicePackageName_CodePackageName_CertName_PFX
+ - Certificates_ServicePackageName_CodePackageName_CertName_Password
+
+For Linux clusters, the certificates as .pem files are simply copied over from the store specified by X509StoreName onto the container. The corresponding environment variables on Linux are:
+
+ - Certificates_ServicePackageName_CodePackageName_CertName_PEM
+ - Certificates_ServicePackageName_CodePackageName_CertName_PrivateKey
+
+Alternatively, if you already have the certificates in the required form and would simply want to access it inside the container, you can create a data package inside your app package and specify the following inside your application manifest:
+
+```XML
+<ContainerHostPolicies CodePackageRef="NodeContainerService.Code">
+   <CertificateRef Name="MyCert1" DataPackageRef="[DataPackageName]" DataPackageVersion="[Version]" RelativePath="[Relative Path to certificate inside DataPackage]" Password="[password]" IsPasswordEncrypted="[true/false]"/>
+```
+For more information on how to configure certificates for a containerized service in Service Fabric, see [Container Security](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-securing-containers). 
+For more information on manage certificates used by a Service Fabric cluster in Azure, see [Add or remove certificates for a Service Fabric cluster in Azure](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-security-update-certs-azure).
+
+### How to read certificates from code and initialize Key Vault configuration provider ###
+When deploying the application to a **Service Fabric Linux** cluster in Azure, you need to specify a certificate in the **CertificateRef** inside the **ContainerHostPolicies** of both the frontend and backend service, using one of the techniques described in the previous section. Service Fabric will copy the certificate files inside the container and will create two environment variables that will contain the path of:
+
+ - .pfx and password files in a Windows cluster
+ - .pem and .key files in a Linux cluster.
+
+Below you can see the code used by the **Program** class of the **TodoApi** service.  
+
+**Program.cs**
+```CSharp
+using System;
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+
+namespace TodoApi
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            BuildWebHost(args).Run();
+        }
+
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            var builder = WebHost.CreateDefaultBuilder(args)
+                .UseApplicationInsights()
+                .CaptureStartupErrors(true)
+                .UseSetting(WebHostDefaults.DetailedErrorsKey, "true")
+                .ConfigureAppConfiguration(ConfigConfiguration)
+                .UseStartup<Startup>()
+                .Build();
+
+            return builder;
+        }
+
+        private static void ConfigConfiguration(WebHostBuilderContext webHostBuilderContext, IConfigurationBuilder configurationBuilder)
+        {
+            var configuration = configurationBuilder.Build();
+
+            // Read the name of the environment variable set by Service Fabric that contain the location of the PEM file
+            var certificateEnvironmentVariable = configuration["AzureKeyVault:Certificate:CertificateEnvironmentVariable"];
+            if (string.IsNullOrWhiteSpace(certificateEnvironmentVariable))
+            {
+                return;
+            }
+
+            // Read the name of the environment variable set by Service Fabric that contain the location of the KEY file
+            var keyEnvironmentVariable = configuration["AzureKeyVault:Certificate:KeyEnvironmentVariable"];
+            if (string.IsNullOrWhiteSpace(keyEnvironmentVariable))
+            {
+                return;
+            }
+
+            // Read the client ID
+            var clientId = configuration["AzureKeyVault:ClientId"];
+            if (string.IsNullOrWhiteSpace(clientId))
+            {
+                return;
+            }
+
+            // Read the name of the Azure Key Vault
+            var name = configuration["AzureKeyVault:Name"];
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return;
+            }
+
+            // Read the location of the certificate file from the environment variable
+            var certificateFilePath = Environment.GetEnvironmentVariable(certificateEnvironmentVariable);
+            if (string.IsNullOrWhiteSpace(certificateFilePath))
+            {
+                return;
+            }
+
+            // Read the location of the key file from the environment variable
+            var keyFilePath = Environment.GetEnvironmentVariable(keyEnvironmentVariable);
+            if (string.IsNullOrWhiteSpace(keyFilePath))
+            {
+                return;
+            }
+
+            // Read the certificate used to authenticate against Azure Key Vault
+            var certificate = Helpers.CertificateHelper.GetCertificateAsync(certificateFilePath, keyFilePath).Result;
+            if (certificate == null)
+            {
+                return;
+            }
+
+            // Configure the application to read settings from Azure Key Vault
+            configurationBuilder.AddAzureKeyVault($"https://{name}.vault.azure.net/",
+                                                  clientId,
+                                                  certificate);
+        }
+    }
+}
+```
+**Remarks**
+
+The **ConfigureAppConfiguration** method performs the following actiosn:
+
+ - Reads the name of the environment variable initialized by Service Fabric which holds the path of the .pfx (Windows) or .pem (Linux) file from the **AzureKeyVault__Certificate__CertificateEnvironmentVariable** environment variable.
+ - Reads the name of the environment variable initialized by Service Fabric which holds the path of the password (Windows) or .key (Linux) file from the **AzureKeyVault__Certificate__KeyEnvironmentVariable** environment variable.
+ - Reads the **Azure AD Application Id** used to authenticate against **Azure Key Vault** from the **AzureKeyVault__ClientId** environment variable.
+- Reads the name of the **Azure Key Vault** from the **AzureKeyVault__Name** environment variable.  
+- Reads the path of the .pfx (Windows) or .pem (Linux) file from the environment variable initialized by Service Fabric.
+- Reads the path of the password (Windows) or .pem (Linux) file from the environment variable initialized by Service Fabric.
+- Calls the **CertificateHelper.GetCertificateAsync** method to retrieve a [X509Certificate2](https://msdn.microsoft.com/en-us/library/system.security.cryptography.x509certificates.x509certificate2(v=vs.110).aspx) object which contains the certificate used to authenticate against **Azure Key Vault**.
+- Add the **Azure Key Vault** configuration provider to the application.
+
+Below you can see the code of the **CertificateHelper.GetCertificateAsync** method:
+
+```CSharp
+public static async Task<X509Certificate2> GetCertificateAsync(string certificateFilePath, string keyFilePath)
+{
+    // Validate parameters
+    if (string.IsNullOrEmpty(certificateFilePath))
+    {
+        throw new ArgumentException($"{nameof(certificateFilePath)} parameter cannot bu null or empty.", nameof(certificateFilePath));
+    }
+
+    if (string.IsNullOrEmpty(keyFilePath))
+    {
+        throw new ArgumentException($"{nameof(keyFilePath)} parameter cannot bu null or empty.", nameof(keyFilePath));
+    }
+
+    if (!File.Exists(certificateFilePath))
+    {
+        throw new FileNotFoundException($"{certificateFilePath} file not found.", certificateFilePath);
+    }
+
+    if (!File.Exists(keyFilePath))
+    {
+        throw new FileNotFoundException($"{keyFilePath} file not found.", keyFilePath);
+    }
+
+    if (Environment.OSVersion.Platform.ToString().ToLower().Contains("win"))
+    {
+        SetReadPermission(certificateFilePath);
+        SetReadPermission(keyFilePath);
+        var password = File.ReadAllLines(keyFilePath, Encoding.Default)[0];
+        password = password.Replace("\0", string.Empty);
+        var certificate = new X509Certificate2(certificateFilePath, password);
+        return certificate;
+    }
+    else
+    {
+        var pemCertificate = await File.ReadAllTextAsync(certificateFilePath);
+        var pemKey = await File.ReadAllTextAsync(keyFilePath);
+
+        var certBuffer = GetBytesFromPem(pemCertificate, CertificateFileType.Certificate);
+        var keyBuffer = GetBytesFromPem(pemKey, CertificateFileType.Pkcs8PrivateKey);
+
+        var certificate = new X509Certificate2(certBuffer);
+        var privateKey = DecodePrivateKeyInfo(keyBuffer);
+        certificate = certificate.Copy​With​Private​Key(privateKey);
+        return certificate;
+    }
+}
+```
+
+**Note**: the application uses the classes contained in the [System.Security.Cryptography.OpenSsl](https://www.nuget.org/packages/System.Security.Cryptography.OpenSsl/) NuGet package to read certificates in a Linux cluster.
 
 ## Service Fabric Deployment with Application Manifest and Service Manifests ## 
-In the solution you can find two projects to deploy the multi-container application to an **Azure Service Fabric Linux Cluster**. The only difference between the two project is the source of the **Docker Images**:
+In the Visual Studio solution you can find three projects to deploy the multi-container application to an **Azure Service Fabric Cluster**:
 
-- **TodoAppFromAzureContainerRegistry**: this project contains a **Service Fabric** application that is used to deploy the the multi-container application to an **Azure Service Fabric Linux** cluster pulling the **Docker** images from an **Azure Container Registry**. Before the deployment, make sure to configure  the value of the parameters used by the frontend and backend services in the  **Cloud.xml** file under the **ApplicationParameters** folder.
+- **TodoAppFromAzureContainerRegistry**: this project allows to deploy the multi-container application to an **Azure Service Fabric Linux** cluster pulling the **Docker** images from an **Azure Container Registry**. 
 
-- **TodoAppFromDockerHub**: this project contains a **Service Fabric** application that is used to deploy the the multi-container application to an **Azure Service Fabric Linux** cluster pulling the **Docker** images from a **Docker Hub** repository. Before the deployment, make sure to configure  the value of the parameters used by the frontend and backend services in the  **Cloud.xml** file under the **ApplicationParameters** folder.
+  **IMPORTANT NOTE**: this project allows you to specify secret parameters in clear-text in the **Cloud.xml** file only for testing purposes without the need to store them in **Azure Key Vault**. We highly discourage to use this approach in a production environment and we strongly recommend you to store sensitive configuration data in **Azure Key Vault**.
+
+- **TodoAppFromDockerHub**: this project allows to deploy the multi-container application to an **Azure Service Fabric Linux** cluster pulling the **Docker** images from a **Docker Hub** repository and reading sensitive configuration data from **Azure Key Vault**.
+
+- **TodoAppForWindowsContainers**: this project allows to deploy the multi-container application to an **Azure Service Fabric Windows** cluster pulling the **Docker** images for **Windows Containers** from a **Docker Hub** repository and reading sensitive configuration data from **Azure Key Vault**.
 
 The **Application Manifest**, **Service Manifest** and **Parameters** files of the two project are almost identical, the only things that differ are: 
 
@@ -418,7 +854,8 @@ The **Application Manifest**, **Service Manifest** and **Parameters** files of t
 - the credentials (username and password) used by **Service Fabric** to login to the repository.
 - the name of the images used to create the containers for the **todoapi** and **todoweb** services.
 
-For brevity, I will show only the files from the **TodoAppFromDockerHub** project and I'll omit those from **TodoAppFromAzureContainerRegistry** project. 
+### TodoAppFromAzureContainerRegistry Project ###
+As mentioned above, this project allows you to specify secret parameters in clear-text in the **Cloud.xml** file only for testing purposes without the need to store them in **Azure Key Vault**. This technique should not be used to deploy an application to a production environment. This section shows the service manifests, application manifest and application parameters file contained in this project. Looking at the service manifests below, you can observe that all configuration data is passed to each service using environment variables.
 
 **TodoApi ServiceManifest.xml**
 ```xml
@@ -439,7 +876,7 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     <EntryPoint>
       <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
       <ContainerHost>
-        <ImageName>DOCKER_HUB_REPOSITORY/todoapi:v1</ImageName>
+        <ImageName>AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:v1</ImageName>
       </ContainerHost>
     </EntryPoint>
     <!-- Pass environment variables to your container: -->
@@ -490,7 +927,7 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     <EntryPoint>
       <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
       <ContainerHost>
-        <ImageName>DOCKER_HUB_REPOSITORY/todoweb:v1</ImageName>
+        <ImageName>AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:v1</ImageName>
       </ContainerHost>
     </EntryPoint>
     <!-- Pass environment variables to your container: -->
@@ -517,6 +954,8 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
   </Resources>
 </ServiceManifest>
 ```
+Looking at the application manifest, you can observe that the certificate used by each service needs to be installed in the **Azure Service Fabric Linux** cluster before deploying the application. In fact, the certificate identified by its thumbprint needs to exist in the cluster nodes before Docker containers are created for each service.
+
 **ApplicationManifest.xml**
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -526,8 +965,8 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
                      xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
-    <Parameter Name="DockerHub_Username" DefaultValue="" />
-    <Parameter Name="DockerHub_Password" DefaultValue="" />
+    <Parameter Name="ACR_Username" DefaultValue="" />
+    <Parameter Name="ACR_Password" DefaultValue="" />
     <Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
     <Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" DefaultValue="Development"/>
     <Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
@@ -561,7 +1000,7 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     </EnvironmentOverrides>
     <Policies>
       <ContainerHostPolicies CodePackageRef="Code">
-        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+        <RepositoryCredentials AccountName="[ACR_Username]" Password="[ACR_Password]" PasswordEncrypted="false"/>
         <PortBinding ContainerPort="80" EndpointRef="TodoWebEndpoint" />
       </ContainerHostPolicies>
     </Policies>
@@ -583,7 +1022,7 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     </EnvironmentOverrides>
     <Policies>
       <ContainerHostPolicies CodePackageRef="Code">
-        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+        <RepositoryCredentials AccountName="[ACR_Username]" Password="[ACR_Password]" PasswordEncrypted="false"/>
         <PortBinding ContainerPort="80" EndpointRef="TodoApiEndpoint" />
       </ContainerHostPolicies>
     </Policies>
@@ -612,8 +1051,8 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
 <?xml version="1.0" encoding="utf-8"?>
 <Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
-    <Parameter Name="DockerHub_Username" Value="DOCKER-HUB-USERNAME" />
-    <Parameter Name="DockerHub_Password" Value="DOCKER-HUB-PASSWORD" />
+    <Parameter Name="ACR_Username" Value="ACR_USERNAME" />
+    <Parameter Name="ACR_Password" Value="ACR_PASSWORD" />
     <Parameter Name="TodoWeb_InstanceCount" Value="-1" />
     <Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" Value="Development"/>
     <Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
@@ -624,8 +1063,8 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
     <Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" Value="Development"/>
     <Parameter Name="TodoApi_RepositoryService__CosmosDb__EndpointUri" Value="COSMOS_DB_ENDPOINT_URI"/>
     <Parameter Name="TodoApi_RepositoryService__CosmosDb__PrimaryKey" Value="COSMOS_DB_PRIMARY_KEY"/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__DatabaseName" Value="TodoApiDb"/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" Value="TodoApiCollection"/>
+    <Parameter Name="TodoApi_RepositoryService__CosmosDb__DatabaseName" Value="COSMOS_DB_DATABASE_NAME"/>
+    <Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" Value="COSMOS_DB_COLLECTION_NAME"/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__ConnectionString" Value="SERVICE_BUS_CONNECTION_STRING"/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
     <Parameter Name="TodoApi_DataProtection__BlobStorage__ConnectionString" Value="STORAGE_ACCOUNT_CONNECTION_STRING"/>
@@ -635,23 +1074,26 @@ For brevity, I will show only the files from the **TodoAppFromDockerHub** projec
 </Application>
 ```
 **Configuration**
+
 Before deploying the application to your **Azure Service Fabric Linux** cluster, open the **Cloud.xml** file and make the following changes:
 
-- Replace **DOCKER-HUB-USERNAME** with your **Docker Hub** username.
-- Replace **DOCKER_HUB_PASSWORD** with your **Docker Hub** password.
+- Replace **ACR_USERNAME** with your **Azure Container Registry** username.
+- Replace **ACR_PASSWORD** with your **Azure Container Registry** password.
 - Replace **COSMOS_DB_ENDPOINT_URI** with the endpoint URI of your **Cosmos DB**.
 - Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
-- Replace **COSMOS_DB_PRIMARY_KEY** with the primary key of your **Cosmos DB**.
+- Replace **COSMOS_DB_DATABASE_NAME** with the name of the **Cosmos DB** database.
+- Replace **COSMOS_DB_COLLECTION_NAME** with the name of the **Cosmos DB** collection.
 - Replace **SERVICE_BUS_CONNECTION_STRING** with the connection string of your **Service Bus Messaging** namespace.
 - Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
 - Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
   
- Then, open the **ServiceManifest** of both the **todoapi** and **todoweb** services and make the following changes:
+Then, open the **ServiceManifest** of both the **TodoApi** and **TodoWeb** services and make the following changes:
 
- - **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository. 
+ - **AZURE_CONTAINER_REGISTRY_NAME** with the name of your **Azure Container Registry**. 
 
-### Observations ###
-- Both the **todoapi** and **todoweb** containerized services are defined as stateless services.
+**Observations**
+
+- Both the **TodoApi** and **TodoWeb** containerized services are defined as stateless services.
 - The instance count for both services is equal to -1. This means that a container for each service is created on each **Service Fabric** cluster node.
 - The **ApplicationManifest.xml** defines a **ServiceDnsName="todoapi.todoapp"** for the **todoapi** service. This **DNS** name and port used by the **todoapi** backend service are passed as value to the **TodoApiService__EndpointUri** (e.g. todoapi.todoapp:8081) environment variable and the value of the environment variable is used by the *TodoApiService* class of the **todoweb** frontend service to create the http address of the  **todoapi** backend service, as shown in the following code snippet:
 
@@ -709,19 +1151,531 @@ The following picture shows the multi-container application using the **Service 
 
 ![Manifests](Images/Manifests.png) 
 
+### TodoAppFromDockerHub Project ###
+The **TodoAppFromDockerHub** project shows how to safely deploy a multi-container application to an **Azure Service Fabric Linux** cluster in a production environment. As a security best practice, you should never store sensitive configuration data in the application manifest, service manifest or application parameters file of a Service Fabric application. Unauthorized users could steal this data from the source code repository. This project makes use of a single **Azure Key Vault** repository for storing secrets. Key Vault is a cloud-hosted service for managing cryptographic keys and other secrets. On larger projects, you should use multiple vaults for different environments (development & test, quality assurance, performance testing, production) and grant permissions to these resources only to a restricted set of authorized developers and operators. This project requires that the following sensitive data are stored in **Azure Key Vault**:
+
+- The endpoint URI of the **Cosmos DB** used by the backend service to store data.
+- The **Cosmos DB** primary key.
+- The name of the **Cosmos DB** database.
+- The name of the **Cosmos DB** collection.
+- The connection string of the **Service Bus Messaging** namespace used by the backend service for notifications.
+- The connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**.
+- The instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
+
+Instead, the following parameters are defined in clear-text in the **Cloud.xml** file:
+
+ - The name of the environment variable which contains the path of the .pem certificate file passed by Service Fabric when it starts the container.
+ - The name of the environment variable which contains the path of the .key certificate file passed by Service Fabric when it starts the container.
+ - The name of the **Service Bus** queue used by the backend service to send notifications any time an operation is performed on a **Cosmos DB** document.
+ - The DNS name of the frontend and backend service.
+ - The name of the container used by the two services to store **Data Protection** keys in the storage account.
+
+Looking at the service manifests below, you can observe that both the frontend and backend service read configuration data from environment variables. 
+
+**TodoApi ServiceManifest.xml**
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest Name="TodoApiPkg"
+                 Version="1.0.0"
+                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ServiceTypes>
+    <!-- This is the name of your ServiceType.
+         The UseImplicitHost attribute indicates this is a guest service. -->
+    <StatelessServiceType ServiceTypeName="TodoApiType" UseImplicitHost="true" />
+  </ServiceTypes>
+
+  <!-- Code package is your service executable. -->
+  <CodePackage Name="Code" Version="1.0.0">
+    <EntryPoint>
+      <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
+      <ContainerHost>
+        <ImageName>DOCKER_HUB_REPOSITORY/todoapi:v1</ImageName>
+      </ContainerHost>
+    </EntryPoint>
+    <!-- Pass environment variables to your container: -->
+    <EnvironmentVariables>
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
+      <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
+    </EnvironmentVariables>
+  </CodePackage>
+
+  <!-- Config package is the contents of the Config directoy under PackageRoot that contains an 
+       independently-updateable and versioned set of custom configuration settings for your service. -->
+  <ConfigPackage Name="Config" Version="1.0.0" />
+
+  <Resources>
+    <Endpoints>
+      <!-- This endpoint is used by the communication listener to obtain the port on which to 
+           listen. Please note that if your service is partitioned, this port is shared with 
+           replicas of different partitions that are placed in your code. -->
+      <Endpoint Name="TodoApiEndpoint" Port="80" UriScheme="http" Protocol="http"/>
+    </Endpoints>
+  </Resources>
+</ServiceManifest>
+```
+**TodoWeb ServiceManifest.xml**
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest Name="TodoWebPkg"
+                 Version="1.0.0"
+                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ServiceTypes>
+    <!-- This is the name of your ServiceType.
+         The UseImplicitHost attribute indicates this is a guest service. -->
+    <StatelessServiceType ServiceTypeName="TodoWebType" UseImplicitHost="true" />
+  </ServiceTypes>
+
+  <!-- Code package is your service executable. -->
+  <CodePackage Name="Code" Version="1.0.0">
+    <EntryPoint>
+      <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
+      <ContainerHost>
+        <ImageName>DOCKER_HUB_REPOSITORY/todoweb:v1</ImageName>
+      </ContainerHost>
+    </EntryPoint>
+    <!-- Pass environment variables to your container: -->
+    <EnvironmentVariables>
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
+      <EnvironmentVariable Name="TodoApiService__EndpointUri" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
+    </EnvironmentVariables>
+  </CodePackage>
+
+  <!-- Config package is the contents of the Config directoy under PackageRoot that contains an 
+       independently-updateable and versioned set of custom configuration settings for your service. -->
+  <ConfigPackage Name="Config" Version="1.0.0" />
+
+  <Resources>
+    <Endpoints>
+      <!-- This endpoint is used by the communication listener to obtain the port on which to 
+           listen. Please note that if your service is partitioned, this port is shared with 
+           replicas of different partitions that are placed in your code. -->
+      <Endpoint Name="TodoWebEndpoint" Port="8080" UriScheme="http" Protocol="http"/>
+    </Endpoints>
+  </Resources>
+</ServiceManifest>
+```
+Looking at the application manifest, you can observe that the certificate used by each service needs to be installed in the **Azure Service Fabric Linux** cluster before deploying the application. In fact, the certificate identified by its thumbprint needs to exist in the cluster nodes before Docker containers are created for each service. As an alternative, if the certificate used by the application to authenticate against **Azure Key Vault** is not already installed in the cluster, and you have the certificate in the required form (.pfx format for a Windows cluster, .pem and .key format for a Linux cluster),you can use a data package to pass the certificate to both the frontend and backend service. We'll look at this technique in the next section where we explain how to deploy the application to a **Service Fabric Windows** cluster in Azure. 
+
+**ApplicationManifest.xml**
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest ApplicationTypeName="TodoAppType"
+                     ApplicationTypeVersion="1.0.0"
+                     xmlns="http://schemas.microsoft.com/2011/01/fabric"
+                     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Parameters>
+    <!-- Shared Parameters -->
+    <Parameter Name="DockerHub_Username" DefaultValue="" />
+    <Parameter Name="DockerHub_Password" DefaultValue="" />
+    <Parameter Name="ASPNETCORE_ENVIRONMENT" DefaultValue=""/>
+    <Parameter Name="Certificate_Thumbprint" DefaultValue="" />
+    <Parameter Name="AzureKeyVault__ClientId" DefaultValue=""/>
+    <Parameter Name="AzureKeyVault__Name" DefaultValue=""/>
+    <!-- TodoWeb Parameters -->
+    <Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+    <!-- TodoApi Parameters -->
+    <Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" DefaultValue=""/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+  </Parameters>
+  <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
+       should match the Name and Version attributes of the ServiceManifest element defined in the 
+       ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="TodoWebPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+    <EnvironmentOverrides CodePackageRef="Code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
+      <EnvironmentVariable Name="TodoApiService__EndpointUri" Value="[TodoWeb_TodoApiService__EndpointUri]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoWeb_DataProtection__BlobStorage__ContainerName]"/>
+    </EnvironmentOverrides>
+    <Policies>
+      <ContainerHostPolicies CodePackageRef="Code">
+        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+        <PortBinding ContainerPort="80" EndpointRef="TodoWebEndpoint" />
+        <CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
+      </ContainerHostPolicies>
+    </Policies>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="TodoApiPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+    <EnvironmentOverrides CodePackageRef="Code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
+      <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value="[TodoApi_NotificationService__ServiceBus__QueueName]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoApi_DataProtection__BlobStorage__ContainerName]"/>
+    </EnvironmentOverrides>
+    <Policies>
+      <ContainerHostPolicies CodePackageRef="Code">
+        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+        <PortBinding ContainerPort="80" EndpointRef="TodoApiEndpoint" />
+        <CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
+      </ContainerHostPolicies>
+    </Policies>
+  </ServiceManifestImport>
+  <DefaultServices>
+    <!-- The section below creates instances of service types, when an instance of this 
+         application type is created. You can also create one or more instances of service type using the 
+         ServiceFabric PowerShell module.
+         
+         The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
+    <Service Name="TodoWeb" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoweb.todoapp">
+      <StatelessService ServiceTypeName="TodoWebType" InstanceCount="[TodoWeb_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="TodoApi" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoapi.todoapp">
+      <StatelessService ServiceTypeName="TodoApiType" InstanceCount="[TodoApi_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+  </DefaultServices>
+</ApplicationManifest>
+```
+**Cloud.xml**
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Parameters>
+    <!-- Shared Parameters -->
+    <Parameter Name="DockerHub_Username" Value="DOCKER_HUB_USERNAME" />
+    <Parameter Name="DockerHub_Password" Value="DOCKER_HUB_PASSWORD" />
+    <Parameter Name="ASPNETCORE_ENVIRONMENT" Value="Development"/>
+    <Parameter Name="Certificate_Thumbprint" Value="CERTIFICATE_THUMBPRINT" />
+    <Parameter Name="AzureKeyVault__ClientId" Value="AZURE_AD_APPLICATION_ID"/>
+    <Parameter Name="AzureKeyVault__Name" Value="AZURE_KEY_VAULT_NAME"/>
+    <!-- TodoWeb Parameters -->
+    <Parameter Name="TodoWeb_InstanceCount" Value="-1" />
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
+    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" Value="todoweb"/>
+    <!-- TodoApi Parameters -->
+    <Parameter Name="TodoApi_InstanceCount" Value="-1" />
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
+    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" Value="todoapi"/>
+  </Parameters>
+</Application>
+```
+**Configuration**
+
+Before deploying the application to your **Azure Service Fabric Linux** cluster, open the **Cloud.xml** file and make the following changes:
+
+- Replace **DOCKER_HUB_USERNAME** with the username of your **Docker Hub** repository.
+- Replace **DOCKER_HUB_PASSWORD** with the password of your **Docker Hub** repository.
+- Replace **CERTIFICATE_THUMBPRINT** with the thumbprint of the certificate used by the application to authenticate against **Azure Key Vault**.
+- Replace **AZURE_AD_APPLICATION_ID** with the **ApplicationId** or the **Azure AD Application** used by the application to authenticate to authenticate against **Azure Key Vault**.
+- Replace **AZURE_KEY_VAULT_NAME** with the name of the **Azure Key Vault** which stores sensitive configuration data.
+  
+Then, open the **ServiceManifest** of both the **TodoApi** and **TodoWeb** services and make the following changes:
+
+ - **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository. 
+
+ ### TodoAppForWindowsContainers Project ###
+The **TodoAppForWindowsContainers** project shows how to safely deploy a multi-container application to an **Azure Service Fabric Windows** cluster in a production environment. As mentioned in the previous section, you should never store sensitive configuration data in the application manifest, service manifest or application parameters file of a Service Fabric application. Unauthorized users could steal this data from the source code repository. This project makes use of a single **Azure Key Vault** repository for storing secrets. Key Vault is a cloud-hosted service for managing cryptographic keys and other secrets. On larger projects, you should use multiple vaults for different environments (development & test, quality assurance, performance testing, production) and grant permissions to these resources only to a restricted set of authorized developers and operators. This project requires that the following sensitive data are stored in **Azure Key Vault**:
+
+- The endpoint URI of the **Cosmos DB** used by the backend service to store data.
+- The **Cosmos DB** primary key.
+- The name of the **Cosmos DB** database.
+- The name of the **Cosmos DB** collection.
+- The connection string of the **Service Bus Messaging** namespace used by the backend service for notifications.
+- The connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**.
+- The instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
+
+Instead, the following parameters are defined in clear-text in the **Cloud.xml** file:
+
+ - The name of the environment variable which contains the path of the .pem certificate file passed by Service Fabric when it starts the container.
+ - The name of the environment variable which contains the path of the .key certificate file passed by Service Fabric when it starts the container.
+ - The name of the **Service Bus** queue used by the backend service to send notifications any time an operation is performed on a **Cosmos DB** document.
+ - The DNS name of the frontend and backend service.
+ - The name of the container used by the two services to store **Data Protection** keys in the storage account.
+
+Looking at the service manifests below, you can observe that both the frontend and backend service read configuration data from environment variables, while the certificate used to authenticate against **Azure Key Vault** is contained in data package called **Data**. 
+
+**Note**: Docker containers offer isolation not virtualization. The operating system of the host machine and container image must be the same. You cannot use a Linux container on a Windows machine or a Windows container on a Linux machine. As a consequence, you cannot use a Docker image for Linux to deploy a Window container to a **Service Fabric Windows** cluster in Azure. Likewise, you cannot use a Docker image for Windows to deploy a Linux container  to a **Service Fabric Linux** cluster in Azure. Hence, you need to build OS-specific images to deploy the multi-container application to a Service Fabric Windows or Linux cluster in Azure.
+
+**TodoApi ServiceManifest.xml**
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest Name="TodoApiPkg"
+                 Version="1.0.0"
+                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ServiceTypes>
+    <!-- This is the name of your ServiceType.
+         The UseImplicitHost attribute indicates this is a guest service. -->
+    <StatelessServiceType ServiceTypeName="TodoApiType" UseImplicitHost="true" />
+  </ServiceTypes>
+
+  <!-- Code package is your service executable. -->
+  <CodePackage Name="Code" Version="1.0.0">
+    <EntryPoint>
+      <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
+      <ContainerHost>
+        <ImageName>DOCKER_HUB_REPOSITORY/wintodoapi:v1</ImageName>
+      </ContainerHost>
+    </EntryPoint>
+    <!-- Pass environment variables to your container: -->
+    <EnvironmentVariables>
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
+      <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
+    </EnvironmentVariables>
+  </CodePackage>
+
+  <!-- Config package is the contents of the Config directoy under PackageRoot that contains an 
+       independently-updateable and versioned set of custom configuration settings for your service. -->
+  <ConfigPackage Name="Config" Version="1.0.0" />
+
+  <!-- Data Package defines the name of a folder which contains data files, in this case the certificate
+       used by the container to authenticate against Key Vault -->
+  <DataPackage Name="Data" Version="1.0.0"/>
+
+  <Resources>
+    <Endpoints>
+      <!-- This endpoint is used by the communication listener to obtain the port on which to 
+           listen. Please note that if your service is partitioned, this port is shared with 
+           replicas of different partitions that are placed in your code. -->
+      <Endpoint Name="TodoApiEndpoint" Port="80" UriScheme="http" Protocol="http"/>
+    </Endpoints>
+  </Resources>
+</ServiceManifest>
+```
+**TodoWeb ServiceManifest.xml**
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest Name="TodoWebPkg"
+                 Version="1.0.0"
+                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ServiceTypes>
+    <!-- This is the name of your ServiceType.
+         The UseImplicitHost attribute indicates this is a guest service. -->
+    <StatelessServiceType ServiceTypeName="TodoWebType" UseImplicitHost="true" />
+  </ServiceTypes>
+
+  <!-- Code package is your service executable. -->
+  <CodePackage Name="Code" Version="1.0.0">
+    <EntryPoint>
+      <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
+      <ContainerHost>
+        <ImageName>DOCKER_HUB_REPOSITORY/wintodoweb:v1</ImageName>
+      </ContainerHost>
+    </EntryPoint>
+    <!-- Pass environment variables to your container: -->
+    <EnvironmentVariables>
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
+      <EnvironmentVariable Name="TodoApiService__EndpointUri" Value=""/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
+    </EnvironmentVariables>
+  </CodePackage>
+
+  <!-- Config package is the contents of the Config directoy under PackageRoot that contains an 
+       independently-updateable and versioned set of custom configuration settings for your service. -->
+  <ConfigPackage Name="Config" Version="1.0.0" />
+
+  <!-- Data Package defines the name of a folder which contains data files, in this case the certificate
+  used by the container to authenticate against Key Vault -->
+  <DataPackage Name="Data" Version="1.0.0"/>
+
+  <Resources>
+    <Endpoints>
+      <!-- This endpoint is used by the communication listener to obtain the port on which to 
+           listen. Please note that if your service is partitioned, this port is shared with 
+           replicas of different partitions that are placed in your code. -->
+      <Endpoint Name="TodoWebEndpoint" Port="8080" UriScheme="http" Protocol="http"/>
+    </Endpoints>
+  </Resources>
+</ServiceManifest>
+```
+Looking at the application manifest, you can observe the certificate used by the frontend and backend services to authenticate against **Azure Key Vault** is defined in a data package.
+
+**ApplicationManifest.xml**
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest ApplicationTypeName="TodoAppType"
+                     ApplicationTypeVersion="1.0.0"
+                     xmlns="http://schemas.microsoft.com/2011/01/fabric"
+                     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Parameters>
+    <!-- Shared Parameters -->
+    <Parameter Name="DockerHub_Username" DefaultValue="" />
+    <Parameter Name="DockerHub_Password" DefaultValue="" />
+    <Parameter Name="ASPNETCORE_ENVIRONMENT" DefaultValue=""/>
+    <Parameter Name="Certificate_Thumbprint" DefaultValue="" />
+    <Parameter Name="AzureKeyVault__ClientId" DefaultValue=""/>
+    <Parameter Name="AzureKeyVault__Name" DefaultValue=""/>
+    <!-- TodoWeb Parameters -->
+    <Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+    <!-- TodoApi Parameters -->
+    <Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" DefaultValue=""/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+  </Parameters>
+  <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
+       should match the Name and Version attributes of the ServiceManifest element defined in the 
+       ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="TodoWebPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+    <EnvironmentOverrides CodePackageRef="Code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
+      <EnvironmentVariable Name="TodoApiService__EndpointUri" Value="[TodoWeb_TodoApiService__EndpointUri]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoWeb_DataProtection__BlobStorage__ContainerName]"/>
+    </EnvironmentOverrides>
+    <Policies>
+      <ContainerHostPolicies CodePackageRef="Code">
+        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+        <PortBinding ContainerPort="80" EndpointRef="TodoWebEndpoint" />
+        <CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
+      </ContainerHostPolicies>
+    </Policies>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="TodoApiPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+    <EnvironmentOverrides CodePackageRef="Code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
+      <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value="[TodoApi_NotificationService__ServiceBus__QueueName]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoApi_DataProtection__BlobStorage__ContainerName]"/>
+    </EnvironmentOverrides>
+    <Policies>
+      <ContainerHostPolicies CodePackageRef="Code">
+        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+        <PortBinding ContainerPort="80" EndpointRef="TodoApiEndpoint" />
+        <CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
+      </ContainerHostPolicies>
+    </Policies>
+  </ServiceManifestImport>
+  <DefaultServices>
+    <!-- The section below creates instances of service types, when an instance of this 
+         application type is created. You can also create one or more instances of service type using the 
+         ServiceFabric PowerShell module.
+         
+         The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
+    <Service Name="TodoWeb" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoweb.todoapp">
+      <StatelessService ServiceTypeName="TodoWebType" InstanceCount="[TodoWeb_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="TodoApi" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoapi.todoapp">
+      <StatelessService ServiceTypeName="TodoApiType" InstanceCount="[TodoApi_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+  </DefaultServices>
+</ApplicationManifest>
+```
+**Cloud.xml**
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Parameters>
+    <!-- Shared Parameters -->
+    <Parameter Name="DockerHub_Username" Value="DOCKER_HUB_USERNAME" />
+    <Parameter Name="DockerHub_Password" Value="DOCKER_HUB_PASSWORD" />
+    <Parameter Name="ASPNETCORE_ENVIRONMENT" Value="Development"/>
+    <Parameter Name="AzureKeyVault__ClientId" Value="AZURE_AD_APPLICATION_ID"/>
+    <Parameter Name="AzureKeyVault__Name" Value="AZURE_KEY_VAULT_NAME"/>
+    <!-- TodoWeb Parameters -->
+    <Parameter Name="TodoWeb_InstanceCount" Value="-1" />
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
+    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" Value="todoweb"/>
+    <!-- TodoApi Parameters -->
+    <Parameter Name="TodoApi_InstanceCount" Value="-1" />
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
+    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" Value="todoapi"/>
+  </Parameters>
+</Application>
+```
+**Configuration**
+
+Before deploying the application to your **Azure Service Fabric Linux** cluster, open the **Cloud.xml** file and make the following changes:
+
+- Replace **DOCKER_HUB_USERNAME** with the username of your **Docker Hub** repository.
+- Replace **DOCKER_HUB_PASSWORD** with the password of your **Docker Hub** repository.
+- Replace **AZURE_AD_APPLICATION_ID** with the **ApplicationId** or the **Azure AD Application** used by the application to authenticate to authenticate against **Azure Key Vault**.
+- Replace **AZURE_KEY_VAULT_NAME** with the name of the **Azure Key Vault** which stores sensitive configuration data.
+  
+Then, open the **ServiceManifest** of both the **TodoApi** and **TodoWeb** services and make the following changes:
+
+ - **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository. 
+
 ## Service Fabric Deployment with Docker Compose ##  
-**Docker** uses the **docker-compose.yml** file for defining multi-container applications. To make it easy for developers familiar with **Docker** to orchestrate existing container applications on **Service Fabric**, now you can use **docker compose** to deploy your multi-container application to a **Service Fabric** cluster on Azure. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+**Docker** uses the **docker-compose.yml** file for defining multi-container applications. To make it easy for developers familiar with **Docker** to orchestrate existing container applications on **Service Fabric**, now you can use **docker compose** to deploy your multi-container application to a **Service Fabric** cluster in Azure. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-**Note**: Service Fabric can accept version 3 and later of docker-compose.yml files.
+**Note 1**: this project allows you to specify secret parameters in clear-text in the .yaml file only for testing purposes without the need to store them in **Azure Key Vault**. We highly discourage to use this approach in a production environment and we strongly recommend you to store sensitive configuration data in **Azure Key Vault**.
 
-Below you can see the batch script and PowerShell script used to deploy the multi-container application to a **Service Fabric Linux Cluster on Azure with DNS Service**. You can pull **Docker** images from an **Azure Container Registry** or from a **Docker Hub** repository.
+**Note 2**: Service Fabric can accept version 3 and later of docker-compose.yml files.
+
+Below you can see the batch script and PowerShell script used to deploy the multi-container application to a **Service Fabric Linux cluster in Azure with DNS Service**. You can pull **Docker** images from an **Azure Container Registry** or from a **Docker Hub** repository.
 
 ### Pull images from Azure Container Service ###
-To deploy the multi-container application pulling the **Docker** images from an **Azure Container Registry** you can use the following scripts:
+To deploy the multi-container application pulling the **Docker** images from an **Azure Container Registry** you can use one of the following scripts:
 
-- **servicefabric-create-deployment-from-azure-container-registry.cmd**: This batch script uses the [Azure Service Fabric CLI](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cli) to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+- **servicefabric-create-deployment-from-azure-container-registry.cmd**: this batch script uses the [Azure Service Fabric CLI](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cli) to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-- **servicefabric-create-deployment-from-azure-container-registry.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+- **servicefabric-create-deployment-from-azure-container-registry.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
 **servicefabric-docker-compose-from-azure-container-registry.yml**
 ```yaml
@@ -805,12 +1759,12 @@ as shown in the following picture:
 
 ![Credentials](Images/AcrUsernamePassword.png)
 
-### Pull images from Azure Container Service ###
-To deploy the multi-container application pulling the **Docker** images from an **Azure Container Registry** you can use the following scripts:
+### Pull images from Docker Hub ###
+To deploy the multi-container application pulling the **Docker** images from an **Docker Hub** you can use the following scripts:
 
-- **servicefabric-create-deployment-from-docker-hub.cmd**: This batch script uses the [Azure Service Fabric CLI](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cli) to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+- **servicefabric-create-deployment-from-docker-hub.cmd**: this batch script uses the [Azure Service Fabric CLI](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cli) to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-- **servicefabric-create-deployment-from-docker-hub.ps1**: This PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+- **servicefabric-create-deployment-from-docker-hub.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
 **servicefabric-docker-compose-from-docker-hub.yml**
 ```yaml
@@ -904,7 +1858,7 @@ First of all, you have to create an **Azure Container Service Kubernetes cluster
   -	[Introduction to Azure Container Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/intro-kubernetes).
 
 ## Create an ACS cluster ##
-You can create an **Azure Container Service Kubernetes** cluster using the [Azure CLI](https://azure.github.io/projects/clis/) and then use the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface to run commands against the **Kubernetes** cluster on Azure. For more information, see [Deploy a Kubernetes cluster in Azure Container Service](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-cluster). 
+You can create an **Azure Container Service Kubernetes** cluster using the [Azure CLI](https://azure.github.io/projects/clis/) and then use the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface to run commands against the **Kubernetes** cluster in Azure. For more information, see [Deploy a Kubernetes cluster in Azure Container Service](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-cluster). 
 
 The following batch script shows how you can create an **Azure Container Service Kubernetes** cluster.
 
@@ -930,7 +1884,7 @@ The last command launches the Kubernetes web UI that allows to manage all the Ku
 ![Architecture](Images/K8sDashboard.png) 
 
 ## Create an AKS cluster ##
-You can create a managed **Kubernetes** service using the [Azure CLI](https://azure.github.io/projects/clis/) and then use the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface to run commands against the **Kubernetes** cluster on Azure. For more information, see [Deploy an Azure Container Service (AKS) cluster](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough).
+You can create a managed **Kubernetes** service using the [Azure CLI](https://azure.github.io/projects/clis/) and then use the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface to run commands against the **Kubernetes** cluster in Azure. For more information, see [Deploy an Azure Container Service (AKS) cluster](https://docs.microsoft.com/en-us/azure/aks/kubernetes-walkthrough).
 
 The following batch script shows how you can create an **Azure Container Service Kubernetes** cluster.
 
@@ -1324,7 +2278,7 @@ Before runnng the above script, make the following changes:
 - Replace **STORAGE_ACCOUNT_NAME** with the name of the new **Storage Account**.
 - Replace **STORAGE_ACCOUNT_PRIMARY_KEY** with the primary key of the new **Storage Account**.
 - Replace **SHARE_NAME** with the name of the new **File Share** in the **Storage Account**.
-- Replace **PATH_TO_YAML_FILE** with the path to the YAML containing the the definition of the **services** and **deployments** of the multi-container application. 
+- Replace **PATH_TO_YAML_FILE** with the path to the YAML containing the definition of the **services** and **deployments** of the multi-container application. 
 - Replace **SUBSCRIPTION_ID** with the id of your **Azure Subscription**.
 - Replace **USR** with your username on the **Azure Cloud Shell**
 
@@ -1543,7 +2497,7 @@ Finally, to verify that the application works as expected we can browse to the *
 So far, we have seen how to configure both the **todoweb** frontend service and **todoapi** backend service to expose each a public HTTP endpoint. Now, let's assume we want to expose only the **todoweb** frontend service and configure it to use an HTTPS endpoint instead of an HTTP endpoint.
 To implement TLS termination in our Kubernetes cluster, we'll use an [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) object and the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx). This component is a daemon, deployed as a Kubernetes **Pod**, that watches the apiserver's /ingresses endpoint for updates to the **Ingress** resource. The [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) can be used to implement patterns like path-based fanout, SSL passthrough, TLS termination, basic or digest http authentication. For more information, see [Advanced Ingress Configuration](https://docs.giantswarm.io/guides/advanced-ingress-configuration/)
 
-You can deploy the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) to your Kubernetes cluster on Azure by using the **kubectl** CLI or using Helm. [Helm](https://docs.helm.sh/) is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources. You can use Helm to:
+You can deploy the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) to your Kubernetes cluster in Azure by using the **kubectl** CLI or using Helm. [Helm](https://docs.helm.sh/) is a tool for managing Kubernetes charts. Charts are packages of pre-configured Kubernetes resources. You can use Helm to:
 
  - Find and use popular software packaged as Kubernetes charts
  - Share your own applications as Kubernetes charts
@@ -1669,7 +2623,7 @@ spec:
     spec:
       containers:
       - name: ssl-todoapi
-        image: paolosalvatori/todoapi:v2
+        image: DOCKER_HUB_REPOSITORY/todoapi:v1
         ports:
         - containerPort: 80
         env:
@@ -1754,7 +2708,7 @@ spec:
     spec:
       containers:
       - name: ssl-todoweb
-        image: paolosalvatori/todoweb:v2
+        image: DOCKER_HUB_REPOSITORY/todoweb:v1
         ports:
         - containerPort: 80
         env:
@@ -2121,6 +3075,9 @@ Microsoft Azure Service Bus is a reliable message delivery service. The purpose 
 
 ## Azure Cosmos DB ##
 Azure Cosmos DB is Microsoft's globally distributed, multi-model database. With the click of a button, Azure Cosmos DB enables you to elastically and independently scale throughput and storage across any number of Azure's geographic regions. Azure Cosmos DB supports multiple data models and popular APIs for accessing and querying data. The sample uses the Document DB API which provides a schema-less JSON database engine with SQL querying capabilities. For more information, see [About Azure Cosmos DB](https://docs.microsoft.com/en-us/azure/cosmos-db/introduction)
+
+## Azure Key Vault ##
+Azure Key Vault helps safeguard cryptographic keys and secrets used by cloud applications and services. By using Key Vault, you can encrypt keys and secrets (such as authentication keys, storage account keys, data encryption keys, .PFX files, and passwords) by using keys that are protected by hardware security modules (HSMs). For added assurance, you can import or generate keys in HSMs. If you choose to do this, Microsoft processes your keys in FIPS 140-2 Level 2 validated HSMs (hardware and firmware). Key Vault streamlines the key management process and enables you to maintain control of keys that access and encrypt your data. Developers can create keys for development and testing in minutes, and then seamlessly migrate them to production keys. Security administrators can grant (and revoke) permission to keys, as needed.For more information, see [What is Azure Key Vault?](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-whatis)
 
 ## Azure Container Registry ##
 Azure Container Registry is a managed Docker registry service based on the open-source Docker Registry 2.0. Create and maintain Azure container registries to store and manage your private Docker container images. Use container registries in Azure with your existing container development and deployment pipelines, and draw on the body of Docker community expertise. For more information, see [Introduction to private Docker container registries in Azure](https://docs.microsoft.com/en-gb/azure/container-registry/container-registry-intro).

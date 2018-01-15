@@ -1,5 +1,5 @@
 ﻿# Copy the package and register application type of version 1.0
-$connectionEndpoint = "bladerunner.westeurope.cloudapp.azure.com:19000"
+$connectionEndpoint = "CLUSTER_NAME.CLUSTER_LOCATION.cloudapp.azure.com:19000"
 $dockerComposeFile = $PSScriptRoot + '\servicefabric-docker-compose-from-azure-container-registry.yml'
 
 

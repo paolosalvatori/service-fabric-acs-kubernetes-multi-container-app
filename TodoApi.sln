@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TodoApi", "TodoApi\TodoApi.csproj", "{9F7DF99C-D0C2-4535-A380-E01F5D46FBF3}"
 EndProject
@@ -128,6 +128,20 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{
 		Scripts\Helm\TodoList\templates\NOTES.txt = Scripts\Helm\TodoList\templates\NOTES.txt
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service-Fabric-Key-Vault", "Service-Fabric-Key-Vault", "{5AB8AA4B-396F-4AF7-8C20-4FB686CD3573}"
+	ProjectSection(SolutionItems) = preProject
+		Scripts\Service-Fabric-Key-Vault\AddSecretsToKeyVault.cmd = Scripts\Service-Fabric-Key-Vault\AddSecretsToKeyVault.cmd
+		Scripts\Service-Fabric-Key-Vault\CertificateCommands.cmd = Scripts\Service-Fabric-Key-Vault\CertificateCommands.cmd
+		Scripts\Service-Fabric-Key-Vault\CreateAADApplication.ps1 = Scripts\Service-Fabric-Key-Vault\CreateAADApplication.ps1
+		Scripts\Service-Fabric-Key-Vault\CreateKeyVault.cmd = Scripts\Service-Fabric-Key-Vault\CreateKeyVault.cmd
+		Scripts\Service-Fabric-Key-Vault\KeyVaultCertificate.cer = Scripts\Service-Fabric-Key-Vault\KeyVaultCertificate.cer
+		Scripts\Service-Fabric-Key-Vault\KeyVaultCertificate.key = Scripts\Service-Fabric-Key-Vault\KeyVaultCertificate.key
+		Scripts\Service-Fabric-Key-Vault\KeyVaultCertificate.pem = Scripts\Service-Fabric-Key-Vault\KeyVaultCertificate.pem
+		Scripts\Service-Fabric-Key-Vault\KeyVaultCertificate.pfx = Scripts\Service-Fabric-Key-Vault\KeyVaultCertificate.pfx
+	EndProjectSection
+EndProject
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "TodoAppForWindowsContainers", "TodoAppForWindowsContainers\TodoAppForWindowsContainers.sfproj", "{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -176,6 +190,14 @@ Global
 		{EEEBC2B5-C67E-4EF6-B268-9EED81BF831F}.Release|x64.ActiveCfg = Release|x64
 		{EEEBC2B5-C67E-4EF6-B268-9EED81BF831F}.Release|x64.Build.0 = Release|x64
 		{EEEBC2B5-C67E-4EF6-B268-9EED81BF831F}.Release|x64.Deploy.0 = Release|x64
+		{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5}.Debug|Any CPU.ActiveCfg = Debug|x64
+		{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5}.Debug|x64.ActiveCfg = Debug|x64
+		{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5}.Debug|x64.Build.0 = Debug|x64
+		{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5}.Debug|x64.Deploy.0 = Debug|x64
+		{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5}.Release|Any CPU.ActiveCfg = Release|x64
+		{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5}.Release|x64.ActiveCfg = Release|x64
+		{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5}.Release|x64.Build.0 = Release|x64
+		{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5}.Release|x64.Deploy.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -195,6 +217,8 @@ Global
 		{20016F4A-DC65-4235-A56E-EA7030EE59F0} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
 		{54C92546-9655-4A80-95EB-A8E23A22D7DF} = {20016F4A-DC65-4235-A56E-EA7030EE59F0}
 		{902E4F4B-5B87-46BC-A76E-8D779182A498} = {54C92546-9655-4A80-95EB-A8E23A22D7DF}
+		{5AB8AA4B-396F-4AF7-8C20-4FB686CD3573} = {B0A91F4B-9B47-49CB-8820-832D4E990EA7}
+		{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5} = {8B53778D-6B40-4B6C-A249-B873E409FF02}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9255118D-6AE7-4332-8A5C-8A2414E92153}

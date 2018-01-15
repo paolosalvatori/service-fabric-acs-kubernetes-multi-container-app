@@ -13,8 +13,8 @@
     <Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" Value="Development"/>
     <Parameter Name="TodoApi_RepositoryService__CosmosDb__EndpointUri" Value="COSMOS_DB_ENDPOINT_URI"/>
     <Parameter Name="TodoApi_RepositoryService__CosmosDb__PrimaryKey" Value="COSMOS_DB_PRIMARY_KEY"/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__DatabaseName" Value="TodoApiDb"/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" Value="TodoApiCollection"/>
+    <Parameter Name="TodoApi_RepositoryService__CosmosDb__DatabaseName" Value="COSMOS_DB_DATABASE_NAME"/>
+    <Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" Value="COSMOS_DB_COLLECTION_NAME"/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__ConnectionString" Value="SERVICE_BUS_CONNECTION_STRING"/>
     <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
     <Parameter Name="TodoApi_DataProtection__BlobStorage__ConnectionString" Value="STORAGE_ACCOUNT_CONNECTION_STRING"/>

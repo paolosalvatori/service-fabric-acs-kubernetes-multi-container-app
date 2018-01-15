@@ -21,15 +21,12 @@
     <!-- Pass environment variables to your container: -->
     <EnvironmentVariables>
       <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__EndpointUri" Value=""/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__PrimaryKey" Value=""/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__DatabaseName" Value=""/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__CollectionName" Value=""/>
-      <EnvironmentVariable Name="NotificationService__ServiceBus__ConnectionString" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
+      <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
       <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value=""/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value=""/>
       <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
-      <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value=""/>
     </EnvironmentVariables>
   </CodePackage>
 
