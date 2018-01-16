@@ -5,7 +5,17 @@ author: paolosalvatori
 ---
 
 # Multi-Container Sample with Service Fabric and Kubernetes #
-This sample demonstrates how create a multi-container application using [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) and [Docker](https://www.docker.com/) and deploy it on an [Azure Service Fabric Linux cluster](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-deploy-anywhere) with the [DNS Service](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-dnsservice) or on an [Azure Container Service Kubernetes cluster on Linux](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-intro-kubernetes).
+This sample demonstrates how create a multi-container application using [ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/) and [Docker](https://www.docker.com/) and deploy it on an [Azure Service Fabric Linux cluster](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-deploy-anywhere) with the [DNS Service](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-dnsservice) or on an [Azure Container Service Kubernetes cluster on Linux](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-intro-kubernetes). The multi-container application adopts a microservices architecture. A microservices architecture consists of a collection of small, autonomous services. Each service is self-contained and should implement a single business capability. 
+Microservices have the following characteristics: 
+
+ - In a microservices architecture, services are small, independent, and loosely coupled.
+ - Each microservice is a defined by a separate codebase, configuration data, and data package that can be managed by a small development team.
+ - Each microservice can be built using a different programming language, technology stack, libraries and framworks.
+ - Microservices communicate with each other by using well-defined APIs. Internal implementation details of each service are hidden from other services.
+ - Microservices can be versioned and deployed independently. A team can update an existing service without rebuilding and redeploying the entire application.
+ - Services are responsible for persisting their own data or external state. This differs from the traditional model, where a separate data layer handles data persistence.
+
+For detailed guidance about building a microservices architecture on Azure, see [Designing, building, and operating microservices on Azure](https://docs.microsoft.com/en-us/azure/architecture/microservices/).
 
 # Azure Service Fabric and ACS/Kubernetes Environments #
 This repository contains a sample multi-container application and the scripts to deploy it on the following environments: 
