@@ -1,6 +1,6 @@
 ---
 services: service-fabric, container-service, kubernetes, cosmos-db, service-bus, application-insights, container-registry, dns, aks
-platforms: docker, dotnet-core, aspnet-core
+platforms: docker, dotnet-core, aspnet-core, key-vault
 author: paolosalvatori
 ---
 
