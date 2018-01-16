@@ -554,7 +554,7 @@ call az group create --name TodoListKeyVaultResourceGroup --location WestEurope
 REM Create Key Vault
 call az keyvault create --name TodoListKeyVault --resource-group TodoListKeyVaultResourceGroup
 ```
-## Add secrets to the key vault ##
+## Add secrets to Azure Key Vault using Azure CLI ##
 To add sensitive configuration data to **Azure Key Vault**, you can use the following script:
 
 **AddSecretsToKeyVault.cmd**
@@ -673,7 +673,7 @@ Alternatively, if you already have the certificates in the required form and wou
 For more information on how to configure certificates for a containerized service in Service Fabric, see [Container Security](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-securing-containers). 
 For more information on manage certificates used by a Service Fabric cluster in Azure, see [Add or remove certificates for a Service Fabric cluster in Azure](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-security-update-certs-azure).
 
-## How to read certificates from code and initialize Key Vault configuration provider ##
+## How to read the certificate from code and initialize Key Vault configuration provider ##
 When deploying the application to a **Service Fabric Linux** cluster in Azure, you need to specify a certificate in the **CertificateRef** inside the **ContainerHostPolicies** of both the frontend and backend service, using one of the techniques described in the previous section. Service Fabric will copy the certificate files inside the container and will create two environment variables that will contain the path of:
 
  - .pfx and password files in a Windows cluster
@@ -854,8 +854,8 @@ The **Application Manifest**, **Service Manifest** and **Parameters** files of t
 - the credentials (username and password) used by **Service Fabric** to login to the repository.
 - the name of the images used to create the containers for the **todoapi** and **todoweb** services.
 
-## TodoAppFromAzureContainerRegistry Project ##
-As mentioned above, this project allows you to specify secret parameters in clear-text in the **Cloud.xml** file only for testing purposes without the need to store them in **Azure Key Vault**. This technique should not be used to deploy an application to a production environment. This section shows the service manifests, application manifest and application parameters file contained in this project. Looking at the service manifests below, you can observe that all configuration data is passed to each service using environment variables.
+## Deploy the application to a Linux cluster: parameters defined in the application manifest ##
+As mentioned above, the **TodoAppFromAzureContainerRegistry** project allows you to specify secret parameters in clear-text in the **Cloud.xml** file only for testing purposes without the need to store them in **Azure Key Vault**. This technique should not be used to deploy an application to a production environment. Unathorized users could read sensitive data, like connection strings, keys and passwords, from the manifests stored in the source code repository (e.g. GitHub) or retrieve this data from the **Service Fabric Explorer** dashboard, once the application is deployed. This section shows the service manifests, application manifest and application parameters file contained in this project. Looking at the service manifests below, you can observe that all configuration data is passed to each service using environment variables.
 
 **TodoApi ServiceManifest.xml**
 ```xml
@@ -1151,7 +1151,7 @@ The following picture shows the multi-container application using the **Service 
 
 ![Manifests](Images/Manifests.png) 
 
-## TodoAppFromDockerHub Project ##
+## Deploy the application to a Linux cluster: parameters stored in Azure Key Vault ##
 The **TodoAppFromDockerHub** project shows how to safely deploy a multi-container application to an **Azure Service Fabric Linux** cluster in a production environment. As a security best practice, you should never store sensitive configuration data in the application manifest, service manifest or application parameters file of a Service Fabric application. Unauthorized users could steal this data from the source code repository. This project makes use of a single **Azure Key Vault** repository for storing secrets. Key Vault is a cloud-hosted service for managing cryptographic keys and other secrets. On larger projects, you should use multiple vaults for different environments (development & test, quality assurance, performance testing, production) and grant permissions to these resources only to a restricted set of authorized developers and operators. This project requires that the following sensitive data are stored in **Azure Key Vault**:
 
 - The endpoint URI of the **Cosmos DB** used by the backend service to store data.
@@ -1402,7 +1402,7 @@ Then, open the **ServiceManifest** of both the **TodoApi** and **TodoWeb** servi
 
  - **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository. 
 
- ## TodoAppForWindowsContainers Project ##
+ ## Deploy the application to a Windows cluster: parameters stored in Azure Key Vault ##
 The **TodoAppForWindowsContainers** project shows how to safely deploy a multi-container application to an **Azure Service Fabric Windows** cluster in a production environment. As mentioned in the previous section, you should never store sensitive configuration data in the application manifest, service manifest or application parameters file of a Service Fabric application. Unauthorized users could steal this data from the source code repository. This project makes use of a single **Azure Key Vault** repository for storing secrets. Key Vault is a cloud-hosted service for managing cryptographic keys and other secrets. On larger projects, you should use multiple vaults for different environments (development & test, quality assurance, performance testing, production) and grant permissions to these resources only to a restricted set of authorized developers and operators. This project requires that the following sensitive data are stored in **Azure Key Vault**:
 
 - The endpoint URI of the **Cosmos DB** used by the backend service to store data.
@@ -1661,7 +1661,7 @@ Then, open the **ServiceManifest** of both the **TodoApi** and **TodoWeb** servi
 
  - **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository. 
 
-## Service Fabric Deployment with Docker Compose ##  
+# Service Fabric Deployment with Docker Compose #  
 **Docker** uses the **docker-compose.yml** file for defining multi-container applications. To make it easy for developers familiar with **Docker** to orchestrate existing container applications on **Service Fabric**, now you can use **docker compose** to deploy your multi-container application to a **Service Fabric** cluster in Azure. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
 **Note 1**: this project allows you to specify secret parameters in clear-text in the .yaml file only for testing purposes without the need to store them in **Azure Key Vault**. We highly discourage to use this approach in a production environment and we strongly recommend you to store sensitive configuration data in **Azure Key Vault**.
@@ -1670,7 +1670,7 @@ Then, open the **ServiceManifest** of both the **TodoApi** and **TodoWeb** servi
 
 Below you can see the batch script and PowerShell script used to deploy the multi-container application to a **Service Fabric Linux cluster in Azure with DNS Service**. You can pull **Docker** images from an **Azure Container Registry** or from a **Docker Hub** repository.
 
-### Pull images from Azure Container Service ###
+## Pull images from Azure Container Service ##
 To deploy the multi-container application pulling the **Docker** images from an **Azure Container Registry** you can use one of the following scripts:
 
 - **servicefabric-create-deployment-from-azure-container-registry.cmd**: this batch script uses the [Azure Service Fabric CLI](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cli) to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
@@ -1759,7 +1759,7 @@ as shown in the following picture:
 
 ![Credentials](Images/AcrUsernamePassword.png)
 
-### Pull images from Docker Hub ###
+## Pull images from Docker Hub ##
 To deploy the multi-container application pulling the **Docker** images from an **Docker Hub** you can use the following scripts:
 
 - **servicefabric-create-deployment-from-docker-hub.cmd**: this batch script uses the [Azure Service Fabric CLI](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cli) to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
