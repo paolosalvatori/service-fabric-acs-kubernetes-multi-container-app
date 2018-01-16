@@ -518,7 +518,7 @@ docker push %AKS_CONTAINER_REGISTRY%/todoweb:v1
 REM List images in the container registry on Azure
 call az acr repository list --name AZURE_CONTAINER_REGISTRY --output table
 ```
-## Storing secret parameters in Azure Key Vault ##
+# Storing secret parameters in Azure Key Vault #
 If you plan to deploy the application to a **Service Fabric** Windows or Linux cluster in Azure, you should store sensitive data like connection strings, password, or instrumentation keys in **Azure Key Vault**. The frontend and backend services that compose the multi-container application in this sample are **ASP.NET Core** projects. ASP.NET Core supplies a configuration provider for [Azure Key Vault](https://azure.microsoft.com/en-us/services/key-vault/) in the [Microsoft.Extensions.Configuration.AzureKeyVault](https://www.nuget.org/packages/Microsoft.Extensions.Configuration.AzureKeyVault/) NuGet package. This configuration provider allows an application to use the **Application Id** and **Application Key** of an **Azure Active Directory Application** to authenticate against **Azure Key Vault** as explained at [Azure Key Vault configuration provider](https://docs.microsoft.com/en-us/aspnet/core/security/key-vault-configuration?tabs=aspnetcore2x). 
 However, the approach explained in the documentation requires to define the ClientId and ClientSecret in the service configuration, but this technique is not safe, because a malicious user could use and use these credentials to access secrets in **Azure Key Vault**. 
 Another way to authenticate an Azure AD application is by using a Client ID and a Certificate instead of a Client ID and Client Secret. Following are the steps to use a Certificate in an Azure Web App:
@@ -527,7 +527,7 @@ Another way to authenticate an Azure AD application is by using a Client ID and 
  - Associate the certificate with an Azure AD application
  - Add code to your ASP.NET Core application to use the certificate
 
-### Get or Create a Certificate ###
+## Get or Create a Certificate ##
 
 For our purposes, we will make a test certificate. Here are a couple of commands that you can use in a command prompt to create a certificate. Change directory to where you want the cert files created. Also, for the beginning and ending date of the certificate, use the current date plus 1 year.
 
@@ -542,7 +542,7 @@ Make note of the password for the .pfx (in this example: trustno1). You will nee
 openssl pkcs12 -in KeyVaultCertificate.pfx -out KeyVaultCertificatePEM.pem -nodes -nokeys
 openssl pkcs12 -in KeyVaultCertificate.pfx -out KeyVaultCertificatePEM.key -nodes -nocerts
 ```
-### Create a Key Vault using Azure CLI ###
+## Create a Key Vault using Azure CLI ##
 
 In order to protect sensitive data from unauthorized users, you should store secrets in Key Vault. The following script can be used to create an **Azure Key Vault**:
 
@@ -554,7 +554,7 @@ call az group create --name TodoListKeyVaultResourceGroup --location WestEurope
 REM Create Key Vault
 call az keyvault create --name TodoListKeyVault --resource-group TodoListKeyVaultResourceGroup
 ```
-### Add secrets to the key vault ###
+## Add secrets to the key vault ##
 To add sensitive configuration data to **Azure Key Vault**, you can use the following script:
 
 **AddSecretsToKeyVault.cmd**
@@ -595,7 +595,7 @@ Before running the above script, make the following changes:
 - Replace **STORAGE_ACCOUNT_CONNECTION_STRING** with the connection string of the **Storage Account** used by **ASP.NET Core Data  Protection**
 - Replace **APPLICATION_INSIGHTS_INSTRUMENTATION_KEY** with the instrumentation key of the **Application Insights** resource used to monitor the multi-container application.
 
-### Associate the certificate with an Azure AD application ###
+## Associate the certificate with an Azure AD application ##
 The next step is to associate the certificate with an Azure AD Application. Presently, the Azure portal does not support this workflow; this can be completed through PowerShell. Run the following commands to associate the certificate with a new Azure AD application called **ServiceFabricTodoListApp**:
 
 **CreateAADApplication.ps1**
@@ -645,7 +645,7 @@ $adapp.ApplicationId
 ```
 After you have run these commands, you can see the application in Azure AD. Make sure to take note of the certificate thumbprint and ApplicationId printed out by the script. To learn more about Azure AD Application Objects and ServicePrincipal Objects, see [Application Objects and Service Principal Objects](https://docs.microsoft.com/en-us/azure/active-directory/develop/active-directory-application-objects).
 
-### How Service Fabric passes a certificate to a container ###
+## How Service Fabric passes a certificate to a container ##
 Service Fabric provides a mechanism for services running inside a container to access a certificate that is installed on the nodes in a Windows or Linux cluster. 
 You can secure your container services by specifying a certificate. The certificate information is provided in the application manifest under the **ContainerHostPolicies** tag as the following snippet shows:
 
@@ -673,7 +673,7 @@ Alternatively, if you already have the certificates in the required form and wou
 For more information on how to configure certificates for a containerized service in Service Fabric, see [Container Security](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-securing-containers). 
 For more information on manage certificates used by a Service Fabric cluster in Azure, see [Add or remove certificates for a Service Fabric cluster in Azure](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cluster-security-update-certs-azure).
 
-### How to read certificates from code and initialize Key Vault configuration provider ###
+## How to read certificates from code and initialize Key Vault configuration provider ##
 When deploying the application to a **Service Fabric Linux** cluster in Azure, you need to specify a certificate in the **CertificateRef** inside the **ContainerHostPolicies** of both the frontend and backend service, using one of the techniques described in the previous section. Service Fabric will copy the certificate files inside the container and will create two environment variables that will contain the path of:
 
  - .pfx and password files in a Windows cluster
@@ -837,7 +837,7 @@ public static async Task<X509Certificate2> GetCertificateAsync(string certificat
 
 **Note**: the application uses the classes contained in the [System.Security.Cryptography.OpenSsl](https://www.nuget.org/packages/System.Security.Cryptography.OpenSsl/) NuGet package to read certificates in a Linux cluster.
 
-## Service Fabric Deployment with Application Manifest and Service Manifests ## 
+# Service Fabric Deployment with Application Manifest and Service Manifests # 
 In the Visual Studio solution you can find three projects to deploy the multi-container application to an **Azure Service Fabric Cluster**:
 
 - **TodoAppFromAzureContainerRegistry**: this project allows to deploy the multi-container application to an **Azure Service Fabric Linux** cluster pulling the **Docker** images from an **Azure Container Registry**. 
@@ -854,7 +854,7 @@ The **Application Manifest**, **Service Manifest** and **Parameters** files of t
 - the credentials (username and password) used by **Service Fabric** to login to the repository.
 - the name of the images used to create the containers for the **todoapi** and **todoweb** services.
 
-### TodoAppFromAzureContainerRegistry Project ###
+## TodoAppFromAzureContainerRegistry Project ##
 As mentioned above, this project allows you to specify secret parameters in clear-text in the **Cloud.xml** file only for testing purposes without the need to store them in **Azure Key Vault**. This technique should not be used to deploy an application to a production environment. This section shows the service manifests, application manifest and application parameters file contained in this project. Looking at the service manifests below, you can observe that all configuration data is passed to each service using environment variables.
 
 **TodoApi ServiceManifest.xml**
@@ -1151,7 +1151,7 @@ The following picture shows the multi-container application using the **Service 
 
 ![Manifests](Images/Manifests.png) 
 
-### TodoAppFromDockerHub Project ###
+## TodoAppFromDockerHub Project ##
 The **TodoAppFromDockerHub** project shows how to safely deploy a multi-container application to an **Azure Service Fabric Linux** cluster in a production environment. As a security best practice, you should never store sensitive configuration data in the application manifest, service manifest or application parameters file of a Service Fabric application. Unauthorized users could steal this data from the source code repository. This project makes use of a single **Azure Key Vault** repository for storing secrets. Key Vault is a cloud-hosted service for managing cryptographic keys and other secrets. On larger projects, you should use multiple vaults for different environments (development & test, quality assurance, performance testing, production) and grant permissions to these resources only to a restricted set of authorized developers and operators. This project requires that the following sensitive data are stored in **Azure Key Vault**:
 
 - The endpoint URI of the **Cosmos DB** used by the backend service to store data.
@@ -1402,7 +1402,7 @@ Then, open the **ServiceManifest** of both the **TodoApi** and **TodoWeb** servi
 
  - **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository. 
 
- ### TodoAppForWindowsContainers Project ###
+ ## TodoAppForWindowsContainers Project ##
 The **TodoAppForWindowsContainers** project shows how to safely deploy a multi-container application to an **Azure Service Fabric Windows** cluster in a production environment. As mentioned in the previous section, you should never store sensitive configuration data in the application manifest, service manifest or application parameters file of a Service Fabric application. Unauthorized users could steal this data from the source code repository. This project makes use of a single **Azure Key Vault** repository for storing secrets. Key Vault is a cloud-hosted service for managing cryptographic keys and other secrets. On larger projects, you should use multiple vaults for different environments (development & test, quality assurance, performance testing, production) and grant permissions to these resources only to a restricted set of authorized developers and operators. This project requires that the following sensitive data are stored in **Azure Key Vault**:
 
 - The endpoint URI of the **Cosmos DB** used by the backend service to store data.
