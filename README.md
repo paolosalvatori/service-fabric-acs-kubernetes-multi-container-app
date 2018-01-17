@@ -56,64 +56,66 @@ The solution has the folowing solution folders:
   - **ACS-Kubernetes-Cluster**: this folder contains the following scripts:
 
     - **create-kubernetes-acs-cluster.cmd**: this batch script is used to create an **Azure Container Service Kubernetes** cluster. For more information, see [Azure Container Service with Kubernetes Documentation](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/).
-- **AKS-Kubernetes-Cluster**: this folder contains the following scripts:
 
-    - **create-kubernetes-aks-cluster.cmd**: this batch script is used to create a **Azure Container Service Kubernetes** managed cluster. For more information, see [Azure Container Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/).
-- **Azure-Container-Registry**: this folder contains the following scripts:
+  - **AKS-Kubernetes-Cluster**: this folder contains the following scripts:
 
-  - **create-azure-container-registry.cmd**: this batch script is used to create an **Azure Container Registry** that is a managed Docker registry service based on the open-source Docker Registry 2.0. This repository can be used to store images for container deployments [Aaure Container Service](https://docs.microsoft.com/en-us/azure/container-service/index), [Azure App Service](https://docs.microsoft.com/en-us/app-service/index.md), [Azure Batch](https://docs.microsoft.com/en-us/azure/batch/index), [Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/), and others. For more information, see [Introduction to private Docker container registries in Azure](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
+      - **create-kubernetes-aks-cluster.cmd**: this batch script is used to create a **Azure Container Service Kubernetes** managed cluster. For more information, see [Azure Container Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/).
 
-- **Azure-DNS**: this folder contains the following scripts
+  - **Azure-Container-Registry**: this folder contains the following scripts:
 
-  - **create-azure-dns-for-kubernetes-todoapi-service.cmd**: this batch script is used to create an **Azure DNS Service** that is responsible for translating (or resolving) a website or service name to its IP address. For more information, see [Azure DNS overview](https://docs.microsoft.com/en-gb/azure/dns/dns-overview).
+    - **create-azure-container-registry.cmd**: this batch script is used to create an **Azure Container Registry** that is a managed Docker registry service based on the open-source Docker Registry 2.0. This repository can be used to store images for container deployments [Aaure Container Service](https://docs.microsoft.com/en-us/azure/container-service/index), [Azure App Service](https://docs.microsoft.com/en-us/app-service/index.md), [Azure Batch](https://docs.microsoft.com/en-us/azure/batch/index), [Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/), and others. For more information, see [Introduction to private Docker container registries in Azure](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
 
-- **Push-Docker-Images-Scripts**: this folder contains the following scripts:
+  - **Azure-DNS**: this folder contains the following scripts
 
-  - **push-images-to-azure-container-registry.cmd**: this batch script is used to push **Docker** images to an **Azure Container Registry**. For more information, see [Deploy and use Azure Container Registry](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-acr).
+    - **create-azure-dns-for-kubernetes-todoapi-service.cmd**: this batch script is used to create an **Azure DNS Service** that is responsible for translating (or resolving) a website or service name to its IP address. For more information, see [Azure DNS overview](https://docs.microsoft.com/en-gb/azure/dns/dns-overview).
 
-  - **push-images-to-docker-hub.cmd**: this script is used to push **Docker** images to a **Docker Hub Repository**. For more information, see [Push images to Docker Cloud](https://docs.docker.com/docker-cloud/builds/push-images/).
+  - **Push-Docker-Images-Scripts**: this folder contains the following scripts:
 
-- **Kubernetes-Scripts**: this folder contains the following scripts:
+    - **push-images-to-azure-container-registry.cmd**: this batch script is used to push **Docker** images to an **Azure Container Registry**. For more information, see [Deploy and use Azure Container Registry](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-acr).
 
-  - **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **kubernetes-deployments-and-services-from-azure-container-registry.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
+    - **push-images-to-docker-hub.cmd**: this script is used to push **Docker** images to a **Docker Hub Repository**. For more information, see [Push images to Docker Cloud](https://docs.docker.com/docker-cloud/builds/push-images/).
 
-  - **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **kubernetes-deployments-and-services-from-docker-hub.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
+  - **Kubernetes-Scripts**: this folder contains the following scripts:
 
-  - **create-secret-in-kubernetes.cmd**: this batch script can be used to create the **todolist-secret** object in the Kubernetes cluster using the **todolist-secret.yml** that contains a value for the sensitive data used by the multi-container application.
+    - **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **kubernetes-deployments-and-services-from-azure-container-registry.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
 
-  - **delete-kubernetes-pods-and-services-and-deployments.cmd**: this batch script can be used to delete **pods**, **services**, and **depoyments** from the **Kubernetes** cluster using the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface.
+    - **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **kubernetes-deployments-and-services-from-docker-hub.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
 
-  - **install-helm.sh**: this Bash script can be used to install and initialize [Helm](https://docs.helm.sh/).
+    - **create-secret-in-kubernetes.cmd**: this batch script can be used to create the **todolist-secret** object in the Kubernetes cluster using the **todolist-secret.yml** that contains a value for the sensitive data used by the multi-container application.
 
-  - **install-nginx-ingress-controller.sh**: this Bash script can be used to install the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) in your Kubernetes cluster.
+    - **delete-kubernetes-pods-and-services-and-deployments.cmd**: this batch script can be used to delete **pods**, **services**, and **depoyments** from the **Kubernetes** cluster using the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface.
 
-  - **scale-nginx-ingress-controller-replicas.sh**: this Bash script can be used to scale out the number of replicas used by the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx).
+    - **install-helm.sh**: this Bash script can be used to install and initialize [Helm](https://docs.helm.sh/).
 
-  - **install-open-ssl.sh**: this Bash script can be used to install the openssl utility.
+    - **install-nginx-ingress-controller.sh**: this Bash script can be used to install the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) in your Kubernetes cluster.
 
-  - **create-certificate.sh**: this Bash script can be used to create a test certificate for Kubernetes.
-    
-  - **create-tls-secret.sh**: this Bash script can be used to create a Secret in your Kubernetes cluster using the self-signed certificate.
+    - **scale-nginx-ingress-controller-replicas.sh**: this Bash script can be used to scale out the number of replicas used by the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx).
 
-- **Service-Fabric-Docker-Compose**: this folder contains the following scripts:
+    - **install-open-ssl.sh**: this Bash script can be used to install the openssl utility.
 
-  - **servicefabric-create-deployment-from-azure-container-registry.cmd**: this batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+    - **create-certificate.sh**: this Bash script can be used to create a test certificate for Kubernetes.
+      
+    - **create-tls-secret.sh**: this Bash script can be used to create a Secret in your Kubernetes cluster using the self-signed certificate.
 
-  - **servicefabric-create-deployment-from-azure-container-registry.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+  - **Service-Fabric-Docker-Compose**: this folder contains the following scripts:
 
-  - **servicefabric-create-deployment-from-docker-hub.cmd**: this batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+    - **servicefabric-create-deployment-from-azure-container-registry.cmd**: this batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-  - **servicefabric-create-deployment-from-docker-hub.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+    - **servicefabric-create-deployment-from-azure-container-registry.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-- **Service-Fabric-Key-Vault**: this folder contains the following scripts:
+    - **servicefabric-create-deployment-from-docker-hub.cmd**: this batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-  - **CreateKeyVault.cmd**: this batch script is used to create an **Azure Key Vault**. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
+    - **servicefabric-create-deployment-from-docker-hub.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-  - **AddSecretsToKeyVault.cmd**: this batch script is used to add secrets to the **Azure Key Vault** used by the multi-container application in Service Fabric. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
+  - **Service-Fabric-Key-Vault**: this folder contains the following scripts:
 
-  - **CertificateCommands.cmd**: this batch script contains commands to create a PEM and Key files from a PFX certificate file and create a CER certificate containing only the public key from a PFX certificate file using the [OpenSSL](https://www.openssl.org/) tool.
+    - **CreateKeyVault.cmd**: this batch script is used to create an **Azure Key Vault**. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
 
-  - **CreateAADApplication.ps1**: this PowerShell script is used to create an **Azure Active Directory Application** using a certificate as credentials, to create an **Azure Active Directory Service Principal** for the application and finally to associate the service principal with the **Azure Key Vault** used by the application as repository for secrets. For more information, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret) on **Azure Key Vault** documentation.
+    - **AddSecretsToKeyVault.cmd**: this batch script is used to add secrets to the **Azure Key Vault** used by the multi-container application in Service Fabric. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
+
+    - **CertificateCommands.cmd**: this batch script contains commands to create a PEM and Key files from a PFX certificate file and create a CER certificate containing only the public key from a PFX certificate file using the [OpenSSL](https://www.openssl.org/) tool.
+
+    - **CreateAADApplication.ps1**: this PowerShell script is used to create an **Azure Active Directory Application** using a certificate as credentials, to create an **Azure Active Directory Service Principal** for the application and finally to associate the service principal with the **Azure Key Vault** used by the application as repository for secrets. For more information, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret) on **Azure Key Vault** documentation.
 
 
 **Note**: both the frontend (**todoweb**) and backend (**todoapi**) containerized services use the **microsoft/aspnetcore:2.0** as base **Docker** image. For more information, see [Official .NET Docker images](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/net-core-net-framework-containers/official-net-docker-images)
@@ -205,7 +207,7 @@ The following table contains the configuration of the **TodoApi** service define
 }
 ```
 
-**Notes**
+**Notes**:
 
 - The **AzureKeyVault** section should be used only when storing secret values in **Azure Key Vault**, otherwise it can be ignored. It contains the following data:
   - **CertificateEnvironmentVariable**: indicates the name of the environment variable that contains the path to the certificate file used by the service to authenticate against **Azure Key Vault**. The file in question is a .pfx file when using Windows containers, and a .pem file when using Linux containers.
@@ -257,7 +259,7 @@ The following table contains the configuration of the **TodoWeb** service define
 }
 ```
 
-**Notes**
+**Notes**:
 
 - The **AzureKeyVault** section should be used only when storing secret values in **Azure Key Vault**, otherwise it can be ignored. It contains the following data:
   - **CertificateEnvironmentVariable**: indicates the name of the environment variable that contains the path to the certificate file used by the service to authenticate against **Azure Key Vault**. The file in question is a .pfx file when using Windows containers, and a .pem file when using Linux containers.
@@ -852,17 +854,13 @@ In the Visual Studio solution you can find three projects to deploy the multi-co
 
 - **TodoAppFromAzureContainerRegistry**: this project allows to deploy the multi-container application to an **Azure Service Fabric Linux** cluster pulling the **Docker** images from an **Azure Container Registry**. 
 
-  **IMPORTANT NOTE**: this project allows you to specify secret parameters in clear-text in the **Cloud.xml** file only for testing purposes without the need to store them in **Azure Key Vault**. We highly discourage to use this approach in a production environment and we strongly recommend you to store sensitive configuration data in **Azure Key Vault**.
+  **Important Note**: this project allows you to specify secret parameters in clear-text in the **Cloud.xml** file only for testing purposes without the need to store them in **Azure Key Vault**. We highly discourage to use this approach in a production environment and we strongly recommend you to store sensitive configuration data in **Azure Key Vault**.
 
 - **TodoAppFromDockerHub**: this project allows to deploy the multi-container application to an **Azure Service Fabric Linux** cluster pulling the **Docker** images from a **Docker Hub** repository and reading sensitive configuration data from **Azure Key Vault**.
 
 - **TodoAppForWindowsContainers**: this project allows to deploy the multi-container application to an **Azure Service Fabric Windows** cluster pulling the **Docker** images for **Windows Containers** from a **Docker Hub** repository and reading sensitive configuration data from **Azure Key Vault**.
 
-The **Application Manifest**, **Service Manifest** and **Parameters** files of the two project are almost identical, the only things that differ are: 
-
-- the repository used for pulling **Docker** images
-- the credentials (username and password) used by **Service Fabric** to login to the repository.
-- the name of the images used to create the containers for the **todoapi** and **todoweb** services.
+**Note**: We recommend that you encrypt the repository password by using an encipherment certificate that's deployed to all nodes of the cluster. When Service Fabric deploys the service package to the cluster, the encipherment certificate is used to decrypt the cipher text. The [Invoke-ServiceFabricEncryptText](https://docs.microsoft.com/en-us/powershell/module/servicefabric/invoke-servicefabricencrypttext?view=azureservicefabricps) cmdlet is used to create the cipher text for the password, which is added to the ApplicationManifest.xml file.
 
 ## Deploy the application to a Linux cluster: parameters defined in the application manifest ##
 As mentioned above, the **TodoAppFromAzureContainerRegistry** project allows you to specify secret parameters in clear-text in the **Cloud.xml** file only for testing purposes without the need to store them in **Azure Key Vault**. This technique should not be used to deploy an application to a production environment. Unathorized users could read sensitive data, like connection strings, keys and passwords, from the manifests stored in the source code repository (e.g. GitHub) or retrieve this data from the **Service Fabric Explorer** dashboard, once the application is deployed. This section shows the service manifests, application manifest and application parameters file contained in this project. Looking at the service manifests below, you can observe that all configuration data is passed to each service using environment variables.
