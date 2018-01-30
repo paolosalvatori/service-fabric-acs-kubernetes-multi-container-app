@@ -34,13 +34,13 @@ This repository contains a sample multi-container application and the scripts to
 
 
 # Visual Studio Solution #
-The solution has the folowing solution folders:
+The solution has the following solution folders:
 
 - **ASP.NET Core Projects**: this folder contains the following projects:
 
   - **todoweb**: this project is an ASP.NET Core Web application that represents the frontend of the solution. The user interface is composes of a set of Razor pages that can be used to browse, create, delete, update and see the details of a collection of todo items stored in a Document DB collection. The frontend service is configured to send logs, events, traces, requests, dependencies and exceptions to **Application Insights**. 
 
-  - **todoapi**: this project contains an ASP.NET Core REST service that is invoked by the **todoweb** frontend service to access the data stroed in the Document DB database. Each time a CRUD operation is performed by any of the methods exposed bu the **TodoController**, the backend service sends a notification message to a **Service Bus queue**. You can use my [Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer) to read messages from the queue. The frontend service is configured to send logs, events, traces, requests, dependencies and exceptions to **Application Insights**. The backend service adopts [Swagger](https://swagger.io/) ro expose a machine-readable representation of its RESTful API.
+  - **todoapi**: this project contains an ASP.NET Core REST service that is invoked by the **todoweb** frontend service to access the data stroed in the Document DB database. Each time a CRUD operation is performed by any of the methods exposed bu the **TodoController**, the backend service sends a notification message to a **Service Bus queue**. You can use my [Service Bus Explorer](https://github.com/paolosalvatori/ServiceBusExplorer) to read messages from the queue. The frontend service is configured to send logs, events, traces, requests, dependencies and exceptions to **Application Insights**. The backend service adopts [Swagger](https://swagger.io/) to expose a machine-readable representation of its RESTful API.
 
 - **Service Fabric Projects**: this folder contains the following projects:
 
@@ -63,7 +63,7 @@ The solution has the folowing solution folders:
 
   - **Azure-Container-Registry**: this folder contains the following scripts:
 
-    - **create-azure-container-registry.cmd**: this batch script is used to create an **Azure Container Registry** that is a managed Docker registry service based on the open-source Docker Registry 2.0. This repository can be used to store images for container deployments [Aaure Container Service](https://docs.microsoft.com/en-us/azure/container-service/index), [Azure App Service](https://docs.microsoft.com/en-us/app-service/index.md), [Azure Batch](https://docs.microsoft.com/en-us/azure/batch/index), [Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/), and others. For more information, see [Introduction to private Docker container registries in Azure](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
+    - **create-azure-container-registry.cmd**: this batch script is used to create an **Azure Container Registry** that is a managed Docker registry service based on the open-source Docker Registry 2.0. This repository can be used to store images for container deployments [Azure Container Service](https://docs.microsoft.com/en-us/azure/container-service/index), [Azure App Service](https://docs.microsoft.com/en-us/app-service/index.md), [Azure Batch](https://docs.microsoft.com/en-us/azure/batch/index), [Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/), and others. For more information, see [Introduction to private Docker container registries in Azure](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
 
   - **Azure-DNS**: this folder contains the following scripts
 
@@ -79,7 +79,7 @@ The solution has the folowing solution folders:
 
     - **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **kubernetes-deployments-and-services-from-azure-container-registry.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
 
-    - **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **kubernetes-deployments-and-services-from-docker-hub.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
+    - **create-application-in-kubernetes-from-docker-hub.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from **Docker Hub** using the definitions contained in the **kubernetes-deployments-and-services-from-docker-hub.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
 
     - **create-secret-in-kubernetes.cmd**: this batch script can be used to create the **todolist-secret** object in the Kubernetes cluster using the **todolist-secret.yml** that contains a value for the sensitive data used by the multi-container application.
 
@@ -2242,7 +2242,7 @@ nslookup -type=A www.babosbird.com
 ![CustomDomain](Images/publicdomain.png)
 
 ## Deploy the multi-container application to AKS from the Azure Cloud Shell ##
-You can also deploy the multi-container application from the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview). The [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview) utilizes Azure File storage to persist files across sessions. In order to use a YAML file that defines the **services** and **deployments** of the multi-container application from the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview), you can run the following batch script from your local machine using the [Azure Service Fabric CLI](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-cli). The batch file performs the follwoing steps: 
+You can also deploy the multi-container application from the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview). The [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview) utilizes Azure File storage to persist files across sessions. In order to use a YAML file that defines the **services** and **deployments** of the multi-container application from the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview), you can run the following batch script from a command-prompt on your local machine using the [Azure CLI](https://docs.microsoft.com/en-us/cli/azure/overview?view=azure-cli-latest). The batch file performs the follwoing steps: 
 
 - Creates a **Resource Group**
 - Creates a **Storage Account** in the new **Resource Group**
@@ -2304,7 +2304,7 @@ The first step is to create a YAML file to define a **secret**. Each item in the
   - dataProtectionBlobStorageConnectionString
   - applicationInsightsInstrumentationKey
 
-The following YAML file can be used to create a **secret** object named **todolist-secret** that contains a value for the above environment variables.
+The following YAML file can be used to create a **secret** object named **todolist-secret** that contains a value for the above environment variables. Before running the script, make sure to replace the placeholders in the **todolist-secret.yml** with the corresponding base64-encoded value for each configuration setting. 
 
 **todolist-secret.yml**
 ```yaml
@@ -2322,6 +2322,17 @@ data:
   dataProtectionBlobStorageConnectionString: BASE64-ENCODED-BLOB-STORAGE-CONNECTION-STRING
   applicationInsightsInstrumentationKey: BASE64-ENCODED-APP-INSIGHTS-INSTRUMENTATION-KEY
 ```
+On Windows, you can use the following command to translate a value into a base64 format.
+
+```batchfile
+powershell "[convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes(\"value\"))"
+```
+In a Linux Bash Shell, you can use the base64 command line utility to encode a value to a base64 format.
+
+```bash
+ echo -n "value" | base64
+```
+
 The following script can be used to create the **todolist-secret** object in the Kubernetes cluster.
 
 **create-secret-in-kubernetes.cmd**
