@@ -1,2 +1,1 @@
-REM Deploy azure-vote sample application  
-kubectl create --filename kubernetes-deployments-and-services-from-docker-hub.yml --record
+kubectl create --filename todolist-deployments-and-services-from-docker-hub.yml --record

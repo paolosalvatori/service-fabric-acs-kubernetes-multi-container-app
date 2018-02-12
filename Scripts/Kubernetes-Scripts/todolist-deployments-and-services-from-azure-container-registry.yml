@@ -26,7 +26,10 @@ spec:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Development"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: RepositoryService__CosmosDb__EndpointUri
           valueFrom:
             secretKeyRef:
@@ -53,14 +56,20 @@ spec:
                 name: todolist-secret
                 key: serviceBusConnectionString
         - name: NotificationService__ServiceBus__QueueName
-          value: "todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiServiceBusQueueName
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: "todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:
@@ -109,16 +118,25 @@ spec:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Development"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: TodoApiService__EndpointUri
-          value: "todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiServiceEndpointUri
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: "todoweb"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoWebDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:

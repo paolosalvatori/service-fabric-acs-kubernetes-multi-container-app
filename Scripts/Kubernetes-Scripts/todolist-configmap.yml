@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todolist-configmap
+  namespace: default
+data:
+  aspNetCoreEnvironment: Development
+  todoApiServiceBusQueueName: todoapi
+  todoApiServiceEndpointUri: todoapi
+  todoWebDataProtectionBlobStorageContainerName: todoweb
+  todoApiDataProtectionBlobStorageContainerName: todoapi

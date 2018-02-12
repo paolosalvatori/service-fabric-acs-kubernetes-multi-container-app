@@ -77,11 +77,13 @@ The solution has the following solution folders:
 
   - **Kubernetes-Scripts**: this folder contains the following scripts:
 
-    - **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **kubernetes-deployments-and-services-from-azure-container-registry.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
+    - **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **todolist-deployments-and-services-from-azure-container-registry.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
 
-    - **create-application-in-kubernetes-from-docker-hub.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from **Docker Hub** using the definitions contained in the **kubernetes-deployments-and-services-from-docker-hub.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
+    - **create-application-in-kubernetes-from-docker-hub.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from **Docker Hub** using the definitions contained in the **todolist-deployments-and-services-from-docker-hub.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
 
-    - **create-secret-in-kubernetes.cmd**: this batch script can be used to create the **todolist-secret** object in the Kubernetes cluster using the **todolist-secret.yml** that contains a value for the sensitive data used by the multi-container application.
+     - **create-todolist-configmap.cmd**: this batch script can be used to create the **todolist-configmap** object in the Kubernetes cluster using the **todolist-configmap.yml** that contains non-sensitive configuration data used by the multi-container application.
+
+    - **create-todolist-secret.cmd**: this batch script can be used to create the **todolist-secret** object in the Kubernetes cluster using the **todolist-secret.yml** that contains sensitive configuration data used by the multi-container application.
 
     - **delete-kubernetes-pods-and-services-and-deployments.cmd**: this batch script can be used to delete **pods**, **services**, and **depoyments** from the **Kubernetes** cluster using the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface.
 
@@ -1915,7 +1917,54 @@ az aks browse --name AksKubernetes --resource-group AksKubernetesResourceGroup
 ```
 You can also create the cluster from the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview). In this case, you can skip the *az aks install-cli* command as the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface is already installed in your shell.
 
-## Encrypt and decrypt parameters in Kubernetes ##
+## Use a ConfigMap in Kubernetes to define non-sensitive configuration data ##
+**ConfigMaps** are entities that can be used in Kubernetes to decouple non-sensitive configuration data from images and templates used to deploy an application. In particular, you can create a ConfigMap object to specify application paremeters and then map the environment variables in the Pod specification to the keys defined the ConfigMap. For more information, see [Configure a Pod to Use a ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/).
+
+The first step is to create a YAML file to define a **ConfigMap**. The multi-container sample uses a **ConfigMap** to define a value for the following **parameter\environment variable** pairs:
+
+  - aspNetCoreEnvironment\ASPNETCORE_ENVIRONMENT
+  - todoApiServiceBusQueueName\NotificationService__ServiceBus__QueueName
+  - todoApiServiceEndpointUri\TodoApiService__EndpointUri
+  - todoWebDataProtectionBlobStorageContainerName\DataProtection__BlobStorage__ContainerName
+  - todoApiDataProtectionBlobStorageContainerName\DataProtection__BlobStorage__ContainerName
+
+The following YAML file can be used to create a **ConfigMap** object named **todolist-configmap** that contains a value for the above parameters.
+
+**todolist-configmap.yml**
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todolist-configmap
+  namespace: default
+data:
+  aspNetCoreEnvironment: Development
+  todoApiServiceBusQueueName: todoapi
+  todoApiServiceEndpointUri: todoapi
+  todoWebDataProtectionBlobStorageContainerName: todoweb
+  todoApiDataProtectionBlobStorageContainerName: todoapi
+
+```
+
+The following command can be used to create the **todolist-configmap** object in the Kubernetes cluster.
+
+**create-todolist-configmap.cmd**
+```batchfile
+kubectl create --filename todolist-configmap.yml --record
+```
+
+You can use one of the following commands to read the value of the keys from the **todolist-configmap**:
+
+```bash
+# Get todolist-configmap
+ kubectl get configmaps todolist-configmap -o yaml
+
+ # Describe todolist-configmap
+kubectl describe configmap todolist-configmap
+```
+
+## Use a Secret in Kubernetes to define sensitive configuration data ##
 In Kubernetes, a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/) is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
 
 Sensitive data like connection strings, passwords and keys may be put in the YAML files used to create deployments and pods. However, putting such information in a Secret object provides the following advantages:
@@ -1926,17 +1975,17 @@ Sensitive data like connection strings, passwords and keys may be put in the YAM
 
 Objects of type secret are intended to hold sensitive information, such as passwords, connection strings, OAuth tokens, and ssh keys. Putting sensitive data in a secret is safer and more flexible than putting it verbatim in a pod definition or in a docker image. For more information, see [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/).
 
- The first step is to create a YAML file to define a **secret**. Each item in the file must be base64 encoded. The multi-container sample uses a **secret** to define the value of the following **environment variables**:
+ The first step is to create a YAML file to define a **Secret**. Each item in the file must be base64 encoded. The multi-container sample uses a **Secret** to define a value for the following **parameter\environment variable** pairs:
 
-  - cosmosDbEndpointUri
-  - cosmosDBPrimaryKey
-  - cosmosDbDatabaseName
-  - cosmosDbCollectionName
-  - serviceBusConnectionString
-  - dataProtectionBlobStorageConnectionString
-  - applicationInsightsInstrumentationKey
+  - cosmosDbEndpointUri\RepositoryService__CosmosDb__EndpointUri 
+  - cosmosDBPrimaryKey\RepositoryService__CosmosDb__PrimaryKey
+  - cosmosDbDatabaseName\RepositoryService__CosmosDb__DatabaseName
+  - cosmosDbCollectionName\RepositoryService__CosmosDb__CollectionName
+  - serviceBusConnectionString\NotificationService__ServiceBus__ConnectionString
+  - dataProtectionBlobStorageConnectionString\DataProtection__BlobStorage__ConnectionString
+  - applicationInsightsInstrumentationKey\ApplicationInsights__InstrumentationKey
 
-The following YAML file can be used to create a **secret** object named **todolist-secret** that contains a value for the above environment variables.
+The following YAML file can be used to create a **Secret** object named **todolist-secret** that contains a value for the above parameters.
 
 **todolist-secret.yml**
 ```yaml
@@ -1954,11 +2003,22 @@ data:
   dataProtectionBlobStorageConnectionString: BASE64-ENCODED-BLOB-STORAGE-CONNECTION-STRING
   applicationInsightsInstrumentationKey: BASE64-ENCODED-APP-INSIGHTS-INSTRUMENTATION-KEY
 ```
+
+On Windows, you can use the following command to translate a value into a base64 format.
+
+```batchfile
+powershell "[convert]::ToBase64String([Text.Encoding]::UTF8.GetBytes(\"value\"))"
+```
+In a Linux Bash Shell, you can use the base64 command line utility to encode a value to a base64 format.
+
+```bash
+ echo -n "value" | base64
+```
+
 The following command can be used to create the **todolist-secret** object in the Kubernetes cluster.
 
-**create-secret-in-kubernetes.cmd**
+**create-todolist-secret.cmd**
 ```batchfile
-REM Deploy azure-vote sample application  
 kubectl create --filename todolist-secret.yml --record
 ```
 
@@ -1972,7 +2032,7 @@ You can use **kubectl** to read the value of a setting defined from a **secret**
 ## Deploy the multi-container application to ACS\Kubernetes from a local machine ##
 On Kubernetes the multi-container application is composed by two services, one of the frontend service and one for the backend service, and 5 pods for each service. Each pod contains just a container or the **todoapi** or **todoweb** ASP.NET Core apps. The **Docker** images can be pulled from an **Azure Container Registry** or from **Docker Hub**. The solution contains scripts and yaml files to accomplish both tasks, but for brevity, let's see how you can deploy the application pulling the **Docker** images from a **Docker Hub** repository. The following YAML file contains the definition for the necessary services and deployments.
 
-**kubernetes-deployments-and-services-from-docker-hub.yml**
+**todolist-deployments-and-services-from-docker-hub.yml**
 ```yaml
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -1997,12 +2057,15 @@ spec:
     spec:
       containers:
       - name: todoapi
-        image: DOCKER_HUB_REPOSITORY/todoapi:v1
+        image: paolosalvatori/todoapi:v2
         ports:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Development"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: RepositoryService__CosmosDb__EndpointUri
           valueFrom:
             secretKeyRef:
@@ -2029,14 +2092,20 @@ spec:
                 name: todolist-secret
                 key: serviceBusConnectionString
         - name: NotificationService__ServiceBus__QueueName
-          value: "todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiServiceBusQueueName
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: "todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:
@@ -2080,21 +2149,30 @@ spec:
     spec:
       containers:
       - name: todoweb
-        image: DOCKER_HUB_REPOSITORY/todoweb:v1
+        image: paolosalvatori/todoweb:v2
         ports:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Development"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: TodoApiService__EndpointUri
-          value: "todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiServiceEndpointUri
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: "todoweb"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoWebDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:
@@ -2134,8 +2212,7 @@ The following script can be used to deploy the services and deployments.
 
 **create-application-in-kubernetes-from-docker-hub.cmd**
 ```Batchfile
-REM Deploy azure-vote sample application  
-kubectl create --filename kubernetes-deployments-and-services-from-docker-hub.yml --record
+kubectl create --filename todolist-deployments-and-services-from-docker-hub.yml --record
 ```
 You can use the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface to list the newly created services and deployments by running the following commands: 
 ```Batchfile
@@ -2294,17 +2371,75 @@ For more information on how to mount a [File Share](https://docs.microsoft.com/e
 
 You can also deploy the multi-container application using the **Azure CLI** on your local machine or from the [Azure Cloud Shell](https://docs.microsoft.com/en-us/azure/cloud-shell/overview).
 
-The first step is to create a YAML file to define a **secret**. Each item in the file must be base64 encoded. The multi-container sample uses a **secret** to define the value of the following **environment variables**:
+## Use a ConfigMap in Kubernetes to define non-sensitive configuration data ##
+**ConfigMaps** are entities that can be used in Kubernetes to decouple non-sensitive configuration data from images and templates used to deploy an application. In particular, you can create a ConfigMap object to specify application paremeters and then map the environment variables in the Pod specification to the keys defined the ConfigMap. For more information, see [Configure a Pod to Use a ConfigMap](https://kubernetes.io/docs/tasks/configure-pod-container/configure-pod-configmap/).
 
-  - cosmosDbEndpointUri
-  - cosmosDBPrimaryKey
-  - cosmosDbDatabaseName
-  - cosmosDbCollectionName
-  - serviceBusConnectionString
-  - dataProtectionBlobStorageConnectionString
-  - applicationInsightsInstrumentationKey
+The first step is to create a YAML file to define a **ConfigMap**. The multi-container sample uses a **ConfigMap** to define a value for the following **parameter\environment variable** pairs:
 
-The following YAML file can be used to create a **secret** object named **todolist-secret** that contains a value for the above environment variables. Before running the script, make sure to replace the placeholders in the **todolist-secret.yml** with the corresponding base64-encoded value for each configuration setting. 
+  - aspNetCoreEnvironment\ASPNETCORE_ENVIRONMENT
+  - todoApiServiceBusQueueName\NotificationService__ServiceBus__QueueName
+  - todoApiServiceEndpointUri\TodoApiService__EndpointUri
+  - todoWebDataProtectionBlobStorageContainerName\DataProtection__BlobStorage__ContainerName
+  - todoApiDataProtectionBlobStorageContainerName\DataProtection__BlobStorage__ContainerName
+
+The following YAML file can be used to create a **ConfigMap** object named **todolist-configmap** that contains a value for the above parameters.
+
+**todolist-configmap.yml**
+
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todolist-configmap
+  namespace: default
+data:
+  aspNetCoreEnvironment: Development
+  todoApiServiceBusQueueName: todoapi
+  todoApiServiceEndpointUri: todoapi
+  todoWebDataProtectionBlobStorageContainerName: todoweb
+  todoApiDataProtectionBlobStorageContainerName: todoapi
+
+```
+
+The following command can be used to create the **todolist-configmap** object in the Kubernetes cluster.
+
+**create-todolist-configmap.cmd**
+```batchfile
+kubectl create --filename todolist-configmap.yml --record
+```
+
+You can use one of the following commands to read the value of the keys from the **todolist-configmap**:
+
+```bash
+# Get todolist-configmap
+ kubectl get configmaps todolist-configmap -o yaml
+
+ # Describe todolist-configmap
+kubectl describe configmap todolist-configmap
+```
+
+## Use a Secret in Kubernetes to define sensitive configuration data ##
+In Kubernetes, a [Secret](https://kubernetes.io/docs/concepts/configuration/secret/) is an object that contains a small amount of sensitive data such as a password, a token, or a key. Such information might otherwise be put in a Pod specification or in an image; putting it in a Secret object allows for more control over how it is used, and reduces the risk of accidental exposure.
+
+Sensitive data like connection strings, passwords and keys may be put in the YAML files used to create deployments and pods. However, putting such information in a Secret object provides the following advantages:
+
+ - More control over how sensitive data is defined
+ - Use different values for different deployments of the same application. This is particularly useful in multi-tenant environment where the same Kubernetes cluster hosts multiple instances of the same application, each using different configuration settings.
+ - Reduces the risk of accidental exposure.
+
+Objects of type secret are intended to hold sensitive information, such as passwords, connection strings, OAuth tokens, and ssh keys. Putting sensitive data in a secret is safer and more flexible than putting it verbatim in a pod definition or in a docker image. For more information, see [Secrets](https://kubernetes.io/docs/concepts/configuration/secret/).
+
+ The first step is to create a YAML file to define a **Secret**. Each item in the file must be base64 encoded. The multi-container sample uses a **Secret** to define a value for the following **parameter\environment variable** pairs:
+
+  - cosmosDbEndpointUri\RepositoryService__CosmosDb__EndpointUri 
+  - cosmosDBPrimaryKey\RepositoryService__CosmosDb__PrimaryKey
+  - cosmosDbDatabaseName\RepositoryService__CosmosDb__DatabaseName
+  - cosmosDbCollectionName\RepositoryService__CosmosDb__CollectionName
+  - serviceBusConnectionString\NotificationService__ServiceBus__ConnectionString
+  - dataProtectionBlobStorageConnectionString\DataProtection__BlobStorage__ConnectionString
+  - applicationInsightsInstrumentationKey\ApplicationInsights__InstrumentationKey
+
+The following YAML file can be used to create a **Secret** object named **todolist-secret** that contains a value for the above parameters.
 
 **todolist-secret.yml**
 ```yaml
@@ -2322,6 +2457,7 @@ data:
   dataProtectionBlobStorageConnectionString: BASE64-ENCODED-BLOB-STORAGE-CONNECTION-STRING
   applicationInsightsInstrumentationKey: BASE64-ENCODED-APP-INSIGHTS-INSTRUMENTATION-KEY
 ```
+
 On Windows, you can use the following command to translate a value into a base64 format.
 
 ```batchfile
@@ -2333,17 +2469,25 @@ In a Linux Bash Shell, you can use the base64 command line utility to encode a v
  echo -n "value" | base64
 ```
 
-The following script can be used to create the **todolist-secret** object in the Kubernetes cluster.
+The following command can be used to create the **todolist-secret** object in the Kubernetes cluster.
 
-**create-secret-in-kubernetes.cmd**
+**create-todolist-secret.cmd**
 ```batchfile
-REM Deploy azure-vote sample application  
 kubectl create --filename todolist-secret.yml --record
 ```
 
+You can use **kubectl** to read the value of a setting defined from a **secret** object. For example, you can use the following **Bash** command to read the value of **cosmosDbCollectionName** parameter.
+
+```bash
+# Get secret
+ kubectl get secret todolist-secret -o jsonpath="{.data.cosmosDbCollectionName}" | base64 --decode; echo
+```
+
+## Deploy the application to Kubernetes ##
+
 You can now deploy the application. This time use a YAML file configured to pull **Docker** images from an **Azure Container Service** repository.
 
-**kubernetes-deployments-and-services-from-azure-container-registry.yml**
+**todolist-deployments-and-services-from-azure-container-registry.yml**
 ```yaml
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -2373,7 +2517,10 @@ spec:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Development"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: RepositoryService__CosmosDb__EndpointUri
           valueFrom:
             secretKeyRef:
@@ -2400,14 +2547,20 @@ spec:
                 name: todolist-secret
                 key: serviceBusConnectionString
         - name: NotificationService__ServiceBus__QueueName
-          value: "todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiServiceBusQueueName
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: "todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:
@@ -2456,16 +2609,25 @@ spec:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Development"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: TodoApiService__EndpointUri
-          value: "todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiServiceEndpointUri
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: "todoweb"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoWebDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:
@@ -2496,7 +2658,7 @@ Before deploying the application to your managed **Kubernetes** service, open th
 Finally, run the following command from the Azure Cloud Shell to deploy the multi-container application to your Kubernetes cluster.
 
 ```Batchfile
-kubectl create --filename kubernetes-deployments-and-services-from-azure-container-registry.yml --record
+kubectl create --filename todolist-deployments-and-services-from-azure-container-registry.yml --record
 ```
 
 You can run the following command to display the **EXTERNAL-IP** of the **todoweb** frontend service.
@@ -2614,10 +2776,11 @@ You can run the following **Bash** command to create the **tls-secret** in your 
 # Create tls-secret using YAML file
 kubectl create -f /mnt/c/[PATH-TO-YAML-FILE]/tls-secret.yml
 ```
+In this tutorial, you have seen how to manually create and deploy a certificate for TLS termination to a Kubernetes cluster. However, you can leverage [kube-lego](https://github.com/jetstack/kube-lego) for automatic certificate generation. The open-soutce tool [kube-lego](https://github.com/jetstack/kube-lego) automatically acquires certificates for Kubernetes Ingress resources from [Let's Encrypt](https://letsencrypt.org/) that issues certificates for free. For more information on [kube-lego](https://github.com/jetstack/kube-lego), see [Configure Https / TLS / SSL on Kubernetes with Kube-Lego hosted on Azure Container Service](https://pascalnaber.wordpress.com/2017/10/30/configure-https-tls-ssl-on-kubernetes-with-kube-lego-hosted-on-azure-container-service/).  For more information about Helm, see [The Kubernetes Package Manager](https://github.com/kubernetes/helm) on GitHub. For more information about NGINX Ingress controller, see the [Readme](https://github.com/kubernetes/ingress-nginx/blob/master/deploy/README.md) file for its deployment.
 
 Now you are ready to install the multi-container application to Kubernetes. In this section we'll see how to use the **kubectl** CLI to create services and deployments using the definitions contained in a YAML file. In the next section, we'll see how to create a **Helm** chart and use it to deploy the application to Kubernetes. 
 
-**kubernetes-deployments-and-services-from-docker-hub-ssl.yml**
+**todolist-deployments-and-services-from-docker-hub-ssl.yml**
 ```yaml
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -2642,12 +2805,15 @@ spec:
     spec:
       containers:
       - name: ssl-todoapi
-        image: DOCKER_HUB_REPOSITORY/todoapi:v1
+        image: DOCKER_HUB_REPOSITORY/todoapi:latest
         ports:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Development"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: RepositoryService__CosmosDb__EndpointUri
           valueFrom:
             secretKeyRef:
@@ -2674,14 +2840,20 @@ spec:
                 name: todolist-secret
                 key: serviceBusConnectionString
         - name: NotificationService__ServiceBus__QueueName
-          value: "todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiServiceBusQueueName
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: "todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:
@@ -2697,10 +2869,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 80
-    targetPort: 80
-    protocol: TCP
-    name: http
+  - protocol: TCP
+    port: 80
   selector:
     app: ssl-todoapi
 ---
@@ -2709,7 +2879,7 @@ kind: Deployment
 metadata:
   name: ssl-todoweb
   labels:
-    app: ssl-todoweb
+    app: ssl-todoapi
 spec:
   replicas: 3
   selector:
@@ -2732,16 +2902,25 @@ spec:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: "Development"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: TodoApiService__EndpointUri
-          value: "ssl-todoapi"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiServiceEndpointUri
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: "todoweb"
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoWebDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:
@@ -2757,10 +2936,8 @@ metadata:
 spec:
   type: ClusterIP
   ports:
-  - port: 80
-    targetPort: 80
-    protocol: TCP
-    name: http
+  - protocol: TCP
+    port: 80
   selector:
     app: ssl-todoweb
 ```
@@ -2768,7 +2945,7 @@ spec:
 
 Before deploying the application to your managed **Kubernetes** service, open the YAML file and make the following changes:
 
-- Replace **AZURE_CONTAINER_REGISTRY_NAME** with the name of your **Azure Container Registry**.
+- Replace **DOCKER_HUB_REPOSITORY** with the name of your **Docker Hub** repository.
 
 **Observations**
 
@@ -2781,7 +2958,7 @@ You can now run the following **Bash** script to deploy the **ssl-todoapi** and 
 
 ```Batchfile
 # Deploy the TodoList application using kubectl or helm
-kubectl create -f /mnt/c/[PATH-TO-YAML-FILE]/kubernetes-deployments-and-services-from-docker-hub-ssl.yml --record
+kubectl create -f /mnt/c/[PATH-TO-YAML-FILE]/todolist-deployments-and-services-from-docker-hub-ssl.yml --record
 ```
 In order to expose the **ssl-todoweb** frontend service with a HTTPS public endpoint, you have to create an [Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/) object in the same namespace as the **tls-secret** object.
 
@@ -2885,6 +3062,18 @@ queueName: "todoapi"
 **templates/Deployment.yaml**
 
 ```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todolist-configmap
+  namespace: default
+data:
+  aspNetCoreEnvironment: {{.Values.environment}}
+  todoApiServiceBusQueueName: {{.Values.queueName}}
+  todoApiServiceEndpointUri: {{.Values.backend}}
+  todoWebDataProtectionBlobStorageContainerName: {{.Values.frontend}}
+  todoApiDataProtectionBlobStorageContainerName: {{.Values.backend}}
+---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
@@ -2913,7 +3102,10 @@ spec:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: {{.Values.environment}}
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: RepositoryService__CosmosDb__EndpointUri
           valueFrom:
             secretKeyRef:
@@ -2947,7 +3139,10 @@ spec:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: {{.Values.backend}}
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:
@@ -2994,16 +3189,25 @@ spec:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: {{.Values.environment}}
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: TodoApiService__EndpointUri
-          value: {{.Values.backend}}
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiServiceEndpointUri
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: {{.Values.frontend}}
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoWebDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:

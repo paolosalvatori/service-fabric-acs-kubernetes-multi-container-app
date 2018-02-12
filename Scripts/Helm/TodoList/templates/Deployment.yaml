@@ -1,3 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: todolist-configmap
+  namespace: default
+data:
+  aspNetCoreEnvironment: {{.Values.environment}}
+  todoApiServiceBusQueueName: {{.Values.queueName}}
+  todoApiServiceEndpointUri: {{.Values.backend}}
+  todoWebDataProtectionBlobStorageContainerName: {{.Values.frontend}}
+  todoApiDataProtectionBlobStorageContainerName: {{.Values.backend}}
+---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
@@ -26,7 +38,10 @@ spec:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: {{.Values.environment}}
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: RepositoryService__CosmosDb__EndpointUri
           valueFrom:
             secretKeyRef:
@@ -60,7 +75,10 @@ spec:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: {{.Values.backend}}
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:
@@ -107,16 +125,25 @@ spec:
         - containerPort: 80
         env:
         - name: ASPNETCORE_ENVIRONMENT
-          value: {{.Values.environment}}
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: aspNetCoreEnvironment
         - name: TodoApiService__EndpointUri
-          value: {{.Values.backend}}
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiServiceEndpointUri
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
                 name: todolist-secret
                 key: dataProtectionBlobStorageConnectionString
         - name: DataProtection__BlobStorage__ContainerName
-          value: {{.Values.frontend}}
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoWebDataProtectionBlobStorageContainerName
         - name: ApplicationInsights__InstrumentationKey
           valueFrom:
             secretKeyRef:

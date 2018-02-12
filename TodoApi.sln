@@ -58,20 +58,23 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes-Scripts", "Kubernetes-Scripts", "{9FF09F58-886C-4A9E-B398-105BBC6475A9}"
 	ProjectSection(SolutionItems) = preProject
 		Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-azure-container-service.cmd = Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-azure-container-service.cmd
-		create-application-in-kubernetes-from-docker-hub-ssl.sh = create-application-in-kubernetes-from-docker-hub-ssl.sh
+		Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-docker-hub-ssl.sh = Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-docker-hub-ssl.sh
 		Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-docker-hub.cmd = Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-docker-hub.cmd
-		create-certificate.sh = create-certificate.sh
-		create-secret-in-kubernetes.cmd = create-secret-in-kubernetes.cmd
-		create-tls-secret.sh = create-tls-secret.sh
+		Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-docker-hub-ssl.cmd = Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-docker-hub-ssl.cmd
+		Scripts\Kubernetes-Scripts\create-certificate.sh = Scripts\Kubernetes-Scripts\create-certificate.sh
+		Scripts\Kubernetes-Scripts\create-tls-secret.sh = Scripts\Kubernetes-Scripts\create-tls-secret.sh
+		Scripts\Kubernetes-Scripts\create-todolist-configmap.cmd = Scripts\Kubernetes-Scripts\create-todolist-configmap.cmd
+		Scripts\Kubernetes-Scripts\create-todolist-secret.cmd = Scripts\Kubernetes-Scripts\create-todolist-secret.cmd
 		Scripts\Kubernetes-Scripts\delete-kubernetes-pods-and-services-and-deployments.cmd = Scripts\Kubernetes-Scripts\delete-kubernetes-pods-and-services-and-deployments.cmd
 		Scripts\Helm\install-helm.sh = Scripts\Helm\install-helm.sh
-		install-nginx-ingress-controller.sh = install-nginx-ingress-controller.sh
-		install-openssl.sh = install-openssl.sh
-		Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-azure-container-registry.yml = Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-azure-container-registry.yml
-		kubernetes-deployments-and-services-from-docker-hub-ssl.yml = kubernetes-deployments-and-services-from-docker-hub-ssl.yml
-		Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-docker-hub.yml = Scripts\Kubernetes-Scripts\kubernetes-deployments-and-services-from-docker-hub.yml
-		scale-nginx-ingress-controller-replicas.sh = scale-nginx-ingress-controller-replicas.sh
-		todolist-secret.yml = todolist-secret.yml
+		Scripts\Kubernetes-Scripts\install-nginx-ingress-controller.sh = Scripts\Kubernetes-Scripts\install-nginx-ingress-controller.sh
+		Scripts\Kubernetes-Scripts\install-openssl.sh = Scripts\Kubernetes-Scripts\install-openssl.sh
+		Scripts\Kubernetes-Scripts\scale-nginx-ingress-controller-replicas.sh = Scripts\Kubernetes-Scripts\scale-nginx-ingress-controller-replicas.sh
+		Scripts\Kubernetes-Scripts\todolist-configmap.yml = Scripts\Kubernetes-Scripts\todolist-configmap.yml
+		Scripts\Kubernetes-Scripts\todolist-deployments-and-services-from-azure-container-registry.yml = Scripts\Kubernetes-Scripts\todolist-deployments-and-services-from-azure-container-registry.yml
+		Scripts\Kubernetes-Scripts\todolist-deployments-and-services-from-docker-hub-ssl.yml = Scripts\Kubernetes-Scripts\todolist-deployments-and-services-from-docker-hub-ssl.yml
+		Scripts\Kubernetes-Scripts\todolist-deployments-and-services-from-docker-hub.yml = Scripts\Kubernetes-Scripts\todolist-deployments-and-services-from-docker-hub.yml
+		Scripts\Kubernetes-Scripts\todolist-secret.yml = Scripts\Kubernetes-Scripts\todolist-secret.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service-Fabric-Docker-Compose", "Service-Fabric-Docker-Compose", "{DB75A5CA-9954-48DE-B783-BF164BCA204F}"
