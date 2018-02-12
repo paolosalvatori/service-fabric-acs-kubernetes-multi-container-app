@@ -143,7 +143,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service-Fabric-Key-Vault", 
 		Scripts\Service-Fabric-Key-Vault\KeyVaultCertificate.pfx = Scripts\Service-Fabric-Key-Vault\KeyVaultCertificate.pfx
 	EndProjectSection
 EndProject
-Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "TodoAppForWindowsContainers", "TodoAppForWindowsContainers\TodoAppForWindowsContainers.sfproj", "{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5}"
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "TodoAppForWindowsFromDockerHub", "TodoAppForWindowsContainers\TodoAppForWindowsFromDockerHub.sfproj", "{B7E8EAF1-67FE-4DB6-B505-A6AE87BEFFD5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
