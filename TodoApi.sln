@@ -23,9 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ASP.NET Core Projects", "AS
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Service Fabric Projects", "Service Fabric Projects", "{8B53778D-6B40-4B6C-A249-B873E409FF02}"
 EndProject
-Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "TodoAppFromAzureContainerRegistry", "TodoAppFromAzureContainerRegistry\TodoAppFromAzureContainerRegistry.sfproj", "{5211A0AE-7F8A-4785-96FA-9912BD335F35}"
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "TodoAppForLinuxFromACR", "TodoAppFromAzureContainerRegistry\TodoAppForLinuxFromACR.sfproj", "{5211A0AE-7F8A-4785-96FA-9912BD335F35}"
 EndProject
-Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "TodoAppFromDockerHub", "TodoAppFromDockerHub\TodoAppFromDockerHub.sfproj", "{EEEBC2B5-C67E-4EF6-B268-9EED81BF831F}"
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "TodoAppForLinuxFromDockerHub", "TodoAppFromDockerHub\TodoAppForLinuxFromDockerHub.sfproj", "{EEEBC2B5-C67E-4EF6-B268-9EED81BF831F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Scripts", "Scripts", "{B0A91F4B-9B47-49CB-8820-832D4E990EA7}"
 EndProject
