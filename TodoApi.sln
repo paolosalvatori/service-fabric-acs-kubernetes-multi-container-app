@@ -69,6 +69,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes-Scripts", "Kuber
 		Scripts\Helm\install-helm.sh = Scripts\Helm\install-helm.sh
 		Scripts\Kubernetes-Scripts\install-nginx-ingress-controller.sh = Scripts\Kubernetes-Scripts\install-nginx-ingress-controller.sh
 		Scripts\Kubernetes-Scripts\install-openssl.sh = Scripts\Kubernetes-Scripts\install-openssl.sh
+		Scripts\Kubernetes-Scripts\nginx-ingress.yml = Scripts\Kubernetes-Scripts\nginx-ingress.yml
 		Scripts\Kubernetes-Scripts\scale-nginx-ingress-controller-replicas.sh = Scripts\Kubernetes-Scripts\scale-nginx-ingress-controller-replicas.sh
 		Scripts\Kubernetes-Scripts\todolist-configmap.yml = Scripts\Kubernetes-Scripts\todolist-configmap.yml
 		Scripts\Kubernetes-Scripts\todolist-deployments-and-services-from-azure-container-registry.yml = Scripts\Kubernetes-Scripts\todolist-deployments-and-services-from-azure-container-registry.yml

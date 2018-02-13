@@ -1,0 +1,10 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  tls:
+  - secretName: tls-secret
+  backend:
+    serviceName: ssl-todoweb
+    servicePort: 80

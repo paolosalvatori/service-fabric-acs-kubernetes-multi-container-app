@@ -439,7 +439,7 @@ services:
 
 **Configuration**
 
-Before debugging the solution in Visual Studio, make sure accomplish the following tasks:
+Before debugging the solution in Visual Studio, make sure to perform the following tasks:
 
   - Run the **CreateKeyVault.cmd** batch script to create the **Azure Key Vault** used by the application. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
 
@@ -1660,7 +1660,7 @@ Looking at the application manifest, you can observe the certificate used by the
 ```
 **Configuration**
 
-Before deploying the application to your **Azure Service Fabric Linux** cluster, open the **Cloud.xml** file and make the following changes:
+Before deploying the application to your **Azure Service Fabric Windows** cluster, open the **Cloud.xml** file and make the following changes:
 
 - Replace **DOCKER_HUB_USERNAME** with the username of your **Docker Hub** repository.
 - Replace **DOCKER_HUB_PASSWORD** with the password of your **Docker Hub** repository.
@@ -2724,11 +2724,11 @@ You can you can use the following **Bash** script to scale out the number of rep
 
 **scale-nginx-ingress-controller-replicas.sh**
 ```bash
-# Scale the number of replicas of the nginx-ingress-nginx-ingress-controller to 3
-kubectl scale deployment nginx-ingress-nginx-ingress-controller --replicas=3 
+# Scale the number of replicas of the nginx-ingress-controller to 3
+kubectl scale deployment nginx-ingress-controller --replicas=3 
 
-# Scale the number of replicas of the nginx-ingress-nginx-ingress-default-backend to 3
-kubectl scale deployment nginx-ingress-nginx-ingress-default-backend --replicas=3
+# Scale the number of replicas of the nginx-ingress-default-backend to 3
+kubectl scale deployment nginx-ingress-default-backend --replicas=3
 ```
 
 The next step is to create a **secret** containing the certificate and private key used for TLS termination. We can use **openssl** utility to create a test certificate. You can use the following **Bash** script to install **openssl**.
