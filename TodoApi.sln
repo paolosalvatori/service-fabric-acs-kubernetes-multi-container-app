@@ -62,6 +62,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kubernetes-Scripts", "Kuber
 		Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-docker-hub.cmd = Scripts\Kubernetes-Scripts\create-application-in-kubernetes-from-docker-hub.cmd
 		Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-docker-hub-ssl.cmd = Scripts\Kubernetes-Scripts\create-application-to-kubernetes-from-docker-hub-ssl.cmd
 		Scripts\Kubernetes-Scripts\create-certificate.sh = Scripts\Kubernetes-Scripts\create-certificate.sh
+		Scripts\Kubernetes-Scripts\create-nginx-ingress.sh = Scripts\Kubernetes-Scripts\create-nginx-ingress.sh
 		Scripts\Kubernetes-Scripts\create-tls-secret.sh = Scripts\Kubernetes-Scripts\create-tls-secret.sh
 		Scripts\Kubernetes-Scripts\create-todolist-configmap.cmd = Scripts\Kubernetes-Scripts\create-todolist-configmap.cmd
 		Scripts\Kubernetes-Scripts\create-todolist-secret.cmd = Scripts\Kubernetes-Scripts\create-todolist-secret.cmd

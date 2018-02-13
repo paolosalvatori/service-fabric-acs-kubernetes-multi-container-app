@@ -2977,8 +2977,9 @@ spec:
 
 You can run the following **Bash** command to create the **nginx-ingress** in your Kubernetes cluster using the above YAML file.
 
+**create-nginx-ingress.sh**
 ```bash
-# Create tls-secret using YAML file
+# Create nginx-ingress using a YAML file
 kubectl create -f /mnt/c/[PATH-TO-YAML-FILE]/nginx-ingress.yml
 ```
 
@@ -3051,29 +3052,15 @@ frontendImage: "todoweb"
 backendImage: "todoapi"
 frontendTag: "v2"
 backendTag: "v2"
-environment: "Development"
 frontend: "todoweb"
 backend: "todoapi"
 frontendServiceType: "LoadBalancer"
 backendServiceType: "LoadBalancer"
-queueName: "todoapi"
 ```
 
 **templates/Deployment.yaml**
 
 ```yaml
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: todolist-configmap
-  namespace: default
-data:
-  aspNetCoreEnvironment: {{.Values.environment}}
-  todoApiServiceBusQueueName: {{.Values.queueName}}
-  todoApiServiceEndpointUri: {{.Values.backend}}
-  todoWebDataProtectionBlobStorageContainerName: {{.Values.frontend}}
-  todoApiDataProtectionBlobStorageContainerName: {{.Values.backend}}
----
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
@@ -3243,7 +3230,7 @@ You can run the following **Bash** script to package the chart. This operation  
 helm package /mnt/c/[PATH-TO-CHART]/TodoList
 ```
 
-If you want to install the **todolist** application, you can run the following **Bash** comamand.
+Make sure to have created the **todolist-config** and **todolist-secret** in your Kubernetes cluster as explained previously. Now, if you want to install the **todolist** application, run the following **Bash** command:
 
 ```bash
 # Install package
