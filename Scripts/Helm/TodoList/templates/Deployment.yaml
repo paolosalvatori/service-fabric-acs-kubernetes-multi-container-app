@@ -56,7 +56,10 @@ spec:
                 name: todolist-secret
                 key: serviceBusConnectionString
         - name: NotificationService__ServiceBus__QueueName
-          value: {{.Values.queueName}}
+          valueFrom:
+            configMapKeyRef:
+              name: todolist-configmap
+              key: todoApiServiceBusQueueName
         - name: DataProtection__BlobStorage__ConnectionString
           valueFrom:
             secretKeyRef:
