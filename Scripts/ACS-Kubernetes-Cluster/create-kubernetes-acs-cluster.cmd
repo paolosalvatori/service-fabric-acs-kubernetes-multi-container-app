@@ -10,5 +10,5 @@ az acs kubernetes install-cli
 REM Get credentials to connect to Kubernetes cluster using kubectl
 az acs kubernetes get-credentials --name AcsKubernetes --resource-group AcsKubernetesResourceGroup 
 
-REM Browse to Kubernetes Web UI
+REM Show the dashboard for a Kubernetes cluster in a web browser
 az acs kubernetes browse --name AcsKubernetes --resource-group AcsKubernetesResourceGroup
