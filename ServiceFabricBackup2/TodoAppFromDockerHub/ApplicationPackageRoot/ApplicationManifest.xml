@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ApplicationManifest ApplicationTypeName="TodoAppType"
+                     ApplicationTypeVersion="1.0.0"
+                     xmlns="http://schemas.microsoft.com/2011/01/fabric"
+                     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Parameters>
+    <!-- Shared Parameters -->
+    <Parameter Name="DockerHub_Username" DefaultValue="" />
+    <Parameter Name="DockerHub_Password" DefaultValue="" />
+    <Parameter Name="ASPNETCORE_ENVIRONMENT" DefaultValue=""/>
+    <Parameter Name="Certificate_Thumbprint" DefaultValue="" />
+    <Parameter Name="AzureKeyVault__ClientId" DefaultValue=""/>
+    <Parameter Name="AzureKeyVault__Name" DefaultValue=""/>
+    <!-- TodoWeb Parameters -->
+    <Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+    <!-- TodoApi Parameters -->
+    <Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
+    <Parameter Name="TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
+    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" DefaultValue=""/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+  </Parameters>
+  <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
+       should match the Name and Version attributes of the ServiceManifest element defined in the 
+       ServiceManifest.xml file. -->
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="TodoWebPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+    <EnvironmentOverrides CodePackageRef="Code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
+      <EnvironmentVariable Name="TodoApiService__EndpointUri" Value="[TodoWeb_TodoApiService__EndpointUri]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoWeb_DataProtection__BlobStorage__ContainerName]"/>
+    </EnvironmentOverrides>
+    <Policies>
+      <ContainerHostPolicies CodePackageRef="Code">
+        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+        <PortBinding ContainerPort="80" EndpointRef="TodoWebEndpoint" />
+        <CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
+      </ContainerHostPolicies>
+    </Policies>
+  </ServiceManifestImport>
+  <ServiceManifestImport>
+    <ServiceManifestRef ServiceManifestName="TodoApiPkg" ServiceManifestVersion="1.0.0" />
+    <ConfigOverrides />
+    <EnvironmentOverrides CodePackageRef="Code">
+      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
+      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
+      <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
+      <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value="[TodoApi_NotificationService__ServiceBus__QueueName]"/>
+      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoApi_DataProtection__BlobStorage__ContainerName]"/>
+    </EnvironmentOverrides>
+    <Policies>
+      <ContainerHostPolicies CodePackageRef="Code">
+        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+        <PortBinding ContainerPort="80" EndpointRef="TodoApiEndpoint" />
+        <CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
+      </ContainerHostPolicies>
+    </Policies>
+  </ServiceManifestImport>
+  <DefaultServices>
+    <!-- The section below creates instances of service types, when an instance of this 
+         application type is created. You can also create one or more instances of service type using the 
+         ServiceFabric PowerShell module.
+         
+         The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
+    <Service Name="TodoWeb" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoweb.todoapp">
+      <StatelessService ServiceTypeName="TodoWebType" InstanceCount="[TodoWeb_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+    <Service Name="TodoApi" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoapi.todoapp">
+      <StatelessService ServiceTypeName="TodoApiType" InstanceCount="[TodoApi_InstanceCount]">
+        <SingletonPartition />
+      </StatelessService>
+    </Service>
+  </DefaultServices>
+</ApplicationManifest>

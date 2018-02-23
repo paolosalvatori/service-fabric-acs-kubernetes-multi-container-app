@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Parameters>
+    <!-- Shared Parameters -->
+    <Parameter Name="DockerHub_Username" Value="DOCKER_HUB_USERNAME" />
+    <Parameter Name="DockerHub_Password" Value="DOCKER_HUB_PASSWORD" />
+    <Parameter Name="ASPNETCORE_ENVIRONMENT" Value="Development"/>
+    <Parameter Name="Certificate_Thumbprint" Value="CERTIFICATE_THUMBPRINT" />
+    <Parameter Name="AzureKeyVault__ClientId" Value="AZURE_AD_APPLICATION_ID"/>
+    <Parameter Name="AzureKeyVault__Name" Value="AZURE_KEY_VAULT_NAME"/>
+    <!-- TodoWeb Parameters -->
+    <Parameter Name="TodoWeb_InstanceCount" Value="-1" />
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
+    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
+    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" Value="todoweb"/>
+    <!-- TodoApi Parameters -->
+    <Parameter Name="TodoApi_InstanceCount" Value="-1" />
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
+    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
+    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
+    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" Value="todoapi"/>
+  </Parameters>
+</Application>
