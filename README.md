@@ -20,7 +20,7 @@ For detailed guidance about building a microservices architecture on Azure, see 
 # Azure Service Fabric and ACS/Kubernetes Environments #
 This repository contains a sample multi-container application and the scripts to deploy it on the following environments: 
 
-- Service Fabric Linux cluster in Azure with the DNS service.
+- Service Fabric Linux or Windows cluster with container support in Azure with the DNS service.
 - Azure Container Service Kubernetes cluster on Linux 
 
 # Prerequisites for development machine #
