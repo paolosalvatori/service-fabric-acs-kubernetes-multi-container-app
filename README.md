@@ -60,69 +60,69 @@ The solution has the following solution folders:
 
   - **ACS-Kubernetes-Cluster**: this folder contains the following scripts:
 
-    - **create-kubernetes-acs-cluster.cmd**: this batch script is used to create an **Azure Container Service Kubernetes** cluster. For more information, see [Azure Container Service with Kubernetes Documentation](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/).
+	- **create-kubernetes-acs-cluster.cmd**: this batch script is used to create an **Azure Container Service Kubernetes** cluster. For more information, see [Azure Container Service with Kubernetes Documentation](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/).
 
   - **AKS-Kubernetes-Cluster**: this folder contains the following scripts:
 
-      - **create-kubernetes-aks-cluster.cmd**: this batch script is used to create a **Azure Container Service Kubernetes** managed cluster. For more information, see [Azure Container Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/).
+	  - **create-kubernetes-aks-cluster.cmd**: this batch script is used to create a **Azure Container Service Kubernetes** managed cluster. For more information, see [Azure Container Service (AKS)](https://docs.microsoft.com/en-us/azure/aks/).
 
   - **Azure-Container-Registry**: this folder contains the following scripts:
 
-    - **create-azure-container-registry.cmd**: this batch script is used to create an **Azure Container Registry** that is a managed Docker registry service based on the open-source Docker Registry 2.0. This repository can be used to store images for container deployments [Azure Container Service](https://docs.microsoft.com/en-us/azure/container-service/index), [Azure App Service](https://docs.microsoft.com/en-us/app-service/index.md), [Azure Batch](https://docs.microsoft.com/en-us/azure/batch/index), [Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/), and others. For more information, see [Introduction to private Docker container registries in Azure](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
+	- **create-azure-container-registry.cmd**: this batch script is used to create an **Azure Container Registry** that is a managed Docker registry service based on the open-source Docker Registry 2.0. This repository can be used to store images for container deployments [Azure Container Service](https://docs.microsoft.com/en-us/azure/container-service/index), [Azure App Service](https://docs.microsoft.com/en-us/app-service/index.md), [Azure Batch](https://docs.microsoft.com/en-us/azure/batch/index), [Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/), and others. For more information, see [Introduction to private Docker container registries in Azure](https://docs.microsoft.com/en-us/azure/container-registry/container-registry-intro).
 
   - **Azure-DNS**: this folder contains the following scripts
 
-    - **create-azure-dns-for-kubernetes-todoapi-service.cmd**: this batch script is used to create an **Azure DNS Service** that is responsible for translating (or resolving) a website or service name to its IP address. For more information, see [Azure DNS overview](https://docs.microsoft.com/en-gb/azure/dns/dns-overview).
+	- **create-azure-dns-for-kubernetes-todoapi-service.cmd**: this batch script is used to create an **Azure DNS Service** that is responsible for translating (or resolving) a website or service name to its IP address. For more information, see [Azure DNS overview](https://docs.microsoft.com/en-gb/azure/dns/dns-overview).
 
   - **Push-Docker-Images-Scripts**: this folder contains the following scripts:
 
-    - **push-images-to-azure-container-registry.cmd**: this batch script is used to push **Docker** images to an **Azure Container Registry**. For more information, see [Deploy and use Azure Container Registry](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-acr).
+	- **push-images-to-azure-container-registry.cmd**: this batch script is used to push **Docker** images to an **Azure Container Registry**. For more information, see [Deploy and use Azure Container Registry](https://docs.microsoft.com/en-us/azure/container-instances/container-instances-tutorial-prepare-acr).
 
-    - **push-images-to-docker-hub.cmd**: this script is used to push **Docker** images to a **Docker Hub Repository**. For more information, see [Push images to Docker Cloud](https://docs.docker.com/docker-cloud/builds/push-images/).
+	- **push-images-to-docker-hub.cmd**: this script is used to push **Docker** images to a **Docker Hub Repository**. For more information, see [Push images to Docker Cloud](https://docs.docker.com/docker-cloud/builds/push-images/).
 
   - **Kubernetes-Scripts**: this folder contains the following scripts:
 
-    - **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **todolist-deployments-and-services-from-azure-container-registry.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
+	- **create-application-in-kubernetes-from-azure-container-service.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from an **Azure Container Registry** using the definitions contained in the **todolist-deployments-and-services-from-azure-container-registry.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
 
-    - **create-application-in-kubernetes-from-docker-hub.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from **Docker Hub** using the definitions contained in the **todolist-deployments-and-services-from-docker-hub.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
+	- **create-application-in-kubernetes-from-docker-hub.cmd**: this batch script can be used to create the **services** and **deployments** that compose the multi-container application pulling the **Docker** images from **Docker Hub** using the definitions contained in the **todolist-deployments-and-services-from-docker-hub.yml** file. For more information, see [Run applications in Kubernetes](https://docs.microsoft.com/en-us/azure/container-service/kubernetes/container-service-tutorial-kubernetes-deploy-application).
 
-     - **create-todolist-configmap.cmd**: this batch script can be used to create the **todolist-configmap** object in the Kubernetes cluster using the **todolist-configmap.yml** that contains non-sensitive configuration data used by the multi-container application.
+	 - **create-todolist-configmap.cmd**: this batch script can be used to create the **todolist-configmap** object in the Kubernetes cluster using the **todolist-configmap.yml** that contains non-sensitive configuration data used by the multi-container application.
 
-    - **create-todolist-secret.cmd**: this batch script can be used to create the **todolist-secret** object in the Kubernetes cluster using the **todolist-secret.yml** that contains sensitive configuration data used by the multi-container application.
+	- **create-todolist-secret.cmd**: this batch script can be used to create the **todolist-secret** object in the Kubernetes cluster using the **todolist-secret.yml** that contains sensitive configuration data used by the multi-container application.
 
-    - **delete-kubernetes-pods-and-services-and-deployments.cmd**: this batch script can be used to delete **pods**, **services**, and **depoyments** from the **Kubernetes** cluster using the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface.
+	- **delete-kubernetes-pods-and-services-and-deployments.cmd**: this batch script can be used to delete **pods**, **services**, and **depoyments** from the **Kubernetes** cluster using the [kubectl](https://kubernetes.io/docs/user-guide/kubectl-overview/) command line interface.
 
-    - **install-helm.sh**: this Bash script can be used to install and initialize [Helm](https://docs.helm.sh/).
+	- **install-helm.sh**: this Bash script can be used to install and initialize [Helm](https://docs.helm.sh/).
 
-    - **install-nginx-ingress-controller.sh**: this Bash script can be used to install the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) in your Kubernetes cluster.
+	- **install-nginx-ingress-controller.sh**: this Bash script can be used to install the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx) in your Kubernetes cluster.
 
-    - **scale-nginx-ingress-controller-replicas.sh**: this Bash script can be used to scale out the number of replicas used by the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx).
+	- **scale-nginx-ingress-controller-replicas.sh**: this Bash script can be used to scale out the number of replicas used by the [Nginx Ingress controller](https://github.com/kubernetes/ingress-nginx).
 
-    - **install-open-ssl.sh**: this Bash script can be used to install the openssl utility.
+	- **install-open-ssl.sh**: this Bash script can be used to install the openssl utility.
 
-    - **create-certificate.sh**: this Bash script can be used to create a test certificate for Kubernetes.
-      
-    - **create-tls-secret.sh**: this Bash script can be used to create a Secret in your Kubernetes cluster using the self-signed certificate.
+	- **create-certificate.sh**: this Bash script can be used to create a test certificate for Kubernetes.
+	  
+	- **create-tls-secret.sh**: this Bash script can be used to create a Secret in your Kubernetes cluster using the self-signed certificate.
 
   - **Service-Fabric-Docker-Compose**: this folder contains the following scripts:
 
-    - **servicefabric-create-deployment-from-azure-container-registry.cmd**: this batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+	- **servicefabric-create-deployment-from-azure-container-registry.cmd**: this batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-    - **servicefabric-create-deployment-from-azure-container-registry.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+	- **servicefabric-create-deployment-from-azure-container-registry.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from an **Azure Container Registry** using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-azure-container-registry.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-    - **servicefabric-create-deployment-from-docker-hub.cmd**: this batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+	- **servicefabric-create-deployment-from-docker-hub.cmd**: this batch script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
-    - **servicefabric-create-deployment-from-docker-hub.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
+	- **servicefabric-create-deployment-from-docker-hub.ps1**: this PowerShell script is used to deploy the **DockerComposeTodoApp** multi-container application to an **Azure Service Fabric Linux** cluster using [Docker Compose](https://docs.docker.com/compose/) and pulling the **Docker** images from a **Docker Hub** repository using the definition for the **todoweb** and **todoapi** services contained in the **servicefabric-docker-compose-from-docker-hub.yml** file.. For more information, see [Docker Compose deployment support in Azure Service Fabric](https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-docker-compose).
 
   - **Service-Fabric-Key-Vault**: this folder contains the following scripts:
 
-    - **CreateKeyVault.cmd**: this batch script is used to create an **Azure Key Vault**. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
+	- **CreateKeyVault.cmd**: this batch script is used to create an **Azure Key Vault**. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
 
-    - **AddSecretsToKeyVault.cmd**: this batch script is used to add secrets to the **Azure Key Vault** used by the multi-container application in Service Fabric. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
+	- **AddSecretsToKeyVault.cmd**: this batch script is used to add secrets to the **Azure Key Vault** used by the multi-container application in Service Fabric. For more information, see [Manage Key Vault using CLI 2.0](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-manage-with-cli2).
 
-    - **CertificateCommands.cmd**: this batch script contains commands to create a PEM and Key files from a PFX certificate file and create a CER certificate containing only the public key from a PFX certificate file using the [OpenSSL](https://www.openssl.org/) tool.
+	- **CertificateCommands.cmd**: this batch script contains commands to create a PEM and Key files from a PFX certificate file and create a CER certificate containing only the public key from a PFX certificate file using the [OpenSSL](https://www.openssl.org/) tool.
 
-    - **CreateAADApplication.ps1**: this PowerShell script is used to create an **Azure Active Directory Application** using a certificate as credentials, to create an **Azure Active Directory Service Principal** for the application and finally to associate the service principal with the **Azure Key Vault** used by the application as repository for secrets. For more information, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret) on **Azure Key Vault** documentation.
+	- **CreateAADApplication.ps1**: this PowerShell script is used to create an **Azure Active Directory Application** using a certificate as credentials, to create an **Azure Active Directory Service Principal** for the application and finally to associate the service principal with the **Azure Key Vault** used by the application as repository for secrets. For more information, see [Authenticate with a Certificate instead of a Client Secret](https://docs.microsoft.com/en-us/azure/key-vault/key-vault-use-from-web-application#authenticate-with-a-certificate-instead-of-a-client-secret) on **Azure Key Vault** documentation.
 
 
 **Note**: both the frontend (**todoweb**) and backend (**todoapi**) containerized services use the **microsoft/aspnetcore:2.0** as base **Docker** image. For more information, see [Official .NET Docker images](https://docs.microsoft.com/en-us/dotnet/standard/microservices-architecture/net-core-net-framework-containers/official-net-docker-images)
@@ -159,57 +159,57 @@ The following table contains the configuration of the **TodoApi** service define
 {
   "AzureKeyVault": {
   "Certificate": {
-    "CertificateEnvironmentVariable": "",
-    "KeyEnvironmentVariable": ""
+	"CertificateEnvironmentVariable": "",
+	"KeyEnvironmentVariable": ""
   },
   "ClientId": "",
   "Name": ""
   },
   "RepositoryService": {
-      "CosmosDb": {
-          "EndpointUri": "",
-          "PrimaryKey": "",
-          "DatabaseName": "",
-          "CollectionName": ""
-      }
+	  "CosmosDb": {
+		  "EndpointUri": "",
+		  "PrimaryKey": "",
+		  "DatabaseName": "",
+		  "CollectionName": ""
+	  }
   },
   "NotificationService": {
-      "ServiceBus": {
-          "ConnectionString": "",
-          "QueueName": ""
-      }
+	  "ServiceBus": {
+		  "ConnectionString": "",
+		  "QueueName": ""
+	  }
   },
   "DataProtection": {
-    "BlobStorage": {
-      "ConnectionString": "",
-      "ContainerName": ""
-    }
+	"BlobStorage": {
+	  "ConnectionString": "",
+	  "ContainerName": ""
+	}
   },
   "ApplicationInsights": {
-      "InstrumentationKey": ""
+	  "InstrumentationKey": ""
   },
   "Logging": {
-      "IncludeScopes": false,
-      "Debug": {
-          "LogLevel": {
-              "Default": "Information"
-          }
-      },
-      "Console": {
-          "LogLevel": {
-              "Default": "Information"
-          }
-      },
-      "EventSource": {
-          "LogLevel": {
-              "Default": "Warning"
-          }
-      },
-      "ApplicationInsights": {
-          "LogLevel": {
-              "Default": "Information"
-          }
-      }
+	  "IncludeScopes": false,
+	  "Debug": {
+		  "LogLevel": {
+			  "Default": "Information"
+		  }
+	  },
+	  "Console": {
+		  "LogLevel": {
+			  "Default": "Information"
+		  }
+	  },
+	  "EventSource": {
+		  "LogLevel": {
+			  "Default": "Warning"
+		  }
+	  },
+	  "ApplicationInsights": {
+		  "LogLevel": {
+			  "Default": "Information"
+		  }
+	  }
   }
 }
 ```
@@ -233,35 +233,35 @@ The following table contains the configuration of the **TodoWeb** service define
 ```json
 {
   "AzureKeyVault": {
-    "Certificate": {
-      "CertificateEnvironmentVariable": "",
-      "KeyEnvironmentVariable": ""
-    },
-    "ClientId": "",
-    "Name": ""
+	"Certificate": {
+	  "CertificateEnvironmentVariable": "",
+	  "KeyEnvironmentVariable": ""
+	},
+	"ClientId": "",
+	"Name": ""
   },
   "TodoApiService": {
-    "EndpointUri": ""
+	"EndpointUri": ""
   },
   "DataProtection": {
-    "BlobStorage": {
-      "ConnectionString": "",
-      "ContainerName": ""
-    }
+	"BlobStorage": {
+	  "ConnectionString": "",
+	  "ContainerName": ""
+	}
   },
   "Logging": {
-    "IncludeScopes": false,
-    "LogLevel": {
-      "Default": "Warning"
-    },
-    "ApplicationInsights": {
-      "LogLevel": {
-        "Default": "Information"
-      }
-    }
+	"IncludeScopes": false,
+	"LogLevel": {
+	  "Default": "Warning"
+	},
+	"ApplicationInsights": {
+	  "LogLevel": {
+		"Default": "Information"
+	  }
+	}
   },
   "ApplicationInsights": {
-    "InstrumentationKey": ""
+	"InstrumentationKey": ""
   }
 }
 ```
@@ -346,16 +346,16 @@ version: '3'
 
 services:
   todoapi:
-    image: todoapi
-    build:
-      context: ./TodoApi
-      dockerfile: Dockerfile
+	image: todoapi
+	build:
+	  context: ./TodoApi
+	  dockerfile: Dockerfile
 
   todoweb:
-    image: todoweb
-    build:
-      context: ./TodoWeb
-      dockerfile: Dockerfile
+	image: todoweb
+	build:
+	  context: ./TodoWeb
+	  dockerfile: Dockerfile
 
 ```
 
@@ -365,30 +365,30 @@ version: '3'
 
 services:
   todoapi:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - RepositoryService__CosmosDb__EndpointUri=COSMOS_DB_ENDPOINT_URI
-      - RepositoryService__CosmosDb__PrimaryKey=COSMOS_DB_PRIMARY_KEY
-      - RepositoryService__CosmosDb__DatabaseName=TodoApiDb
-      - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
-      - NotificationService__ServiceBus__ConnectionString=SERVICE_BUS_CONNECTION_STRING
-      - NotificationService__ServiceBus__QueueName=todoapi
-      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
-      - DataProtection__BlobStorage__ContainerName=todoapi
-      - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
+	environment:
+	  - ASPNETCORE_ENVIRONMENT=Development
+	  - RepositoryService__CosmosDb__EndpointUri=COSMOS_DB_ENDPOINT_URI
+	  - RepositoryService__CosmosDb__PrimaryKey=COSMOS_DB_PRIMARY_KEY
+	  - RepositoryService__CosmosDb__DatabaseName=TodoApiDb
+	  - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
+	  - NotificationService__ServiceBus__ConnectionString=SERVICE_BUS_CONNECTION_STRING
+	  - NotificationService__ServiceBus__QueueName=todoapi
+	  - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+	  - DataProtection__BlobStorage__ContainerName=todoapi
+	  - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
 
-    ports:
-      - "80"
+	ports:
+	  - "80"
 
   todoweb:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - TodoApiService__EndpointUri=todoapi
-      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
-      - DataProtection__BlobStorage__ContainerName=todoweb
-      - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
-    ports:
-      - "80"
+	environment:
+	  - ASPNETCORE_ENVIRONMENT=Development
+	  - TodoApiService__EndpointUri=todoapi
+	  - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+	  - DataProtection__BlobStorage__ContainerName=todoweb
+	  - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
+	ports:
+	  - "80"
 ```
 
 **Configuration**
@@ -410,36 +410,36 @@ version: '3'
 
 services:
   todoapi:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - NotificationService__ServiceBus__QueueName=todoapi
-      - DataProtection__BlobStorage__ContainerName=todoapi
-      - AzureKeyVault__Certificate__CertificateEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PEM
-      - AzureKeyVault__Certificate__KeyEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey
-      - AzureKeyVault__ClientId=AZURE_AD_APPLICATION_ID
-      - AzureKeyVault__Name=AZURE_KEY_VAULT_NAME
-      - Certificates_TodoApiPkg_Code_TodoListCert_PEM=/pem/KeyVaultCertificate.pem
-      - Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey=/pem/KeyVaultCertificate.key
-    ports:
-      - "80"
-    volumes:
-      - C:\Temp\Pem:/pem
+	environment:
+	  - ASPNETCORE_ENVIRONMENT=Development
+	  - NotificationService__ServiceBus__QueueName=todoapi
+	  - DataProtection__BlobStorage__ContainerName=todoapi
+	  - AzureKeyVault__Certificate__CertificateEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PEM
+	  - AzureKeyVault__Certificate__KeyEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey
+	  - AzureKeyVault__ClientId=AZURE_AD_APPLICATION_ID
+	  - AzureKeyVault__Name=AZURE_KEY_VAULT_NAME
+	  - Certificates_TodoApiPkg_Code_TodoListCert_PEM=/pem/KeyVaultCertificate.pem
+	  - Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey=/pem/KeyVaultCertificate.key
+	ports:
+	  - "80"
+	volumes:
+	  - C:\Temp\Pem:/pem
 
   todoweb:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - TodoApiService__EndpointUri=todoapi
-      - DataProtection__BlobStorage__ContainerName=todoweb
-      - AzureKeyVault__Certificate__CertificateEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PEM
-      - AzureKeyVault__Certificate__KeyEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey
-      - AzureKeyVault__ClientId=AZURE_AD_APPLICATION_ID
-      - AzureKeyVault__Name=AZURE_KEY_VAULT_NAME
-      - Certificates_TodoApiPkg_Code_TodoListCert_PEM=/pem/KeyVaultCertificate.pem
-      - Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey=/pem/KeyVaultCertificate.key
-    ports:
-      - "80"
-    volumes:
-      - C:\Temp\Pem:/pem
+	environment:
+	  - ASPNETCORE_ENVIRONMENT=Development
+	  - TodoApiService__EndpointUri=todoapi
+	  - DataProtection__BlobStorage__ContainerName=todoweb
+	  - AzureKeyVault__Certificate__CertificateEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PEM
+	  - AzureKeyVault__Certificate__KeyEnvironmentVariable=Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey
+	  - AzureKeyVault__ClientId=AZURE_AD_APPLICATION_ID
+	  - AzureKeyVault__Name=AZURE_KEY_VAULT_NAME
+	  - Certificates_TodoApiPkg_Code_TodoListCert_PEM=/pem/KeyVaultCertificate.pem
+	  - Certificates_TodoApiPkg_Code_TodoListCert_PrivateKey=/pem/KeyVaultCertificate.key
+	ports:
+	  - "80"
+	volumes:
+	  - C:\Temp\Pem:/pem
 ```
 
 **Configuration**
@@ -457,8 +457,8 @@ Before debugging the solution in Visual Studio, make sure to perform the followi
 
  - Make the following changes to the **docker-compose-override.yml** file:
 
-    - Replace **AZURE_AD_APPLICATION_ID** with the **Application ID** of the **Azure Active Directory Service Principal** used by the frontend and backend services to authenticate against **Azure Key Vault**.
-    - Replace **AZURE_KEY_VAULT_NAME** with the name of the **Azure Key Vault** used by the application.
+	- Replace **AZURE_AD_APPLICATION_ID** with the **Application ID** of the **Azure Active Directory Service Principal** used by the frontend and backend services to authenticate against **Azure Key Vault**.
+	- Replace **AZURE_KEY_VAULT_NAME** with the name of the **Azure Key Vault** used by the application.
 
 
 ## Push Docker images to Docker Hub ##
@@ -641,20 +641,20 @@ $credValue = [System.Convert]::ToBase64String($x509.GetRawCertData())
 
 # Create a new Azure AD application for TodoListApp
 $adapp = New-AzureRmADApplication -DisplayName $displayName `
-                                  -HomePage $appUrl `
-                                  -IdentifierUris $appUrl `
-                                  -CertValue $credValue `
-                                  -StartDate $x509.NotBefore `
-                                  -EndDate $x509.NotAfter
+								  -HomePage $appUrl `
+								  -IdentifierUris $appUrl `
+								  -CertValue $credValue `
+								  -StartDate $x509.NotBefore `
+								  -EndDate $x509.NotAfter
 
 # Create a new Azure AD service proncipal for the Azure AD TodoListApp application
 $sp = New-AzureRmADServicePrincipal -ApplicationId $adapp.ApplicationId
 
 # Grants permissions for a user, application, or security group to perform operations with a key vault.
 Set-AzureRmKeyVaultAccessPolicy -VaultName $keyVaultName `
-                                -ResourceGroupName $keyVaultResourceGroup `
-                                -ServicePrincipalName $adapp.ApplicationId `
-                                -PermissionsToSecrets all
+								-ResourceGroupName $keyVaultResourceGroup `
+								-ServicePrincipalName $adapp.ApplicationId `
+								-PermissionsToSecrets all
 
 # get the thumbprint to use in your app settings
 $x509.Thumbprint
@@ -670,8 +670,8 @@ You can secure your container services by specifying a certificate. The certific
 
 ```XML
 <ContainerHostPolicies CodePackageRef="NodeContainerService.Code">
-    <CertificateRef Name="MyCert1" X509StoreName="My" X509FindValue="[Thumbprint1]"/>
-    <CertificateRef Name="MyCert2" X509FindValue="[Thumbprint2]"/>
+	<CertificateRef Name="MyCert1" X509StoreName="My" X509FindValue="[Thumbprint1]"/>
+	<CertificateRef Name="MyCert2" X509FindValue="[Thumbprint2]"/>
 ```
 For windows clusters, when starting the application, the runtime reads the certificates and generates a .pfx file and password for each certificate. This .pfx file and password file are accessible inside the container using the following environment variables:
 
@@ -709,85 +709,85 @@ using Microsoft.Extensions.Configuration;
 
 namespace TodoApi
 {
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            BuildWebHost(args).Run();
-        }
+	public class Program
+	{
+		public static void Main(string[] args)
+		{
+			BuildWebHost(args).Run();
+		}
 
-        public static IWebHost BuildWebHost(string[] args)
-        {
-            var builder = WebHost.CreateDefaultBuilder(args)
-                .UseApplicationInsights()
-                .CaptureStartupErrors(true)
-                .UseSetting(WebHostDefaults.DetailedErrorsKey, "true")
-                .ConfigureAppConfiguration(ConfigConfiguration)
-                .UseStartup<Startup>()
-                .Build();
+		public static IWebHost BuildWebHost(string[] args)
+		{
+			var builder = WebHost.CreateDefaultBuilder(args)
+				.UseApplicationInsights()
+				.CaptureStartupErrors(true)
+				.UseSetting(WebHostDefaults.DetailedErrorsKey, "true")
+				.ConfigureAppConfiguration(ConfigConfiguration)
+				.UseStartup<Startup>()
+				.Build();
 
-            return builder;
-        }
+			return builder;
+		}
 
-        private static void ConfigConfiguration(WebHostBuilderContext webHostBuilderContext, IConfigurationBuilder configurationBuilder)
-        {
-            var configuration = configurationBuilder.Build();
+		private static void ConfigConfiguration(WebHostBuilderContext webHostBuilderContext, IConfigurationBuilder configurationBuilder)
+		{
+			var configuration = configurationBuilder.Build();
 
-            // Read the name of the environment variable set by Service Fabric that contain the location of the PEM file
-            var certificateEnvironmentVariable = configuration["AzureKeyVault:Certificate:CertificateEnvironmentVariable"];
-            if (string.IsNullOrWhiteSpace(certificateEnvironmentVariable))
-            {
-                return;
-            }
+			// Read the name of the environment variable set by Service Fabric that contain the location of the PEM file
+			var certificateEnvironmentVariable = configuration["AzureKeyVault:Certificate:CertificateEnvironmentVariable"];
+			if (string.IsNullOrWhiteSpace(certificateEnvironmentVariable))
+			{
+				return;
+			}
 
-            // Read the name of the environment variable set by Service Fabric that contain the location of the KEY file
-            var keyEnvironmentVariable = configuration["AzureKeyVault:Certificate:KeyEnvironmentVariable"];
-            if (string.IsNullOrWhiteSpace(keyEnvironmentVariable))
-            {
-                return;
-            }
+			// Read the name of the environment variable set by Service Fabric that contain the location of the KEY file
+			var keyEnvironmentVariable = configuration["AzureKeyVault:Certificate:KeyEnvironmentVariable"];
+			if (string.IsNullOrWhiteSpace(keyEnvironmentVariable))
+			{
+				return;
+			}
 
-            // Read the client ID
-            var clientId = configuration["AzureKeyVault:ClientId"];
-            if (string.IsNullOrWhiteSpace(clientId))
-            {
-                return;
-            }
+			// Read the client ID
+			var clientId = configuration["AzureKeyVault:ClientId"];
+			if (string.IsNullOrWhiteSpace(clientId))
+			{
+				return;
+			}
 
-            // Read the name of the Azure Key Vault
-            var name = configuration["AzureKeyVault:Name"];
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                return;
-            }
+			// Read the name of the Azure Key Vault
+			var name = configuration["AzureKeyVault:Name"];
+			if (string.IsNullOrWhiteSpace(name))
+			{
+				return;
+			}
 
-            // Read the location of the certificate file from the environment variable
-            var certificateFilePath = Environment.GetEnvironmentVariable(certificateEnvironmentVariable);
-            if (string.IsNullOrWhiteSpace(certificateFilePath))
-            {
-                return;
-            }
+			// Read the location of the certificate file from the environment variable
+			var certificateFilePath = Environment.GetEnvironmentVariable(certificateEnvironmentVariable);
+			if (string.IsNullOrWhiteSpace(certificateFilePath))
+			{
+				return;
+			}
 
-            // Read the location of the key file from the environment variable
-            var keyFilePath = Environment.GetEnvironmentVariable(keyEnvironmentVariable);
-            if (string.IsNullOrWhiteSpace(keyFilePath))
-            {
-                return;
-            }
+			// Read the location of the key file from the environment variable
+			var keyFilePath = Environment.GetEnvironmentVariable(keyEnvironmentVariable);
+			if (string.IsNullOrWhiteSpace(keyFilePath))
+			{
+				return;
+			}
 
-            // Read the certificate used to authenticate against Azure Key Vault
-            var certificate = Helpers.CertificateHelper.GetCertificateAsync(certificateFilePath, keyFilePath).Result;
-            if (certificate == null)
-            {
-                return;
-            }
+			// Read the certificate used to authenticate against Azure Key Vault
+			var certificate = Helpers.CertificateHelper.GetCertificateAsync(certificateFilePath, keyFilePath).Result;
+			if (certificate == null)
+			{
+				return;
+			}
 
-            // Configure the application to read settings from Azure Key Vault
-            configurationBuilder.AddAzureKeyVault($"https://{name}.vault.azure.net/",
-                                                  clientId,
-                                                  certificate);
-        }
-    }
+			// Configure the application to read settings from Azure Key Vault
+			configurationBuilder.AddAzureKeyVault($"https://{name}.vault.azure.net/",
+												  clientId,
+												  certificate);
+		}
+	}
 }
 ```
 **Remarks**
@@ -808,49 +808,49 @@ Below you can see the code of the **CertificateHelper.GetCertificateAsync** meth
 ```CSharp
 public static async Task<X509Certificate2> GetCertificateAsync(string certificateFilePath, string keyFilePath)
 {
-    // Validate parameters
-    if (string.IsNullOrEmpty(certificateFilePath))
-    {
-        throw new ArgumentException($"{nameof(certificateFilePath)} parameter cannot bu null or empty.", nameof(certificateFilePath));
-    }
+	// Validate parameters
+	if (string.IsNullOrEmpty(certificateFilePath))
+	{
+		throw new ArgumentException($"{nameof(certificateFilePath)} parameter cannot bu null or empty.", nameof(certificateFilePath));
+	}
 
-    if (string.IsNullOrEmpty(keyFilePath))
-    {
-        throw new ArgumentException($"{nameof(keyFilePath)} parameter cannot bu null or empty.", nameof(keyFilePath));
-    }
+	if (string.IsNullOrEmpty(keyFilePath))
+	{
+		throw new ArgumentException($"{nameof(keyFilePath)} parameter cannot bu null or empty.", nameof(keyFilePath));
+	}
 
-    if (!File.Exists(certificateFilePath))
-    {
-        throw new FileNotFoundException($"{certificateFilePath} file not found.", certificateFilePath);
-    }
+	if (!File.Exists(certificateFilePath))
+	{
+		throw new FileNotFoundException($"{certificateFilePath} file not found.", certificateFilePath);
+	}
 
-    if (!File.Exists(keyFilePath))
-    {
-        throw new FileNotFoundException($"{keyFilePath} file not found.", keyFilePath);
-    }
+	if (!File.Exists(keyFilePath))
+	{
+		throw new FileNotFoundException($"{keyFilePath} file not found.", keyFilePath);
+	}
 
-    if (Environment.OSVersion.Platform.ToString().ToLower().Contains("win"))
-    {
-        SetReadPermission(certificateFilePath);
-        SetReadPermission(keyFilePath);
-        var password = File.ReadAllLines(keyFilePath, Encoding.Default)[0];
-        password = password.Replace("\0", string.Empty);
-        var certificate = new X509Certificate2(certificateFilePath, password);
-        return certificate;
-    }
-    else
-    {
-        var pemCertificate = await File.ReadAllTextAsync(certificateFilePath);
-        var pemKey = await File.ReadAllTextAsync(keyFilePath);
+	if (Environment.OSVersion.Platform.ToString().ToLower().Contains("win"))
+	{
+		SetReadPermission(certificateFilePath);
+		SetReadPermission(keyFilePath);
+		var password = File.ReadAllLines(keyFilePath, Encoding.Default)[0];
+		password = password.Replace("\0", string.Empty);
+		var certificate = new X509Certificate2(certificateFilePath, password);
+		return certificate;
+	}
+	else
+	{
+		var pemCertificate = await File.ReadAllTextAsync(certificateFilePath);
+		var pemKey = await File.ReadAllTextAsync(keyFilePath);
 
-        var certBuffer = GetBytesFromPem(pemCertificate, CertificateFileType.Certificate);
-        var keyBuffer = GetBytesFromPem(pemKey, CertificateFileType.Pkcs8PrivateKey);
+		var certBuffer = GetBytesFromPem(pemCertificate, CertificateFileType.Certificate);
+		var keyBuffer = GetBytesFromPem(pemKey, CertificateFileType.Pkcs8PrivateKey);
 
-        var certificate = new X509Certificate2(certBuffer);
-        var privateKey = DecodePrivateKeyInfo(keyBuffer);
-        certificate = certificate.Copy​With​Private​Key(privateKey);
-        return certificate;
-    }
+		var certificate = new X509Certificate2(certBuffer);
+		var privateKey = DecodePrivateKeyInfo(keyBuffer);
+		certificate = certificate.Copy​With​Private​Key(privateKey);
+		return certificate;
+	}
 }
 ```
 
@@ -876,50 +876,50 @@ As mentioned above, the **TodoAppForLinuxFromACR** project allows you to specify
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ServiceManifest Name="TodoApiPkg"
-                 Version="1.0.0"
-                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
-                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				 Version="1.0.0"
+				 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+				 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ServiceTypes>
-    <!-- This is the name of your ServiceType.
-         The UseImplicitHost attribute indicates this is a guest service. -->
-    <StatelessServiceType ServiceTypeName="TodoApiType" UseImplicitHost="true" />
+	<!-- This is the name of your ServiceType.
+		 The UseImplicitHost attribute indicates this is a guest service. -->
+	<StatelessServiceType ServiceTypeName="TodoApiType" UseImplicitHost="true" />
   </ServiceTypes>
 
   <!-- Code package is your service executable. -->
   <CodePackage Name="Code" Version="1.0.0">
-    <EntryPoint>
-      <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
-      <ContainerHost>
-        <ImageName>AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:v1</ImageName>
-      </ContainerHost>
-    </EntryPoint>
-    <!-- Pass environment variables to your container: -->
-    <EnvironmentVariables>
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__EndpointUri" Value=""/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__PrimaryKey" Value=""/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__DatabaseName" Value=""/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__CollectionName" Value=""/>
-      <EnvironmentVariable Name="NotificationService__ServiceBus__ConnectionString" Value=""/>
-      <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value=""/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value=""/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
-      <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value=""/>
-    </EnvironmentVariables>
+	<EntryPoint>
+	  <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
+	  <ContainerHost>
+		<ImageName>AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:v1</ImageName>
+	  </ContainerHost>
+	</EntryPoint>
+	<!-- Pass environment variables to your container: -->
+	<EnvironmentVariables>
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+	  <EnvironmentVariable Name="RepositoryService__CosmosDb__EndpointUri" Value=""/>
+	  <EnvironmentVariable Name="RepositoryService__CosmosDb__PrimaryKey" Value=""/>
+	  <EnvironmentVariable Name="RepositoryService__CosmosDb__DatabaseName" Value=""/>
+	  <EnvironmentVariable Name="RepositoryService__CosmosDb__CollectionName" Value=""/>
+	  <EnvironmentVariable Name="NotificationService__ServiceBus__ConnectionString" Value=""/>
+	  <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value=""/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value=""/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
+	  <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value=""/>
+	</EnvironmentVariables>
   </CodePackage>
 
   <!-- Config package is the contents of the Config directoy under PackageRoot that contains an 
-       independently-updateable and versioned set of custom configuration settings for your service. -->
+	   independently-updateable and versioned set of custom configuration settings for your service. -->
   <ConfigPackage Name="Config" Version="1.0.0" />
 
   <Resources>
-    <Endpoints>
-      <!-- This endpoint is used by the communication listener to obtain the port on which to 
-           listen. Please note that if your service is partitioned, this port is shared with 
-           replicas of different partitions that are placed in your code. -->
-      <Endpoint Name="TodoApiEndpoint" Port="80" UriScheme="http" Protocol="http"/>
-    </Endpoints>
+	<Endpoints>
+	  <!-- This endpoint is used by the communication listener to obtain the port on which to 
+		   listen. Please note that if your service is partitioned, this port is shared with 
+		   replicas of different partitions that are placed in your code. -->
+	  <Endpoint Name="TodoApiEndpoint" Port="80" UriScheme="http" Protocol="http"/>
+	</Endpoints>
   </Resources>
 </ServiceManifest>
 ```
@@ -927,45 +927,45 @@ As mentioned above, the **TodoAppForLinuxFromACR** project allows you to specify
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ServiceManifest Name="TodoWebPkg"
-                 Version="1.0.0"
-                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
-                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				 Version="1.0.0"
+				 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+				 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ServiceTypes>
-    <!-- This is the name of your ServiceType.
-         The UseImplicitHost attribute indicates this is a guest service. -->
-    <StatelessServiceType ServiceTypeName="TodoWebType" UseImplicitHost="true" />
+	<!-- This is the name of your ServiceType.
+		 The UseImplicitHost attribute indicates this is a guest service. -->
+	<StatelessServiceType ServiceTypeName="TodoWebType" UseImplicitHost="true" />
   </ServiceTypes>
 
   <!-- Code package is your service executable. -->
   <CodePackage Name="Code" Version="1.0.0">
-    <EntryPoint>
-      <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
-      <ContainerHost>
-        <ImageName>AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:v1</ImageName>
-      </ContainerHost>
-    </EntryPoint>
-    <!-- Pass environment variables to your container: -->
-    <EnvironmentVariables>
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
-      <EnvironmentVariable Name="TodoApiService__EndpointUri" Value=""/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value=""/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
-      <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value=""/>
-    </EnvironmentVariables>
+	<EntryPoint>
+	  <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
+	  <ContainerHost>
+		<ImageName>AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:v1</ImageName>
+	  </ContainerHost>
+	</EntryPoint>
+	<!-- Pass environment variables to your container: -->
+	<EnvironmentVariables>
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+	  <EnvironmentVariable Name="TodoApiService__EndpointUri" Value=""/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value=""/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
+	  <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value=""/>
+	</EnvironmentVariables>
   </CodePackage>
 
   <!-- Config package is the contents of the Config directoy under PackageRoot that contains an 
-       independently-updateable and versioned set of custom configuration settings for your service. -->
+	   independently-updateable and versioned set of custom configuration settings for your service. -->
   <ConfigPackage Name="Config" Version="1.0.0" />
 
   <Resources>
-    <Endpoints>
-      <!-- This endpoint is used by the communication listener to obtain the port on which to 
-           listen. Please note that if your service is partitioned, this port is shared with 
-           replicas of different partitions that are placed in your code. -->
-      <Endpoint Name="TodoWebEndpoint" Port="8080" UriScheme="http" Protocol="http"/>
-    </Endpoints>
+	<Endpoints>
+	  <!-- This endpoint is used by the communication listener to obtain the port on which to 
+		   listen. Please note that if your service is partitioned, this port is shared with 
+		   replicas of different partitions that are placed in your code. -->
+	  <Endpoint Name="TodoWebEndpoint" Port="8080" UriScheme="http" Protocol="http"/>
+	</Endpoints>
   </Resources>
 </ServiceManifest>
 ```
@@ -975,89 +975,89 @@ Looking at the application manifest, you can observe that the certificate used b
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest ApplicationTypeName="TodoAppType"
-                     ApplicationTypeVersion="1.0.0"
-                     xmlns="http://schemas.microsoft.com/2011/01/fabric"
-                     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					 ApplicationTypeVersion="1.0.0"
+					 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+					 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
-    <Parameter Name="ACR_Username" DefaultValue="" />
-    <Parameter Name="ACR_Password" DefaultValue="" />
-    <Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" DefaultValue="Development"/>
-    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
-    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ConnectionString" DefaultValue=""/>
-    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
-    <Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
-    <Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" DefaultValue="Development"/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__EndpointUri" DefaultValue=""/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__PrimaryKey" DefaultValue=""/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__DatabaseName" DefaultValue=""/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" DefaultValue=""/>
-    <Parameter Name="TodoApi_NotificationService__ServiceBus__ConnectionString" DefaultValue=""/>
-    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" DefaultValue=""/>
-    <Parameter Name="TodoApi_DataProtection__BlobStorage__ConnectionString" DefaultValue=""/>
-    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
-    <Parameter Name="TodoApi_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
+	<Parameter Name="ACR_Username" DefaultValue="" />
+	<Parameter Name="ACR_Password" DefaultValue="" />
+	<Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
+	<Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" DefaultValue="Development"/>
+	<Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
+	<Parameter Name="TodoWeb_DataProtection__BlobStorage__ConnectionString" DefaultValue=""/>
+	<Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+	<Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
+	<Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
+	<Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" DefaultValue="Development"/>
+	<Parameter Name="TodoApi_RepositoryService__CosmosDb__EndpointUri" DefaultValue=""/>
+	<Parameter Name="TodoApi_RepositoryService__CosmosDb__PrimaryKey" DefaultValue=""/>
+	<Parameter Name="TodoApi_RepositoryService__CosmosDb__DatabaseName" DefaultValue=""/>
+	<Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" DefaultValue=""/>
+	<Parameter Name="TodoApi_NotificationService__ServiceBus__ConnectionString" DefaultValue=""/>
+	<Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" DefaultValue=""/>
+	<Parameter Name="TodoApi_DataProtection__BlobStorage__ConnectionString" DefaultValue=""/>
+	<Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+	<Parameter Name="TodoApi_ApplicationInsights__InstrumentationKey" DefaultValue=""/>
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
-       should match the Name and Version attributes of the ServiceManifest element defined in the 
-       ServiceManifest.xml file. -->
+	   should match the Name and Version attributes of the ServiceManifest element defined in the 
+	   ServiceManifest.xml file. -->
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="TodoWebPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-    <EnvironmentOverrides CodePackageRef="Code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[TodoWeb_ASPNETCORE_ENVIRONMENT]"/>
-      <EnvironmentVariable Name="TodoApiService__EndpointUri" Value="[TodoWeb_TodoApiService__EndpointUri]"/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value="[TodoWeb_DataProtection__BlobStorage__ConnectionString]"/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoWeb_DataProtection__BlobStorage__ContainerName]"/>
-      <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value="[TodoWeb_ApplicationInsights__InstrumentationKey]"/>
-    </EnvironmentOverrides>
-    <Policies>
-      <ContainerHostPolicies CodePackageRef="Code">
-        <RepositoryCredentials AccountName="[ACR_Username]" Password="[ACR_Password]" PasswordEncrypted="false"/>
-        <PortBinding ContainerPort="80" EndpointRef="TodoWebEndpoint" />
-      </ContainerHostPolicies>
-    </Policies>
+	<ServiceManifestRef ServiceManifestName="TodoWebPkg" ServiceManifestVersion="1.0.0" />
+	<ConfigOverrides />
+	<EnvironmentOverrides CodePackageRef="Code">
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[TodoWeb_ASPNETCORE_ENVIRONMENT]"/>
+	  <EnvironmentVariable Name="TodoApiService__EndpointUri" Value="[TodoWeb_TodoApiService__EndpointUri]"/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value="[TodoWeb_DataProtection__BlobStorage__ConnectionString]"/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoWeb_DataProtection__BlobStorage__ContainerName]"/>
+	  <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value="[TodoWeb_ApplicationInsights__InstrumentationKey]"/>
+	</EnvironmentOverrides>
+	<Policies>
+	  <ContainerHostPolicies CodePackageRef="Code">
+		<RepositoryCredentials AccountName="[ACR_Username]" Password="[ACR_Password]" PasswordEncrypted="false"/>
+		<PortBinding ContainerPort="80" EndpointRef="TodoWebEndpoint" />
+	  </ContainerHostPolicies>
+	</Policies>
   </ServiceManifestImport>
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="TodoApiPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-    <EnvironmentOverrides CodePackageRef="Code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[TodoApi_ASPNETCORE_ENVIRONMENT]"/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__EndpointUri" Value="[TodoApi_RepositoryService__CosmosDb__EndpointUri]"/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__PrimaryKey" Value="[TodoApi_RepositoryService__CosmosDb__PrimaryKey]"/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__DatabaseName" Value="[TodoApi_RepositoryService__CosmosDb__DatabaseName]"/>
-      <EnvironmentVariable Name="RepositoryService__CosmosDb__CollectionName" Value="[TodoApi_RepositoryService__CosmosDb__CollectionName]"/>
-      <EnvironmentVariable Name="NotificationService__ServiceBus__ConnectionString" Value="[TodoApi_NotificationService__ServiceBus__ConnectionString]"/>
-      <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value="[TodoApi_NotificationService__ServiceBus__QueueName]"/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value="[TodApi_DataProtection__BlobStorage__ConnectionString]"/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoApi_DataProtection__BlobStorage__ContainerName]"/>
-      <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value="[TodoApi_ApplicationInsights__InstrumentationKey]"/>
-    </EnvironmentOverrides>
-    <Policies>
-      <ContainerHostPolicies CodePackageRef="Code">
-        <RepositoryCredentials AccountName="[ACR_Username]" Password="[ACR_Password]" PasswordEncrypted="false"/>
-        <PortBinding ContainerPort="80" EndpointRef="TodoApiEndpoint" />
-      </ContainerHostPolicies>
-    </Policies>
+	<ServiceManifestRef ServiceManifestName="TodoApiPkg" ServiceManifestVersion="1.0.0" />
+	<ConfigOverrides />
+	<EnvironmentOverrides CodePackageRef="Code">
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[TodoApi_ASPNETCORE_ENVIRONMENT]"/>
+	  <EnvironmentVariable Name="RepositoryService__CosmosDb__EndpointUri" Value="[TodoApi_RepositoryService__CosmosDb__EndpointUri]"/>
+	  <EnvironmentVariable Name="RepositoryService__CosmosDb__PrimaryKey" Value="[TodoApi_RepositoryService__CosmosDb__PrimaryKey]"/>
+	  <EnvironmentVariable Name="RepositoryService__CosmosDb__DatabaseName" Value="[TodoApi_RepositoryService__CosmosDb__DatabaseName]"/>
+	  <EnvironmentVariable Name="RepositoryService__CosmosDb__CollectionName" Value="[TodoApi_RepositoryService__CosmosDb__CollectionName]"/>
+	  <EnvironmentVariable Name="NotificationService__ServiceBus__ConnectionString" Value="[TodoApi_NotificationService__ServiceBus__ConnectionString]"/>
+	  <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value="[TodoApi_NotificationService__ServiceBus__QueueName]"/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ConnectionString" Value="[TodApi_DataProtection__BlobStorage__ConnectionString]"/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoApi_DataProtection__BlobStorage__ContainerName]"/>
+	  <EnvironmentVariable Name="ApplicationInsights__InstrumentationKey" Value="[TodoApi_ApplicationInsights__InstrumentationKey]"/>
+	</EnvironmentOverrides>
+	<Policies>
+	  <ContainerHostPolicies CodePackageRef="Code">
+		<RepositoryCredentials AccountName="[ACR_Username]" Password="[ACR_Password]" PasswordEncrypted="false"/>
+		<PortBinding ContainerPort="80" EndpointRef="TodoApiEndpoint" />
+	  </ContainerHostPolicies>
+	</Policies>
   </ServiceManifestImport>
   <DefaultServices>
-    <!-- The section below creates instances of service types, when an instance of this 
-         application type is created. You can also create one or more instances of service type using the 
-         ServiceFabric PowerShell module.
-         
-         The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
-    <Service Name="TodoWeb" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoweb.todoapp">
-      <StatelessService ServiceTypeName="TodoWebType" InstanceCount="[TodoWeb_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
-    <Service Name="TodoApi" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoapi.todoapp">
-      <StatelessService ServiceTypeName="TodoApiType" InstanceCount="[TodoApi_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
+	<!-- The section below creates instances of service types, when an instance of this 
+		 application type is created. You can also create one or more instances of service type using the 
+		 ServiceFabric PowerShell module.
+		 
+		 The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
+	<Service Name="TodoWeb" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoweb.todoapp">
+	  <StatelessService ServiceTypeName="TodoWebType" InstanceCount="[TodoWeb_InstanceCount]">
+		<SingletonPartition />
+	  </StatelessService>
+	</Service>
+	<Service Name="TodoApi" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoapi.todoapp">
+	  <StatelessService ServiceTypeName="TodoApiType" InstanceCount="[TodoApi_InstanceCount]">
+		<SingletonPartition />
+	  </StatelessService>
+	</Service>
   </DefaultServices>
 </ApplicationManifest>
 ```
@@ -1066,25 +1066,25 @@ Looking at the application manifest, you can observe that the certificate used b
 <?xml version="1.0" encoding="utf-8"?>
 <Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
-    <Parameter Name="ACR_Username" Value="ACR_USERNAME" />
-    <Parameter Name="ACR_Password" Value="ACR_PASSWORD" />
-    <Parameter Name="TodoWeb_InstanceCount" Value="-1" />
-    <Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" Value="Development"/>
-    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
-    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ConnectionString" Value="STORAGE_ACCOUNT_CONNECTION_STRING"/>
-    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" Value="todoweb"/>
-    <Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" Value="APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"/>
-    <Parameter Name="TodoApi_InstanceCount" Value="-1" />
-    <Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" Value="Development"/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__EndpointUri" Value="COSMOS_DB_ENDPOINT_URI"/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__PrimaryKey" Value="COSMOS_DB_PRIMARY_KEY"/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__DatabaseName" Value="COSMOS_DB_DATABASE_NAME"/>
-    <Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" Value="COSMOS_DB_COLLECTION_NAME"/>
-    <Parameter Name="TodoApi_NotificationService__ServiceBus__ConnectionString" Value="SERVICE_BUS_CONNECTION_STRING"/>
-    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
-    <Parameter Name="TodoApi_DataProtection__BlobStorage__ConnectionString" Value="STORAGE_ACCOUNT_CONNECTION_STRING"/>
-    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" Value="todoapi"/>
-    <Parameter Name="TodoApi_ApplicationInsights__InstrumentationKey" Value="APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"/>
+	<Parameter Name="ACR_Username" Value="ACR_USERNAME" />
+	<Parameter Name="ACR_Password" Value="ACR_PASSWORD" />
+	<Parameter Name="TodoWeb_InstanceCount" Value="-1" />
+	<Parameter Name="TodoWeb_ASPNETCORE_ENVIRONMENT" Value="Development"/>
+	<Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
+	<Parameter Name="TodoWeb_DataProtection__BlobStorage__ConnectionString" Value="STORAGE_ACCOUNT_CONNECTION_STRING"/>
+	<Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" Value="todoweb"/>
+	<Parameter Name="TodoWeb_ApplicationInsights__InstrumentationKey" Value="APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"/>
+	<Parameter Name="TodoApi_InstanceCount" Value="-1" />
+	<Parameter Name="TodoApi_ASPNETCORE_ENVIRONMENT" Value="Development"/>
+	<Parameter Name="TodoApi_RepositoryService__CosmosDb__EndpointUri" Value="COSMOS_DB_ENDPOINT_URI"/>
+	<Parameter Name="TodoApi_RepositoryService__CosmosDb__PrimaryKey" Value="COSMOS_DB_PRIMARY_KEY"/>
+	<Parameter Name="TodoApi_RepositoryService__CosmosDb__DatabaseName" Value="COSMOS_DB_DATABASE_NAME"/>
+	<Parameter Name="TodoApi_RepositoryService__CosmosDb__CollectionName" Value="COSMOS_DB_COLLECTION_NAME"/>
+	<Parameter Name="TodoApi_NotificationService__ServiceBus__ConnectionString" Value="SERVICE_BUS_CONNECTION_STRING"/>
+	<Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
+	<Parameter Name="TodoApi_DataProtection__BlobStorage__ConnectionString" Value="STORAGE_ACCOUNT_CONNECTION_STRING"/>
+	<Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" Value="todoapi"/>
+	<Parameter Name="TodoApi_ApplicationInsights__InstrumentationKey" Value="APPLICATION_INSIGHTS_INSTRUMENTATION_KEY"/>
   </Parameters>
 </Application>
 ```
@@ -1115,50 +1115,50 @@ Then, open the **ServiceManifest** of both the **TodoApi** and **TodoWeb** servi
 ```csharp
 namespace TodoWeb.Services
 {
-    /// <summary>
-    /// TodoApiService class
-    /// </summary>
-    public class TodoApiService : ITodoApiService
-    {
-        #region Private Constants
-        private const string DefaultBaseAddress = "todoapi";
-        ...
-        #endregion
+	/// <summary>
+	/// TodoApiService class
+	/// </summary>
+	public class TodoApiService : ITodoApiService
+	{
+		#region Private Constants
+		private const string DefaultBaseAddress = "todoapi";
+		...
+		#endregion
 
-        #region Private Instance Fields
-        private readonly IOptions<TodoApiServiceOptions> _options;
-        private readonly ILogger<TodoApiService> _logger;
-        private readonly HttpClient _httpClient;
-        #endregion
+		#region Private Instance Fields
+		private readonly IOptions<TodoApiServiceOptions> _options;
+		private readonly ILogger<TodoApiService> _logger;
+		private readonly HttpClient _httpClient;
+		#endregion
 
-        #region Public Constructor
-        /// <summary>
-        /// Initializes a new instance of the TodoApiService class. 
-        /// </summary>
-        /// <param name="options"Service options.</param>
-        /// <param name="logger">Logger.</param>
-        public TodoApiService(IOptions<TodoApiServiceOptions> options, 
-						      ILogger<TodoApiService> logger)
-        {
-            _options = options;
-            _logger = logger;
+		#region Public Constructor
+		/// <summary>
+		/// Initializes a new instance of the TodoApiService class. 
+		/// </summary>
+		/// <param name="options"Service options.</param>
+		/// <param name="logger">Logger.</param>
+		public TodoApiService(IOptions<TodoApiServiceOptions> options, 
+							  ILogger<TodoApiService> logger)
+		{
+			_options = options;
+			_logger = logger;
 
-            var endpoint = string.IsNullOrWhiteSpace(_options?.Value?.EndpointUri) ?
-                           DefaultBaseAddress :
-                           _options.Value.EndpointUri;
-            _httpClient = new HttpClient
-            {
-                BaseAddress = new Uri($"http://{endpoint}")
-            };
-            _httpClient.DefaultRequestHeaders.Accept.Clear();
-            _httpClient.DefaultRequestHeaders.Add("ContentType", "application/json");
-            _httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+			var endpoint = string.IsNullOrWhiteSpace(_options?.Value?.EndpointUri) ?
+						   DefaultBaseAddress :
+						   _options.Value.EndpointUri;
+			_httpClient = new HttpClient
+			{
+				BaseAddress = new Uri($"http://{endpoint}")
+			};
+			_httpClient.DefaultRequestHeaders.Accept.Clear();
+			_httpClient.DefaultRequestHeaders.Add("ContentType", "application/json");
+			_httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-            _logger.LogInformation(LoggingEvents.Configuration, $"HttpClient.BaseAddress = {_httpClient.BaseAddress}");
-        }
-        #endregion
-    ...
-    }
+			_logger.LogInformation(LoggingEvents.Configuration, $"HttpClient.BaseAddress = {_httpClient.BaseAddress}");
+		}
+		#endregion
+	...
+	}
 }
 ```
 
@@ -1191,47 +1191,47 @@ Looking at the service manifests below, you can observe that both the frontend a
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ServiceManifest Name="TodoApiPkg"
-                 Version="1.0.0"
-                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
-                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				 Version="1.0.0"
+				 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+				 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ServiceTypes>
-    <!-- This is the name of your ServiceType.
-         The UseImplicitHost attribute indicates this is a guest service. -->
-    <StatelessServiceType ServiceTypeName="TodoApiType" UseImplicitHost="true" />
+	<!-- This is the name of your ServiceType.
+		 The UseImplicitHost attribute indicates this is a guest service. -->
+	<StatelessServiceType ServiceTypeName="TodoApiType" UseImplicitHost="true" />
   </ServiceTypes>
 
   <!-- Code package is your service executable. -->
   <CodePackage Name="Code" Version="1.0.0">
-    <EntryPoint>
-      <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
-      <ContainerHost>
-        <ImageName>DOCKER_HUB_REPOSITORY/todoapi:v1</ImageName>
-      </ContainerHost>
-    </EntryPoint>
-    <!-- Pass environment variables to your container: -->
-    <EnvironmentVariables>
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
-      <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value=""/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
-    </EnvironmentVariables>
+	<EntryPoint>
+	  <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
+	  <ContainerHost>
+		<ImageName>DOCKER_HUB_REPOSITORY/todoapi:v1</ImageName>
+	  </ContainerHost>
+	</EntryPoint>
+	<!-- Pass environment variables to your container: -->
+	<EnvironmentVariables>
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
+	  <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value=""/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
+	</EnvironmentVariables>
   </CodePackage>
 
   <!-- Config package is the contents of the Config directoy under PackageRoot that contains an 
-       independently-updateable and versioned set of custom configuration settings for your service. -->
+	   independently-updateable and versioned set of custom configuration settings for your service. -->
   <ConfigPackage Name="Config" Version="1.0.0" />
 
   <Resources>
-    <Endpoints>
-      <!-- This endpoint is used by the communication listener to obtain the port on which to 
-           listen. Please note that if your service is partitioned, this port is shared with 
-           replicas of different partitions that are placed in your code. -->
-      <Endpoint Name="TodoApiEndpoint" Port="80" UriScheme="http" Protocol="http"/>
-    </Endpoints>
+	<Endpoints>
+	  <!-- This endpoint is used by the communication listener to obtain the port on which to 
+		   listen. Please note that if your service is partitioned, this port is shared with 
+		   replicas of different partitions that are placed in your code. -->
+	  <Endpoint Name="TodoApiEndpoint" Port="80" UriScheme="http" Protocol="http"/>
+	</Endpoints>
   </Resources>
 </ServiceManifest>
 ```
@@ -1239,47 +1239,47 @@ Looking at the service manifests below, you can observe that both the frontend a
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ServiceManifest Name="TodoWebPkg"
-                 Version="1.0.0"
-                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
-                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				 Version="1.0.0"
+				 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+				 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ServiceTypes>
-    <!-- This is the name of your ServiceType.
-         The UseImplicitHost attribute indicates this is a guest service. -->
-    <StatelessServiceType ServiceTypeName="TodoWebType" UseImplicitHost="true" />
+	<!-- This is the name of your ServiceType.
+		 The UseImplicitHost attribute indicates this is a guest service. -->
+	<StatelessServiceType ServiceTypeName="TodoWebType" UseImplicitHost="true" />
   </ServiceTypes>
 
   <!-- Code package is your service executable. -->
   <CodePackage Name="Code" Version="1.0.0">
-    <EntryPoint>
-      <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
-      <ContainerHost>
-        <ImageName>DOCKER_HUB_REPOSITORY/todoweb:v1</ImageName>
-      </ContainerHost>
-    </EntryPoint>
-    <!-- Pass environment variables to your container: -->
-    <EnvironmentVariables>
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
-      <EnvironmentVariable Name="TodoApiService__EndpointUri" Value=""/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
-    </EnvironmentVariables>
+	<EntryPoint>
+	  <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
+	  <ContainerHost>
+		<ImageName>DOCKER_HUB_REPOSITORY/todoweb:v1</ImageName>
+	  </ContainerHost>
+	</EntryPoint>
+	<!-- Pass environment variables to your container: -->
+	<EnvironmentVariables>
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
+	  <EnvironmentVariable Name="TodoApiService__EndpointUri" Value=""/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
+	</EnvironmentVariables>
   </CodePackage>
 
   <!-- Config package is the contents of the Config directoy under PackageRoot that contains an 
-       independently-updateable and versioned set of custom configuration settings for your service. -->
+	   independently-updateable and versioned set of custom configuration settings for your service. -->
   <ConfigPackage Name="Config" Version="1.0.0" />
 
   <Resources>
-    <Endpoints>
-      <!-- This endpoint is used by the communication listener to obtain the port on which to 
-           listen. Please note that if your service is partitioned, this port is shared with 
-           replicas of different partitions that are placed in your code. -->
-      <Endpoint Name="TodoWebEndpoint" Port="8080" UriScheme="http" Protocol="http"/>
-    </Endpoints>
+	<Endpoints>
+	  <!-- This endpoint is used by the communication listener to obtain the port on which to 
+		   listen. Please note that if your service is partitioned, this port is shared with 
+		   replicas of different partitions that are placed in your code. -->
+	  <Endpoint Name="TodoWebEndpoint" Port="8080" UriScheme="http" Protocol="http"/>
+	</Endpoints>
   </Resources>
 </ServiceManifest>
 ```
@@ -1289,90 +1289,90 @@ Looking at the application manifest, you can observe that the certificate used b
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest ApplicationTypeName="TodoAppType"
-                     ApplicationTypeVersion="1.0.0"
-                     xmlns="http://schemas.microsoft.com/2011/01/fabric"
-                     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					 ApplicationTypeVersion="1.0.0"
+					 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+					 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
-    <!-- Shared Parameters -->
-    <Parameter Name="DockerHub_Username" DefaultValue="" />
-    <Parameter Name="DockerHub_Password" DefaultValue="" />
-    <Parameter Name="ASPNETCORE_ENVIRONMENT" DefaultValue=""/>
-    <Parameter Name="Certificate_Thumbprint" DefaultValue="" />
-    <Parameter Name="AzureKeyVault__ClientId" DefaultValue=""/>
-    <Parameter Name="AzureKeyVault__Name" DefaultValue=""/>
-    <!-- TodoWeb Parameters -->
-    <Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
-    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
-    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
-    <!-- TodoApi Parameters -->
-    <Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
-    <Parameter Name="TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
-    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" DefaultValue=""/>
-    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+	<!-- Shared Parameters -->
+	<Parameter Name="DockerHub_Username" DefaultValue="" />
+	<Parameter Name="DockerHub_Password" DefaultValue="" />
+	<Parameter Name="ASPNETCORE_ENVIRONMENT" DefaultValue=""/>
+	<Parameter Name="Certificate_Thumbprint" DefaultValue="" />
+	<Parameter Name="AzureKeyVault__ClientId" DefaultValue=""/>
+	<Parameter Name="AzureKeyVault__Name" DefaultValue=""/>
+	<!-- TodoWeb Parameters -->
+	<Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
+	<Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
+	<Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+	<!-- TodoApi Parameters -->
+	<Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
+	<Parameter Name="TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
+	<Parameter Name="TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
+	<Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" DefaultValue=""/>
+	<Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
-       should match the Name and Version attributes of the ServiceManifest element defined in the 
-       ServiceManifest.xml file. -->
+	   should match the Name and Version attributes of the ServiceManifest element defined in the 
+	   ServiceManifest.xml file. -->
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="TodoWebPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-    <EnvironmentOverrides CodePackageRef="Code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
-      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
-      <EnvironmentVariable Name="TodoApiService__EndpointUri" Value="[TodoWeb_TodoApiService__EndpointUri]"/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoWeb_DataProtection__BlobStorage__ContainerName]"/>
-    </EnvironmentOverrides>
-    <Policies>
-      <ContainerHostPolicies CodePackageRef="Code">
-        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
-        <PortBinding ContainerPort="80" EndpointRef="TodoWebEndpoint" />
-        <CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
-      </ContainerHostPolicies>
-    </Policies>
+	<ServiceManifestRef ServiceManifestName="TodoWebPkg" ServiceManifestVersion="1.0.0" />
+	<ConfigOverrides />
+	<EnvironmentOverrides CodePackageRef="Code">
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
+	  <EnvironmentVariable Name="TodoApiService__EndpointUri" Value="[TodoWeb_TodoApiService__EndpointUri]"/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoWeb_DataProtection__BlobStorage__ContainerName]"/>
+	</EnvironmentOverrides>
+	<Policies>
+	  <ContainerHostPolicies CodePackageRef="Code">
+		<RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+		<PortBinding ContainerPort="80" EndpointRef="TodoWebEndpoint" />
+		<CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
+	  </ContainerHostPolicies>
+	</Policies>
   </ServiceManifestImport>
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="TodoApiPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-    <EnvironmentOverrides CodePackageRef="Code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
-      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
-      <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value="[TodoApi_NotificationService__ServiceBus__QueueName]"/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoApi_DataProtection__BlobStorage__ContainerName]"/>
-    </EnvironmentOverrides>
-    <Policies>
-      <ContainerHostPolicies CodePackageRef="Code">
-        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
-        <PortBinding ContainerPort="80" EndpointRef="TodoApiEndpoint" />
-        <CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
-      </ContainerHostPolicies>
-    </Policies>
+	<ServiceManifestRef ServiceManifestName="TodoApiPkg" ServiceManifestVersion="1.0.0" />
+	<ConfigOverrides />
+	<EnvironmentOverrides CodePackageRef="Code">
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
+	  <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value="[TodoApi_NotificationService__ServiceBus__QueueName]"/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoApi_DataProtection__BlobStorage__ContainerName]"/>
+	</EnvironmentOverrides>
+	<Policies>
+	  <ContainerHostPolicies CodePackageRef="Code">
+		<RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+		<PortBinding ContainerPort="80" EndpointRef="TodoApiEndpoint" />
+		<CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
+	  </ContainerHostPolicies>
+	</Policies>
   </ServiceManifestImport>
   <DefaultServices>
-    <!-- The section below creates instances of service types, when an instance of this 
-         application type is created. You can also create one or more instances of service type using the 
-         ServiceFabric PowerShell module.
-         
-         The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
-    <Service Name="TodoWeb" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoweb.todoapp">
-      <StatelessService ServiceTypeName="TodoWebType" InstanceCount="[TodoWeb_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
-    <Service Name="TodoApi" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoapi.todoapp">
-      <StatelessService ServiceTypeName="TodoApiType" InstanceCount="[TodoApi_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
+	<!-- The section below creates instances of service types, when an instance of this 
+		 application type is created. You can also create one or more instances of service type using the 
+		 ServiceFabric PowerShell module.
+		 
+		 The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
+	<Service Name="TodoWeb" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoweb.todoapp">
+	  <StatelessService ServiceTypeName="TodoWebType" InstanceCount="[TodoWeb_InstanceCount]">
+		<SingletonPartition />
+	  </StatelessService>
+	</Service>
+	<Service Name="TodoApi" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoapi.todoapp">
+	  <StatelessService ServiceTypeName="TodoApiType" InstanceCount="[TodoApi_InstanceCount]">
+		<SingletonPartition />
+	  </StatelessService>
+	</Service>
   </DefaultServices>
 </ApplicationManifest>
 ```
@@ -1381,25 +1381,25 @@ Looking at the application manifest, you can observe that the certificate used b
 <?xml version="1.0" encoding="utf-8"?>
 <Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
-    <!-- Shared Parameters -->
-    <Parameter Name="DockerHub_Username" Value="DOCKER_HUB_USERNAME" />
-    <Parameter Name="DockerHub_Password" Value="DOCKER_HUB_PASSWORD" />
-    <Parameter Name="ASPNETCORE_ENVIRONMENT" Value="Development"/>
-    <Parameter Name="Certificate_Thumbprint" Value="CERTIFICATE_THUMBPRINT" />
-    <Parameter Name="AzureKeyVault__ClientId" Value="AZURE_AD_APPLICATION_ID"/>
-    <Parameter Name="AzureKeyVault__Name" Value="AZURE_KEY_VAULT_NAME"/>
-    <!-- TodoWeb Parameters -->
-    <Parameter Name="TodoWeb_InstanceCount" Value="-1" />
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
-    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
-    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" Value="todoweb"/>
-    <!-- TodoApi Parameters -->
-    <Parameter Name="TodoApi_InstanceCount" Value="-1" />
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
-    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
-    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" Value="todoapi"/>
+	<!-- Shared Parameters -->
+	<Parameter Name="DockerHub_Username" Value="DOCKER_HUB_USERNAME" />
+	<Parameter Name="DockerHub_Password" Value="DOCKER_HUB_PASSWORD" />
+	<Parameter Name="ASPNETCORE_ENVIRONMENT" Value="Development"/>
+	<Parameter Name="Certificate_Thumbprint" Value="CERTIFICATE_THUMBPRINT" />
+	<Parameter Name="AzureKeyVault__ClientId" Value="AZURE_AD_APPLICATION_ID"/>
+	<Parameter Name="AzureKeyVault__Name" Value="AZURE_KEY_VAULT_NAME"/>
+	<!-- TodoWeb Parameters -->
+	<Parameter Name="TodoWeb_InstanceCount" Value="-1" />
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
+	<Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
+	<Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" Value="todoweb"/>
+	<!-- TodoApi Parameters -->
+	<Parameter Name="TodoApi_InstanceCount" Value="-1" />
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
+	<Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
+	<Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" Value="todoapi"/>
   </Parameters>
 </Application>
 ```
@@ -1444,51 +1444,51 @@ Looking at the service manifests below, you can observe that both the frontend a
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ServiceManifest Name="TodoApiPkg"
-                 Version="1.0.0"
-                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
-                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				 Version="1.0.0"
+				 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+				 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ServiceTypes>
-    <!-- This is the name of your ServiceType.
-         The UseImplicitHost attribute indicates this is a guest service. -->
-    <StatelessServiceType ServiceTypeName="TodoApiType" UseImplicitHost="true" />
+	<!-- This is the name of your ServiceType.
+		 The UseImplicitHost attribute indicates this is a guest service. -->
+	<StatelessServiceType ServiceTypeName="TodoApiType" UseImplicitHost="true" />
   </ServiceTypes>
 
   <!-- Code package is your service executable. -->
   <CodePackage Name="Code" Version="1.0.0">
-    <EntryPoint>
-      <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
-      <ContainerHost>
-        <ImageName>DOCKER_HUB_REPOSITORY/wintodoapi:v1</ImageName>
-      </ContainerHost>
-    </EntryPoint>
-    <!-- Pass environment variables to your container: -->
-    <EnvironmentVariables>
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
-      <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value=""/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
-    </EnvironmentVariables>
+	<EntryPoint>
+	  <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
+	  <ContainerHost>
+		<ImageName>DOCKER_HUB_REPOSITORY/wintodoapi:v1</ImageName>
+	  </ContainerHost>
+	</EntryPoint>
+	<!-- Pass environment variables to your container: -->
+	<EnvironmentVariables>
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
+	  <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value=""/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
+	</EnvironmentVariables>
   </CodePackage>
 
   <!-- Config package is the contents of the Config directoy under PackageRoot that contains an 
-       independently-updateable and versioned set of custom configuration settings for your service. -->
+	   independently-updateable and versioned set of custom configuration settings for your service. -->
   <ConfigPackage Name="Config" Version="1.0.0" />
 
   <!-- Data Package defines the name of a folder which contains data files, in this case the certificate
-       used by the container to authenticate against Key Vault -->
+	   used by the container to authenticate against Key Vault -->
   <DataPackage Name="Data" Version="1.0.0"/>
 
   <Resources>
-    <Endpoints>
-      <!-- This endpoint is used by the communication listener to obtain the port on which to 
-           listen. Please note that if your service is partitioned, this port is shared with 
-           replicas of different partitions that are placed in your code. -->
-      <Endpoint Name="TodoApiEndpoint" Port="80" UriScheme="http" Protocol="http"/>
-    </Endpoints>
+	<Endpoints>
+	  <!-- This endpoint is used by the communication listener to obtain the port on which to 
+		   listen. Please note that if your service is partitioned, this port is shared with 
+		   replicas of different partitions that are placed in your code. -->
+	  <Endpoint Name="TodoApiEndpoint" Port="80" UriScheme="http" Protocol="http"/>
+	</Endpoints>
   </Resources>
 </ServiceManifest>
 ```
@@ -1496,38 +1496,38 @@ Looking at the service manifests below, you can observe that both the frontend a
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ServiceManifest Name="TodoWebPkg"
-                 Version="1.0.0"
-                 xmlns="http://schemas.microsoft.com/2011/01/fabric"
-                 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+				 Version="1.0.0"
+				 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+				 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+				 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <ServiceTypes>
-    <!-- This is the name of your ServiceType.
-         The UseImplicitHost attribute indicates this is a guest service. -->
-    <StatelessServiceType ServiceTypeName="TodoWebType" UseImplicitHost="true" />
+	<!-- This is the name of your ServiceType.
+		 The UseImplicitHost attribute indicates this is a guest service. -->
+	<StatelessServiceType ServiceTypeName="TodoWebType" UseImplicitHost="true" />
   </ServiceTypes>
 
   <!-- Code package is your service executable. -->
   <CodePackage Name="Code" Version="1.0.0">
-    <EntryPoint>
-      <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
-      <ContainerHost>
-        <ImageName>DOCKER_HUB_REPOSITORY/wintodoweb:v1</ImageName>
-      </ContainerHost>
-    </EntryPoint>
-    <!-- Pass environment variables to your container: -->
-    <EnvironmentVariables>
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
-      <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
-      <EnvironmentVariable Name="TodoApiService__EndpointUri" Value=""/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
-    </EnvironmentVariables>
+	<EntryPoint>
+	  <!-- Follow this link for more information about deploying Windows containers to Service Fabric: https://aka.ms/sfguestcontainers -->
+	  <ContainerHost>
+		<ImageName>DOCKER_HUB_REPOSITORY/wintodoweb:v1</ImageName>
+	  </ContainerHost>
+	</EntryPoint>
+	<!-- Pass environment variables to your container: -->
+	<EnvironmentVariables>
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__ClientId" Value=""/>
+	  <EnvironmentVariable Name="AzureKeyVault__Name" Value=""/>
+	  <EnvironmentVariable Name="TodoApiService__EndpointUri" Value=""/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value=""/>
+	</EnvironmentVariables>
   </CodePackage>
 
   <!-- Config package is the contents of the Config directoy under PackageRoot that contains an 
-       independently-updateable and versioned set of custom configuration settings for your service. -->
+	   independently-updateable and versioned set of custom configuration settings for your service. -->
   <ConfigPackage Name="Config" Version="1.0.0" />
 
   <!-- Data Package defines the name of a folder which contains data files, in this case the certificate
@@ -1535,12 +1535,12 @@ Looking at the service manifests below, you can observe that both the frontend a
   <DataPackage Name="Data" Version="1.0.0"/>
 
   <Resources>
-    <Endpoints>
-      <!-- This endpoint is used by the communication listener to obtain the port on which to 
-           listen. Please note that if your service is partitioned, this port is shared with 
-           replicas of different partitions that are placed in your code. -->
-      <Endpoint Name="TodoWebEndpoint" Port="8080" UriScheme="http" Protocol="http"/>
-    </Endpoints>
+	<Endpoints>
+	  <!-- This endpoint is used by the communication listener to obtain the port on which to 
+		   listen. Please note that if your service is partitioned, this port is shared with 
+		   replicas of different partitions that are placed in your code. -->
+	  <Endpoint Name="TodoWebEndpoint" Port="8080" UriScheme="http" Protocol="http"/>
+	</Endpoints>
   </Resources>
 </ServiceManifest>
 ```
@@ -1550,90 +1550,90 @@ Looking at the application manifest, you can observe the certificate used by the
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <ApplicationManifest ApplicationTypeName="TodoAppType"
-                     ApplicationTypeVersion="1.0.0"
-                     xmlns="http://schemas.microsoft.com/2011/01/fabric"
-                     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+					 ApplicationTypeVersion="1.0.0"
+					 xmlns="http://schemas.microsoft.com/2011/01/fabric"
+					 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+					 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
-    <!-- Shared Parameters -->
-    <Parameter Name="DockerHub_Username" DefaultValue="" />
-    <Parameter Name="DockerHub_Password" DefaultValue="" />
-    <Parameter Name="ASPNETCORE_ENVIRONMENT" DefaultValue=""/>
-    <Parameter Name="Certificate_Thumbprint" DefaultValue="" />
-    <Parameter Name="AzureKeyVault__ClientId" DefaultValue=""/>
-    <Parameter Name="AzureKeyVault__Name" DefaultValue=""/>
-    <!-- TodoWeb Parameters -->
-    <Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
-    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
-    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
-    <!-- TodoApi Parameters -->
-    <Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
-    <Parameter Name="TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
-    <Parameter Name="TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
-    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" DefaultValue=""/>
-    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+	<!-- Shared Parameters -->
+	<Parameter Name="DockerHub_Username" DefaultValue="" />
+	<Parameter Name="DockerHub_Password" DefaultValue="" />
+	<Parameter Name="ASPNETCORE_ENVIRONMENT" DefaultValue=""/>
+	<Parameter Name="Certificate_Thumbprint" DefaultValue="" />
+	<Parameter Name="AzureKeyVault__ClientId" DefaultValue=""/>
+	<Parameter Name="AzureKeyVault__Name" DefaultValue=""/>
+	<!-- TodoWeb Parameters -->
+	<Parameter Name="TodoWeb_InstanceCount" DefaultValue="-1" />
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
+	<Parameter Name="TodoWeb_TodoApiService__EndpointUri" DefaultValue=""/>
+	<Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
+	<!-- TodoApi Parameters -->
+	<Parameter Name="TodoApi_InstanceCount" DefaultValue="-1" />
+	<Parameter Name="TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable" DefaultValue=""/>
+	<Parameter Name="TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable" DefaultValue=""/>
+	<Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" DefaultValue=""/>
+	<Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" DefaultValue=""/>
   </Parameters>
   <!-- Import the ServiceManifest from the ServicePackage. The ServiceManifestName and ServiceManifestVersion 
-       should match the Name and Version attributes of the ServiceManifest element defined in the 
-       ServiceManifest.xml file. -->
+	   should match the Name and Version attributes of the ServiceManifest element defined in the 
+	   ServiceManifest.xml file. -->
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="TodoWebPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-    <EnvironmentOverrides CodePackageRef="Code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
-      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
-      <EnvironmentVariable Name="TodoApiService__EndpointUri" Value="[TodoWeb_TodoApiService__EndpointUri]"/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoWeb_DataProtection__BlobStorage__ContainerName]"/>
-    </EnvironmentOverrides>
-    <Policies>
-      <ContainerHostPolicies CodePackageRef="Code">
-        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
-        <PortBinding ContainerPort="80" EndpointRef="TodoWebEndpoint" />
-        <CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
-      </ContainerHostPolicies>
-    </Policies>
+	<ServiceManifestRef ServiceManifestName="TodoWebPkg" ServiceManifestVersion="1.0.0" />
+	<ConfigOverrides />
+	<EnvironmentOverrides CodePackageRef="Code">
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
+	  <EnvironmentVariable Name="TodoApiService__EndpointUri" Value="[TodoWeb_TodoApiService__EndpointUri]"/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoWeb_DataProtection__BlobStorage__ContainerName]"/>
+	</EnvironmentOverrides>
+	<Policies>
+	  <ContainerHostPolicies CodePackageRef="Code">
+		<RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+		<PortBinding ContainerPort="80" EndpointRef="TodoWebEndpoint" />
+		<CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
+	  </ContainerHostPolicies>
+	</Policies>
   </ServiceManifestImport>
   <ServiceManifestImport>
-    <ServiceManifestRef ServiceManifestName="TodoApiPkg" ServiceManifestVersion="1.0.0" />
-    <ConfigOverrides />
-    <EnvironmentOverrides CodePackageRef="Code">
-      <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
-      <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
-      <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
-      <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value="[TodoApi_NotificationService__ServiceBus__QueueName]"/>
-      <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoApi_DataProtection__BlobStorage__ContainerName]"/>
-    </EnvironmentOverrides>
-    <Policies>
-      <ContainerHostPolicies CodePackageRef="Code">
-        <RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
-        <PortBinding ContainerPort="80" EndpointRef="TodoApiEndpoint" />
-        <CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
-      </ContainerHostPolicies>
-    </Policies>
+	<ServiceManifestRef ServiceManifestName="TodoApiPkg" ServiceManifestVersion="1.0.0" />
+	<ConfigOverrides />
+	<EnvironmentOverrides CodePackageRef="Code">
+	  <EnvironmentVariable Name="ASPNETCORE_ENVIRONMENT" Value="[ASPNETCORE_ENVIRONMENT]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__CertificateEnvironmentVariable]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="[TodoApi_AzureKeyVault__Certificate__KeyEnvironmentVariable]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__ClientId" Value="[AzureKeyVault__ClientId]"/>
+	  <EnvironmentVariable Name="AzureKeyVault__Name" Value="[AzureKeyVault__Name]"/>
+	  <EnvironmentVariable Name="NotificationService__ServiceBus__QueueName" Value="[TodoApi_NotificationService__ServiceBus__QueueName]"/>
+	  <EnvironmentVariable Name="DataProtection__BlobStorage__ContainerName" Value="[TodoApi_DataProtection__BlobStorage__ContainerName]"/>
+	</EnvironmentOverrides>
+	<Policies>
+	  <ContainerHostPolicies CodePackageRef="Code">
+		<RepositoryCredentials AccountName="[DockerHub_Username]" Password="[DockerHub_Password]" PasswordEncrypted="false"/>
+		<PortBinding ContainerPort="80" EndpointRef="TodoApiEndpoint" />
+		<CertificateRef Name="TodoListCert" X509FindValue="[Certificate_Thumbprint]"/>
+	  </ContainerHostPolicies>
+	</Policies>
   </ServiceManifestImport>
   <DefaultServices>
-    <!-- The section below creates instances of service types, when an instance of this 
-         application type is created. You can also create one or more instances of service type using the 
-         ServiceFabric PowerShell module.
-         
-         The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
-    <Service Name="TodoWeb" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoweb.todoapp">
-      <StatelessService ServiceTypeName="TodoWebType" InstanceCount="[TodoWeb_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
-    <Service Name="TodoApi" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoapi.todoapp">
-      <StatelessService ServiceTypeName="TodoApiType" InstanceCount="[TodoApi_InstanceCount]">
-        <SingletonPartition />
-      </StatelessService>
-    </Service>
+	<!-- The section below creates instances of service types, when an instance of this 
+		 application type is created. You can also create one or more instances of service type using the 
+		 ServiceFabric PowerShell module.
+		 
+		 The attribute ServiceTypeName below must match the name defined in the imported ServiceManifest.xml file. -->
+	<Service Name="TodoWeb" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoweb.todoapp">
+	  <StatelessService ServiceTypeName="TodoWebType" InstanceCount="[TodoWeb_InstanceCount]">
+		<SingletonPartition />
+	  </StatelessService>
+	</Service>
+	<Service Name="TodoApi" ServicePackageActivationMode="ExclusiveProcess" ServiceDnsName="todoapi.todoapp">
+	  <StatelessService ServiceTypeName="TodoApiType" InstanceCount="[TodoApi_InstanceCount]">
+		<SingletonPartition />
+	  </StatelessService>
+	</Service>
   </DefaultServices>
 </ApplicationManifest>
 ```
@@ -1642,24 +1642,24 @@ Looking at the application manifest, you can observe the certificate used by the
 <?xml version="1.0" encoding="utf-8"?>
 <Application Name="fabric:/TodoApp" xmlns="http://schemas.microsoft.com/2011/01/fabric" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Parameters>
-    <!-- Shared Parameters -->
-    <Parameter Name="DockerHub_Username" Value="DOCKER_HUB_USERNAME" />
-    <Parameter Name="DockerHub_Password" Value="DOCKER_HUB_PASSWORD" />
-    <Parameter Name="ASPNETCORE_ENVIRONMENT" Value="Development"/>
-    <Parameter Name="AzureKeyVault__ClientId" Value="AZURE_AD_APPLICATION_ID"/>
-    <Parameter Name="AzureKeyVault__Name" Value="AZURE_KEY_VAULT_NAME"/>
-    <!-- TodoWeb Parameters -->
-    <Parameter Name="TodoWeb_InstanceCount" Value="-1" />
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
-    <Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
-    <Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" Value="todoweb"/>
-    <!-- TodoApi Parameters -->
-    <Parameter Name="TodoApi_InstanceCount" Value="-1" />
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
-    <Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
-    <Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
-    <Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" Value="todoapi"/>
+	<!-- Shared Parameters -->
+	<Parameter Name="DockerHub_Username" Value="DOCKER_HUB_USERNAME" />
+	<Parameter Name="DockerHub_Password" Value="DOCKER_HUB_PASSWORD" />
+	<Parameter Name="ASPNETCORE_ENVIRONMENT" Value="Development"/>
+	<Parameter Name="AzureKeyVault__ClientId" Value="AZURE_AD_APPLICATION_ID"/>
+	<Parameter Name="AzureKeyVault__Name" Value="AZURE_KEY_VAULT_NAME"/>
+	<!-- TodoWeb Parameters -->
+	<Parameter Name="TodoWeb_InstanceCount" Value="-1" />
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
+	<Parameter Name="TodoWeb_TodoApiService__EndpointUri" Value="todoapi.todoapp"/>
+	<Parameter Name="TodoWeb_DataProtection__BlobStorage__ContainerName" Value="todoweb"/>
+	<!-- TodoApi Parameters -->
+	<Parameter Name="TodoApi_InstanceCount" Value="-1" />
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__CertificateEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PEM"/>
+	<Parameter Name="TodoWeb_AzureKeyVault__Certificate__KeyEnvironmentVariable" Value="Certificates_TodoWebPkg_Code_TodoListCert_PrivateKey"/>
+	<Parameter Name="TodoApi_NotificationService__ServiceBus__QueueName" Value="todoapi"/>
+	<Parameter Name="TodoApi_DataProtection__BlobStorage__ContainerName" Value="todoapi"/>
   </Parameters>
 </Application>
 ```
@@ -1698,37 +1698,37 @@ version: '3'
 
 services:
   todoapi:
-    image:AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:latest
-    deploy:
-      mode: replicated
-      replicas: 5
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - RepositoryService__CosmosDb__EndpointUri=COSMOS_DB_ENDPOINT_URI
-      - RepositoryService__CosmosDb__PrimaryKey=COSMOS_DB_PRIMARY_KEY
-      - RepositoryService__CosmosDb__DatabaseName=TodoApiDb
-      - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
-      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
-      - DataProtection__BlobStorage__ContainerName=todoapi
-      - NotificationService__ServiceBus__ConnectionString=SERVICE_BUS_CONNECTION_STRING
-      - NotificationService__ServiceBus__QueueName=todoapi
-      - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
-    ports:
-      - "8081:80"
+	image:AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:latest
+	deploy:
+	  mode: replicated
+	  replicas: 5
+	environment:
+	  - ASPNETCORE_ENVIRONMENT=Development
+	  - RepositoryService__CosmosDb__EndpointUri=COSMOS_DB_ENDPOINT_URI
+	  - RepositoryService__CosmosDb__PrimaryKey=COSMOS_DB_PRIMARY_KEY
+	  - RepositoryService__CosmosDb__DatabaseName=TodoApiDb
+	  - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
+	  - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+	  - DataProtection__BlobStorage__ContainerName=todoapi
+	  - NotificationService__ServiceBus__ConnectionString=SERVICE_BUS_CONNECTION_STRING
+	  - NotificationService__ServiceBus__QueueName=todoapi
+	  - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
+	ports:
+	  - "8081:80"
 
   todoweb:
-    image:AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:latest
-    deploy:
-      mode: replicated
-      replicas: 5
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - TodoApiService__EndpointUri=todoapi.todoapp:8081
-      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
-      - DataProtection__BlobStorage__ContainerName=todoweb
-      - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
-    ports:
-      - "8082:80"
+	image:AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:latest
+	deploy:
+	  mode: replicated
+	  replicas: 5
+	environment:
+	  - ASPNETCORE_ENVIRONMENT=Development
+	  - TodoApiService__EndpointUri=todoapi.todoapp:8081
+	  - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+	  - DataProtection__BlobStorage__ContainerName=todoweb
+	  - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
+	ports:
+	  - "8082:80"
 ```
 
 **servicefabric-create-deployment-from-azure-container-registry.cmd**
@@ -1787,37 +1787,37 @@ version: '3'
 
 services:
   todoapi:
-    image: DOCKER_HUB_REPOSITORY/todoapi:latest
-    deploy:
-      mode: replicated
-      replicas: 5
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - RepositoryService__CosmosDb__EndpointUri=COSMOS_DB_ENDPOINT_URI
-      - RepositoryService__CosmosDb__PrimaryKey=COSMOS_DB_PRIMARY_KEY
-      - RepositoryService__CosmosDb__DatabaseName=TodoApiDb
-      - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
-      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
-      - DataProtection__BlobStorage__ContainerName=todoapi
-      - NotificationService__ServiceBus__ConnectionString=SERVICE_BUS_CONNECTION_STRING
-      - NotificationService__ServiceBus__QueueName=todoapi
-      - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
-    ports:
-      - "8081:80"
+	image: DOCKER_HUB_REPOSITORY/todoapi:latest
+	deploy:
+	  mode: replicated
+	  replicas: 5
+	environment:
+	  - ASPNETCORE_ENVIRONMENT=Development
+	  - RepositoryService__CosmosDb__EndpointUri=COSMOS_DB_ENDPOINT_URI
+	  - RepositoryService__CosmosDb__PrimaryKey=COSMOS_DB_PRIMARY_KEY
+	  - RepositoryService__CosmosDb__DatabaseName=TodoApiDb
+	  - RepositoryService__CosmosDb__CollectionName=TodoApiCollection
+	  - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+	  - DataProtection__BlobStorage__ContainerName=todoapi
+	  - NotificationService__ServiceBus__ConnectionString=SERVICE_BUS_CONNECTION_STRING
+	  - NotificationService__ServiceBus__QueueName=todoapi
+	  - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
+	ports:
+	  - "8081:80"
 
   todoweb:
-    image: DOCKER_HUB_REPOSITORY/todoweb:latest
-    deploy:
-      mode: replicated
-      replicas: 5
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
-      - TodoApiService__EndpointUri=todoapi.todoapp:8081
-      - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
-      - DataProtection__BlobStorage__ContainerName=todoweb
-      - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
-    ports:
-      - "8082:80"
+	image: DOCKER_HUB_REPOSITORY/todoweb:latest
+	deploy:
+	  mode: replicated
+	  replicas: 5
+	environment:
+	  - ASPNETCORE_ENVIRONMENT=Development
+	  - TodoApiService__EndpointUri=todoapi.todoapp:8081
+	  - DataProtection__BlobStorage__ConnectionString=STORAGE_ACCOUNT_CONNECTION_STRING
+	  - DataProtection__BlobStorage__ContainerName=todoweb
+	  - ApplicationInsights__InstrumentationKey=APPLICATION_INSIGHTS_INSTRUMENTATION_KEY
+	ports:
+	  - "8082:80"
 ```
 
 **servicefabric-create-deployment-from-docker-hub.cmd**
@@ -2044,159 +2044,159 @@ kind: Deployment
 metadata:
   name: todoapi
   labels:
-    app: todoapi
+	app: todoapi
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: todoapi
+	matchLabels:
+	  app: todoapi
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+	rollingUpdate:
+	  maxSurge: 1
+	  maxUnavailable: 1
   minReadySeconds: 5
   template:
-    metadata:
-      labels:
-        app: todoapi
-    spec:
-      containers:
-      - name: todoapi
-        image: paolosalvatori/todoapi:v2
-        ports:
-        - containerPort: 80
-        env:
-        - name: ASPNETCORE_ENVIRONMENT
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: aspNetCoreEnvironment
-        - name: RepositoryService__CosmosDb__EndpointUri
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbEndpointUri
-        - name: RepositoryService__CosmosDb__PrimaryKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDBPrimaryKey
-        - name: RepositoryService__CosmosDb__DatabaseName
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbDatabaseName
-        - name: RepositoryService__CosmosDb__CollectionName
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbCollectionName
-        - name: NotificationService__ServiceBus__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: serviceBusConnectionString
-        - name: NotificationService__ServiceBus__QueueName
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoApiServiceBusQueueName
-        - name: DataProtection__BlobStorage__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: dataProtectionBlobStorageConnectionString
-        - name: DataProtection__BlobStorage__ContainerName
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoApiDataProtectionBlobStorageContainerName
-        - name: ApplicationInsights__InstrumentationKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: applicationInsightsInstrumentationKey
+	metadata:
+	  labels:
+		app: todoapi
+	spec:
+	  containers:
+	  - name: todoapi
+		image: paolosalvatori/todoapi:v2
+		ports:
+		- containerPort: 80
+		env:
+		- name: ASPNETCORE_ENVIRONMENT
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: aspNetCoreEnvironment
+		- name: RepositoryService__CosmosDb__EndpointUri
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbEndpointUri
+		- name: RepositoryService__CosmosDb__PrimaryKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDBPrimaryKey
+		- name: RepositoryService__CosmosDb__DatabaseName
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbDatabaseName
+		- name: RepositoryService__CosmosDb__CollectionName
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbCollectionName
+		- name: NotificationService__ServiceBus__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: serviceBusConnectionString
+		- name: NotificationService__ServiceBus__QueueName
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoApiServiceBusQueueName
+		- name: DataProtection__BlobStorage__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: dataProtectionBlobStorageConnectionString
+		- name: DataProtection__BlobStorage__ContainerName
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoApiDataProtectionBlobStorageContainerName
+		- name: ApplicationInsights__InstrumentationKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: todoapi
   labels:
-    app: todoapi
+	app: todoapi
 spec:
   type: LoadBalancer
   ports:
   - protocol: TCP
-    port: 80
+	port: 80
   selector:
-    app: todoapi
+	app: todoapi
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: todoweb
   labels:
-    app: todoweb
+	app: todoweb
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: todoweb
+	matchLabels:
+	  app: todoweb
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+	rollingUpdate:
+	  maxSurge: 1
+	  maxUnavailable: 1
   minReadySeconds: 5 
   template:
-    metadata:
-      labels:
-        app: todoweb
-    spec:
-      containers:
-      - name: todoweb
-        image: paolosalvatori/todoweb:v2
-        ports:
-        - containerPort: 80
-        env:
-        - name: ASPNETCORE_ENVIRONMENT
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: aspNetCoreEnvironment
-        - name: TodoApiService__EndpointUri
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoApiServiceEndpointUri
-        - name: DataProtection__BlobStorage__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: dataProtectionBlobStorageConnectionString
-        - name: DataProtection__BlobStorage__ContainerName
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoWebDataProtectionBlobStorageContainerName
-        - name: ApplicationInsights__InstrumentationKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: applicationInsightsInstrumentationKey
+	metadata:
+	  labels:
+		app: todoweb
+	spec:
+	  containers:
+	  - name: todoweb
+		image: paolosalvatori/todoweb:v2
+		ports:
+		- containerPort: 80
+		env:
+		- name: ASPNETCORE_ENVIRONMENT
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: aspNetCoreEnvironment
+		- name: TodoApiService__EndpointUri
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoApiServiceEndpointUri
+		- name: DataProtection__BlobStorage__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: dataProtectionBlobStorageConnectionString
+		- name: DataProtection__BlobStorage__ContainerName
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoWebDataProtectionBlobStorageContainerName
+		- name: ApplicationInsights__InstrumentationKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: todoweb
   labels:
-    app: todoweb
+	app: todoweb
 spec:
   type: LoadBalancer
   ports:
   - protocol: TCP
-    port: 80
+	port: 80
   selector:
-    app: todoweb
+	app: todoweb
 ```
 
 **Configuration**
@@ -2499,159 +2499,159 @@ kind: Deployment
 metadata:
   name: todoapi
   labels:
-    app: todoapi
+	app: todoapi
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: todoapi
+	matchLabels:
+	  app: todoapi
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+	rollingUpdate:
+	  maxSurge: 1
+	  maxUnavailable: 1
   minReadySeconds: 5
   template:
-    metadata:
-      labels:
-        app: todoapi
-    spec:
-      containers:
-      - name: todoapi
-        image: AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:v1
-        ports:
-        - containerPort: 80
-        env:
-        - name: ASPNETCORE_ENVIRONMENT
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: aspNetCoreEnvironment
-        - name: RepositoryService__CosmosDb__EndpointUri
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbEndpointUri
-        - name: RepositoryService__CosmosDb__PrimaryKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDBPrimaryKey
-        - name: RepositoryService__CosmosDb__DatabaseName
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbDatabaseName
-        - name: RepositoryService__CosmosDb__CollectionName
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbCollectionName
-        - name: NotificationService__ServiceBus__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: serviceBusConnectionString
-        - name: NotificationService__ServiceBus__QueueName
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoApiServiceBusQueueName
-        - name: DataProtection__BlobStorage__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: dataProtectionBlobStorageConnectionString
-        - name: DataProtection__BlobStorage__ContainerName
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoApiDataProtectionBlobStorageContainerName
-        - name: ApplicationInsights__InstrumentationKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: applicationInsightsInstrumentationKey
+	metadata:
+	  labels:
+		app: todoapi
+	spec:
+	  containers:
+	  - name: todoapi
+		image: AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoapi:v1
+		ports:
+		- containerPort: 80
+		env:
+		- name: ASPNETCORE_ENVIRONMENT
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: aspNetCoreEnvironment
+		- name: RepositoryService__CosmosDb__EndpointUri
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbEndpointUri
+		- name: RepositoryService__CosmosDb__PrimaryKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDBPrimaryKey
+		- name: RepositoryService__CosmosDb__DatabaseName
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbDatabaseName
+		- name: RepositoryService__CosmosDb__CollectionName
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbCollectionName
+		- name: NotificationService__ServiceBus__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: serviceBusConnectionString
+		- name: NotificationService__ServiceBus__QueueName
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoApiServiceBusQueueName
+		- name: DataProtection__BlobStorage__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: dataProtectionBlobStorageConnectionString
+		- name: DataProtection__BlobStorage__ContainerName
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoApiDataProtectionBlobStorageContainerName
+		- name: ApplicationInsights__InstrumentationKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: todoapi
   labels:
-    app: todoapi
+	app: todoapi
 spec:
   type: LoadBalancer
   ports:
   - protocol: TCP
-    port: 80
+	port: 80
   selector:
-    app: todoapi
+	app: todoapi
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: todoweb
   labels:
-    app: todoweb
+	app: todoweb
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: todoweb
+	matchLabels:
+	  app: todoweb
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+	rollingUpdate:
+	  maxSurge: 1
+	  maxUnavailable: 1
   minReadySeconds: 5 
   template:
-    metadata:
-      labels:
-        app: todoweb
-    spec:
-      containers:
-      - name: todoweb
-        image: AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:v1
-        ports:
-        - containerPort: 80
-        env:
-        - name: ASPNETCORE_ENVIRONMENT
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: aspNetCoreEnvironment
-        - name: TodoApiService__EndpointUri
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoApiServiceEndpointUri
-        - name: DataProtection__BlobStorage__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: dataProtectionBlobStorageConnectionString
-        - name: DataProtection__BlobStorage__ContainerName
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoWebDataProtectionBlobStorageContainerName
-        - name: ApplicationInsights__InstrumentationKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: applicationInsightsInstrumentationKey
+	metadata:
+	  labels:
+		app: todoweb
+	spec:
+	  containers:
+	  - name: todoweb
+		image: AZURE_CONTAINER_REGISTRY_NAME.azurecr.io/todoweb:v1
+		ports:
+		- containerPort: 80
+		env:
+		- name: ASPNETCORE_ENVIRONMENT
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: aspNetCoreEnvironment
+		- name: TodoApiService__EndpointUri
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoApiServiceEndpointUri
+		- name: DataProtection__BlobStorage__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: dataProtectionBlobStorageConnectionString
+		- name: DataProtection__BlobStorage__ContainerName
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoWebDataProtectionBlobStorageContainerName
+		- name: ApplicationInsights__InstrumentationKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: todoweb
   labels:
-    app: todoweb
+	app: todoweb
 spec:
   type: LoadBalancer
   ports:
   - protocol: TCP
-    port: 80
+	port: 80
   selector:
-    app: todoweb
+	app: todoweb
 ```
 
 **Configuration**
@@ -2792,159 +2792,159 @@ kind: Deployment
 metadata:
   name: ssl-todoapi
   labels:
-    app: ssl-todoapi
+	app: ssl-todoapi
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: ssl-todoapi
+	matchLabels:
+	  app: ssl-todoapi
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+	rollingUpdate:
+	  maxSurge: 1
+	  maxUnavailable: 1
   minReadySeconds: 5
   template:
-    metadata:
-      labels:
-        app: ssl-todoapi
-    spec:
-      containers:
-      - name: ssl-todoapi
-        image: DOCKER_HUB_REPOSITORY/todoapi:latest
-        ports:
-        - containerPort: 80
-        env:
-        - name: ASPNETCORE_ENVIRONMENT
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: aspNetCoreEnvironment
-        - name: RepositoryService__CosmosDb__EndpointUri
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbEndpointUri
-        - name: RepositoryService__CosmosDb__PrimaryKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDBPrimaryKey
-        - name: RepositoryService__CosmosDb__DatabaseName
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbDatabaseName
-        - name: RepositoryService__CosmosDb__CollectionName
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbCollectionName
-        - name: NotificationService__ServiceBus__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: serviceBusConnectionString
-        - name: NotificationService__ServiceBus__QueueName
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoApiServiceBusQueueName
-        - name: DataProtection__BlobStorage__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: dataProtectionBlobStorageConnectionString
-        - name: DataProtection__BlobStorage__ContainerName
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoApiDataProtectionBlobStorageContainerName
-        - name: ApplicationInsights__InstrumentationKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: applicationInsightsInstrumentationKey
+	metadata:
+	  labels:
+		app: ssl-todoapi
+	spec:
+	  containers:
+	  - name: ssl-todoapi
+		image: DOCKER_HUB_REPOSITORY/todoapi:latest
+		ports:
+		- containerPort: 80
+		env:
+		- name: ASPNETCORE_ENVIRONMENT
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: aspNetCoreEnvironment
+		- name: RepositoryService__CosmosDb__EndpointUri
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbEndpointUri
+		- name: RepositoryService__CosmosDb__PrimaryKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDBPrimaryKey
+		- name: RepositoryService__CosmosDb__DatabaseName
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbDatabaseName
+		- name: RepositoryService__CosmosDb__CollectionName
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbCollectionName
+		- name: NotificationService__ServiceBus__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: serviceBusConnectionString
+		- name: NotificationService__ServiceBus__QueueName
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoApiServiceBusQueueName
+		- name: DataProtection__BlobStorage__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: dataProtectionBlobStorageConnectionString
+		- name: DataProtection__BlobStorage__ContainerName
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoApiDataProtectionBlobStorageContainerName
+		- name: ApplicationInsights__InstrumentationKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: ssl-todoapi
   labels:
-    app: ssl-todoapi
+	app: ssl-todoapi
 spec:
   type: ClusterIP
   ports:
   - protocol: TCP
-    port: 80
+	port: 80
   selector:
-    app: ssl-todoapi
+	app: ssl-todoapi
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: ssl-todoweb
   labels:
-    app: ssl-todoapi
+	app: ssl-todoapi
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: ssl-todoweb
+	matchLabels:
+	  app: ssl-todoweb
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+	rollingUpdate:
+	  maxSurge: 1
+	  maxUnavailable: 1
   minReadySeconds: 5 
   template:
-    metadata:
-      labels:
-        app: ssl-todoweb
-    spec:
-      containers:
-      - name: ssl-todoweb
-        image: DOCKER_HUB_REPOSITORY/todoweb:v1
-        ports:
-        - containerPort: 80
-        env:
-        - name: ASPNETCORE_ENVIRONMENT
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: aspNetCoreEnvironment
-        - name: TodoApiService__EndpointUri
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoApiServiceEndpointUri
-        - name: DataProtection__BlobStorage__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: dataProtectionBlobStorageConnectionString
-        - name: DataProtection__BlobStorage__ContainerName
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoWebDataProtectionBlobStorageContainerName
-        - name: ApplicationInsights__InstrumentationKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: applicationInsightsInstrumentationKey
+	metadata:
+	  labels:
+		app: ssl-todoweb
+	spec:
+	  containers:
+	  - name: ssl-todoweb
+		image: DOCKER_HUB_REPOSITORY/todoweb:v1
+		ports:
+		- containerPort: 80
+		env:
+		- name: ASPNETCORE_ENVIRONMENT
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: aspNetCoreEnvironment
+		- name: TodoApiService__EndpointUri
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoApiServiceEndpointUri
+		- name: DataProtection__BlobStorage__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: dataProtectionBlobStorageConnectionString
+		- name: DataProtection__BlobStorage__ContainerName
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoWebDataProtectionBlobStorageContainerName
+		- name: ApplicationInsights__InstrumentationKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: ssl-todoweb
   labels:
-    app: ssl-todoweb
+	app: ssl-todoweb
 spec:
   type: ClusterIP
   ports:
   - protocol: TCP
-    port: 80
+	port: 80
   selector:
-    app: ssl-todoweb
+	app: ssl-todoweb
 ```
 **Configuration**
 
@@ -2977,7 +2977,7 @@ spec:
   tls:
   - secretName: tls-secret
   backend:
-    serviceName: ssl-todoweb
+	serviceName: ssl-todoweb
 ```
 
 You can run the following **Bash** command to create the **nginx-ingress** in your Kubernetes cluster using the above YAML file.
@@ -3044,8 +3044,8 @@ sources:
   - https://github.com/paolosalvatori/service-fabric-acs-kubernetes-multi-container-app
 maintainers: # (optional)
   - name: Paolo Salvatori
-    email: paolos@microsoft.com
-    url: https://github.com/paolosalvatori
+	email: paolos@microsoft.com
+	url: https://github.com/paolosalvatori
 engine: gotpl 
 appVersion: 1.0.0
 ```
@@ -3071,75 +3071,75 @@ kind: Deployment
 metadata:
   name: {{.Values.backend}}
   labels:
-    app: {{.Values.backend}}
+	app: {{.Values.backend}}
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: {{.Values.backend}}
+	matchLabels:
+	  app: {{.Values.backend}}
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+	rollingUpdate:
+	  maxSurge: 1
+	  maxUnavailable: 1
   minReadySeconds: 5
   template:
-    metadata:
-      labels:
-        app: {{.Values.backend}}
-    spec:
-      containers:
-      - name: {{.Values.backend}}
-        image: {{.Values.imageRegistry}}/{{.Values.backendImage}}:{{.Values.backendTag}}
-        ports:
-        - containerPort: 80
-        env:
-        - name: ASPNETCORE_ENVIRONMENT
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: aspNetCoreEnvironment
-        - name: RepositoryService__CosmosDb__EndpointUri
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbEndpointUri
-        - name: RepositoryService__CosmosDb__PrimaryKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDBPrimaryKey
-        - name: RepositoryService__CosmosDb__DatabaseName
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbDatabaseName
-        - name: RepositoryService__CosmosDb__CollectionName
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: cosmosDbCollectionName
-        - name: NotificationService__ServiceBus__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: serviceBusConnectionString
-        - name: NotificationService__ServiceBus__QueueName
-          value: {{.Values.queueName}}
-        - name: DataProtection__BlobStorage__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: dataProtectionBlobStorageConnectionString
-        - name: DataProtection__BlobStorage__ContainerName
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoApiDataProtectionBlobStorageContainerName
-        - name: ApplicationInsights__InstrumentationKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: applicationInsightsInstrumentationKey
+	metadata:
+	  labels:
+		app: {{.Values.backend}}
+	spec:
+	  containers:
+	  - name: {{.Values.backend}}
+		image: {{.Values.imageRegistry}}/{{.Values.backendImage}}:{{.Values.backendTag}}
+		ports:
+		- containerPort: 80
+		env:
+		- name: ASPNETCORE_ENVIRONMENT
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: aspNetCoreEnvironment
+		- name: RepositoryService__CosmosDb__EndpointUri
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbEndpointUri
+		- name: RepositoryService__CosmosDb__PrimaryKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDBPrimaryKey
+		- name: RepositoryService__CosmosDb__DatabaseName
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbDatabaseName
+		- name: RepositoryService__CosmosDb__CollectionName
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: cosmosDbCollectionName
+		- name: NotificationService__ServiceBus__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: serviceBusConnectionString
+		- name: NotificationService__ServiceBus__QueueName
+		  value: {{.Values.queueName}}
+		- name: DataProtection__BlobStorage__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: dataProtectionBlobStorageConnectionString
+		- name: DataProtection__BlobStorage__ContainerName
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoApiDataProtectionBlobStorageContainerName
+		- name: ApplicationInsights__InstrumentationKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
@@ -3149,62 +3149,62 @@ spec:
   type: {{.Values.backendServiceType}}
   ports:
   - protocol: TCP
-    port: 80
+	port: 80
   selector:
-    app: {{.Values.backend}}
+	app: {{.Values.backend}}
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
   name: {{.Values.frontend}}
   labels:
-    app: {{.Values.frontend}}
+	app: {{.Values.frontend}}
 spec:
   replicas: 3
   selector:
-    matchLabels:
-      app: {{.Values.frontend}}
+	matchLabels:
+	  app: {{.Values.frontend}}
   strategy:
-    rollingUpdate:
-      maxSurge: 1
-      maxUnavailable: 1
+	rollingUpdate:
+	  maxSurge: 1
+	  maxUnavailable: 1
   minReadySeconds: 5 
   template:
-    metadata:
-      labels:
-        app: {{.Values.frontend}}
-    spec:
-      containers:
-      - name: {{.Values.frontend}}
-        image: {{.Values.imageRegistry}}/{{.Values.frontendImage}}:{{.Values.frontendTag}}
-        ports:
-        - containerPort: 80
-        env:
-        - name: ASPNETCORE_ENVIRONMENT
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: aspNetCoreEnvironment
-        - name: TodoApiService__EndpointUri
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoApiServiceEndpointUri
-        - name: DataProtection__BlobStorage__ConnectionString
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: dataProtectionBlobStorageConnectionString
-        - name: DataProtection__BlobStorage__ContainerName
-          valueFrom:
-            configMapKeyRef:
-              name: todolist-configmap
-              key: todoWebDataProtectionBlobStorageContainerName
-        - name: ApplicationInsights__InstrumentationKey
-          valueFrom:
-            secretKeyRef:
-                name: todolist-secret
-                key: applicationInsightsInstrumentationKey
+	metadata:
+	  labels:
+		app: {{.Values.frontend}}
+	spec:
+	  containers:
+	  - name: {{.Values.frontend}}
+		image: {{.Values.imageRegistry}}/{{.Values.frontendImage}}:{{.Values.frontendTag}}
+		ports:
+		- containerPort: 80
+		env:
+		- name: ASPNETCORE_ENVIRONMENT
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: aspNetCoreEnvironment
+		- name: TodoApiService__EndpointUri
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoApiServiceEndpointUri
+		- name: DataProtection__BlobStorage__ConnectionString
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: dataProtectionBlobStorageConnectionString
+		- name: DataProtection__BlobStorage__ContainerName
+		  valueFrom:
+			configMapKeyRef:
+			  name: todolist-configmap
+			  key: todoWebDataProtectionBlobStorageContainerName
+		- name: ApplicationInsights__InstrumentationKey
+		  valueFrom:
+			secretKeyRef:
+				name: todolist-secret
+				key: applicationInsightsInstrumentationKey
 ---
 apiVersion: v1
 kind: Service
@@ -3214,9 +3214,9 @@ spec:
   type: {{.Values.frontendServiceType}}
   ports:
   - protocol: TCP
-    port: 80
+	port: 80
   selector:
-    app: {{.Values.frontend}}
+	app: {{.Values.frontend}}
 ```
 
 **Observations**
