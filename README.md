@@ -25,7 +25,7 @@ This solution is covered in detail in the following e-books available on Microso
 # Azure Service Fabric and ACS/Kubernetes Environments #
 This repository contains a sample multi-container application and the scripts to deploy it on the following environments: 
 
-- Service Fabric Linux cluster in Azure with the DNS service.
+- Service Fabric Linux or Windows cluster with container support in Azure with the DNS service.
 - Azure Container Service Kubernetes cluster on Linux 
 
 # Prerequisites for development machine #
