@@ -20,6 +20,6 @@
                                     AzureActiveDirectory="true"
                                     ServerCertThumbprint="0123456789012345678901234567890123456789" />
   -->
-  <ClusterConnectionParameters ConnectionEndpoint="jeeg.westeurope.cloudapp.azure.com:19000" AzureActiveDirectory="true" ServerCertThumbprint="69BD73CA1309C509FAB0220B5675D19A50292331" />
+  <ClusterConnectionParameters ConnectionEndpoint="plunko.westeurope.cloudapp.azure.com:19000" AzureActiveDirectory="true" ServerCertThumbprint="D972C335BFB9584E89BD571BF9C749D3A7C857A0" />
   <ApplicationParameterFile Path="..\ApplicationParameters\Cloud.xml" />
 </PublishProfile>

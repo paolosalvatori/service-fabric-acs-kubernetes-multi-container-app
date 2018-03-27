@@ -17,6 +17,11 @@ Microservices have the following characteristics:
 
 For detailed guidance about building a microservices architecture on Azure, see [Designing, building, and operating microservices on Azure](https://docs.microsoft.com/en-us/azure/architecture/microservices/).
 
+This solution is covered in detail in the following e-books available on Microsoft Azure site:
+
+ - [Build and deploy a multi-container application in Azure Service Fabric](https://azure.microsoft.com/resources/build-and-deploy-a-multi-container-application-in-azure-service-fabric/)
+ - [Build and deploy a multi-container application in Azure Container Service](https://azure.microsoft.com/resources/build-and-deploy-a-multi-container-application-in-azure-container-service/)
+ 
 # Azure Service Fabric and ACS/Kubernetes Environments #
 This repository contains a sample multi-container application and the scripts to deploy it on the following environments: 
 
