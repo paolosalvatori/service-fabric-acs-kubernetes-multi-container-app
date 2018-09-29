@@ -145,7 +145,7 @@ The following picture shows the architecture of the **Kubernetes** application r
 In ASP.NET Core, the configuration API provides a way of configuring an app based on a list of name-value pairs. Configuration is read at runtime from multiple sources. The name-value pairs can be grouped into a multi-level hierarchy. There are configuration providers for: 
 
 - File formats (INI, JSON, and XML)
-- ommand-line arguments
+- Command-line arguments
 - Environment variables
 - In-memory .NET objects
 - An encrypted user store
